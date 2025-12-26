@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catalogue Véhicules — Nightfall RP</title>
+  <link rel="stylesheet" href="assets/css/styles.css?v=20251227" />
+  <link rel="stylesheet" href="assets/css/enhanced.css?v=ULTRA" />
+  <style>
+    .vehicles-header {
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, rgba(88,101,242,0.1), rgba(138,80,214,0.1));
+      border-radius: 16px;
+      margin-bottom: 40px;
+    }
+
+    .vehicles-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 32px;
+      padding: 0 20px;
+    }
+
+    .filter-btn {
+      padding: 10px 24px;
+      background: rgba(255,255,255,0.05);
+      border: 2px solid rgba(88,101,242,0.3);
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+
+    .filter-btn:hover {
+      background: rgba(88,101,242,0.2);
+      border-color: rgba(88,101,242,0.6);
+      transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+      background: rgba(88,101,242,0.4);
+      border-color: #5865F2;
+      box-shadow: 0 0 16px rgba(88,101,242,0.5);
+    }
+
+    .vehicles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      padding: 0 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .vehicle-card {
+      background: rgba(255,255,255,0.03);
+      border: 2px solid rgba(88,101,242,0.2);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .vehicle-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(88,101,242,0.6);
+      box-shadow: 0 8px 24px rgba(88,101,242,0.3);
+    }
+
+    .vehicle-card__image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      background: rgba(0,0,0,0.3);
+    }
+
+    .vehicle-card__content {
+      padding: 16px;
+    }
+
+    .vehicle-card__name {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 8px 0;
+    }
+
+    .vehicle-card__model {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      margin: 0 0 12px 0;
+      font-family: monospace;
+    }
+
+    .vehicle-card__price {
+      font-size: 20px;
+      font-weight: 800;
+      color: #5865F2;
+      text-shadow: 0 0 8px rgba(88,101,242,0.5);
+    }
+
+    .vehicle-card__category {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(88,101,242,0.2);
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-top: 8px;
+      color: #5865F2;
+    }
+
+    .search-box {
+      max-width: 600px;
+      margin: 0 auto 32px;
+      padding: 0 20px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 14px 20px;
+      background: rgba(255,255,255,0.05);
+      border: 2px solid rgba(88,101,242,0.3);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 16px;
+      transition: all 0.3s;
+    }
+
+    .search-box input:focus {
+      outline: none;
+      border-color: #5865F2;
+      box-shadow: 0 0 16px rgba(88,101,242,0.3);
+    }
+
+    .search-box input::placeholder {
+      color: rgba(255,255,255,0.4);
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 60px 20px;
+      color: rgba(255,255,255,0.6);
+      font-size: 18px;
+    }
+
+    .stats-summary {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      padding: 0 20px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-item__value {
+      font-size: 32px;
+      font-weight: 800;
+      color: #5865F2;
+      text-shadow: 0 0 12px rgba(88,101,242,0.5);
+    }
+
+    .stat-item__label {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand brand--enhanced" href="index.html" aria-label="Nightfall RP">
+      <span class="brand__glow"></span>
+      <img src="assets/img/Logo Discord Animée.gif" alt="Discord" style="height:44px;width:44px;margin-right:10px;border-radius:12px;box-shadow:0 0 16px #5865F2,0 0 32px #5865F2;object-fit:cover;vertical-align:middle;animation:brand-discord-pulse 2s infinite alternate;" />
+      <span class="brand__text">
+        <span class="brand__name brand__name--epic">NIGHTFALL</span>
+        <span class="brand__sub brand__sub--glow">Roleplay • FiveM</span>
+      </span>
+      <style>
+        @keyframes brand-discord-pulse {
+          0% { filter: drop-shadow(0 0 0 #5865F2); }
+          100% { filter: drop-shadow(0 0 16px #5865F2) brightness(1.15); }
+        }
+      </style>
+    </a>
+    <nav class="nav" aria-label="Navigation">
+      <a href="index.html">Accueil</a>
+      <a href="reglement.html">Règlement</a>
+      <a href="equipe.html">Équipe</a>
+      <a href="vehicules.html" class="nav-active">Véhicules</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="contact.html">Contact</a>
+      <a class="nav__btn" href="staff/index.html">Staff Panel</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="vehicles-header">
+        <h1 style="font-size: 48px; margin: 0 0 16px 0; background: linear-gradient(135deg, #5865F2, #8A50D6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          Catalogue de Véhicules
+        </h1>
+        <p style="font-size: 18px; color: rgba(255,255,255,0.7); margin: 0;">
+          Découvre tous les véhicules disponibles sur Nightfall RP
+        </p>
+      </div>
+
+      <div class="stats-summary" id="statsSummary">
+        <div class="stat-item">
+          <div class="stat-item__value" data-total-vehicles>—</div>
+          <div class="stat-item__label">Véhicules</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-item__value" data-total-categories>—</div>
+          <div class="stat-item__label">Catégories</div>
+        </div>
+      </div>
+
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="🔍 Rechercher un véhicule..." />
+      </div>
+
+      <div class="vehicles-filters" id="filtersContainer">
+        <button class="filter-btn active" data-filter="all">Tous</button>
+      </div>
+
+      <div class="vehicles-grid" id="vehiclesGrid">
+        <div style="text-align: center; padding: 40px; color: rgba(255,255,255,0.6);">
+          Chargement des véhicules...
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div>© <span data-year></span> Nightfall RP</div>
+      <div class="footer__links">
+        <a href="reglement.html">Règlement</a>
+        <a href="equipe.html">Équipe</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const yearEl = document.querySelector('[data-year]');
+    if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+    let allVehicles = [];
+    let currentFilter = 'all';
+    let searchQuery = '';
+
+    async function loadVehicles() {
+      try {
+        const res = await fetch('/api/vehicles');
+        const data = await res.json();
+        allVehicles = data.vehicles || [];
+        
+        // Extraire les catégories uniques
+        const categories = [...new Set(allVehicles.map(v => v.category).filter(Boolean))];
+        
+        // Créer les boutons de filtre
+        const filtersContainer = document.getElementById('filtersContainer');
+        filtersContainer.innerHTML = '<button class="filter-btn active" data-filter="all">Tous</button>';
+        
+        categories.sort().forEach(cat => {
+          const btn = document.createElement('button');
+          btn.className = 'filter-btn';
+          btn.dataset.filter = cat;
+          btn.textContent = cat;
+          filtersContainer.appendChild(btn);
+        });
+
+        // Ajouter les event listeners
+        filtersContainer.addEventListener('click', (e) => {
+          if (!e.target.classList.contains('filter-btn')) return;
+          
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          e.target.classList.add('active');
+          
+          currentFilter = e.target.dataset.filter;
+          renderVehicles();
+        });
+
+        // Stats
+        document.querySelector('[data-total-vehicles]').textContent = allVehicles.length;
+        document.querySelector('[data-total-categories]').textContent = categories.length;
+
+        renderVehicles();
+      } catch (err) {
+        console.error('Error loading vehicles:', err);
+        document.getElementById('vehiclesGrid').innerHTML = 
+          '<div class="no-results">Erreur lors du chargement des véhicules</div>';
+      }
+    }
+
+    function renderVehicles() {
+      const grid = document.getElementById('vehiclesGrid');
+      
+      let filtered = allVehicles;
+      
+      // Filtre par catégorie
+      if (currentFilter !== 'all') {
+        filtered = filtered.filter(v => v.category === currentFilter);
+      }
+      
+      // Filtre par recherche
+      if (searchQuery) {
+        const query = searchQuery.toLowerCase();
+        filtered = filtered.filter(v => 
+          v.name.toLowerCase().includes(query) ||
+          v.model.toLowerCase().includes(query) ||
+          (v.category && v.category.toLowerCase().includes(query))
+        );
+      }
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div class="no-results">Aucun véhicule trouvé</div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(v => `
+        <div class="vehicle-card">
+          <img class="vehicle-card__image" src="${v.image || 'assets/img/placeholder-car.png'}" alt="${v.name}" loading="lazy" onerror="this.src='assets/img/placeholder-car.png'">
+          <div class="vehicle-card__content">
+            <h3 class="vehicle-card__name">${v.name}</h3>
+            <p class="vehicle-card__model">${v.model}</p>
+            <div class="vehicle-card__price">$${v.price.toLocaleString('fr-FR')}</div>
+            ${v.category ? `<span class="vehicle-card__category">${v.category}</span>` : ''}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Recherche
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      renderVehicles();
+    });
+
+    loadVehicles();
+  </script>
+</body>
+</html>

@@ -104,6 +104,9 @@ let latest = {
   players: []
 };
 
+// Server uptime tracking
+const serverStartTime = Date.now();
+
 function makeToken() {
   return crypto.randomBytes(24).toString('hex');
 }
@@ -142,16 +145,31 @@ app.get('/api/status', async (_req, res) => {
 
     let isOnline = false;
     let playersOnline = 0;
+    let avgPing = 0;
+    let uptime = 0;
 
     if (base) {
       try {
         const dynamic = await fetchJsonWithTimeout(`${base}/dynamic.json`, 3000);
         const players = await fetchJsonWithTimeout(`${base}/players.json`, 3000);
+        const info = await fetchJsonWithTimeout(`${base}/info.json`, 3000);
 
         // Si dynamic OU players répond (même vide), le serveur est online
         if (dynamic || players !== null) isOnline = true;
-        if (Array.isArray(players)) playersOnline = players.length;
+        if (Array.isArray(players)) {
+          playersOnline = players.length;
+          // Calculer le ping moyen
+          if (players.length > 0) {
+            const totalPing = players.reduce((sum, p) => sum + (p.ping || 0), 0);
+            avgPing = Math.round(totalPing / players.length);
+          }
+        }
         else if (dynamic && typeof dynamic.clients === 'number') playersOnline = dynamic.clients;
+
+        // Récupérer l'uptime depuis info.json si disponible
+        if (info && info.vars && info.vars.uptime) {
+          uptime = Math.floor(info.vars.uptime / 60); // Convertir en minutes
+        }
       } catch (err) {
         console.error('[FiveM check] Error:', err.message);
       }
@@ -164,7 +182,9 @@ app.get('/api/status', async (_req, res) => {
       isOnline,
       playersOnline,
       serverIp: displayIp,
-      discordInvite: cfg.discordInvite || ''
+      discordInvite: cfg.discordInvite || '',
+      avgPing: avgPing,
+      uptime: uptime
     });
   } catch (err) {
     console.error('[API Status] Error:', err.message);
@@ -181,6 +201,19 @@ app.post('/api/staff/login', (req, res) => {
   const token = makeToken();
   tokens.set(token, { expiresAt: Date.now() + TOKEN_TTL_MS });
   res.json({ token });
+});
+
+// API publique pour les véhicules
+app.get('/api/vehicles', (_req, res) => {
+  try {
+    const vehiclesPath = path.join(ROOT, 'api', 'vehicles', 'config_vehicles.json');
+    const raw = fs.readFileSync(vehiclesPath, 'utf8');
+    const vehicles = JSON.parse(raw);
+    res.json({ vehicles });
+  } catch (err) {
+    console.error('[API Vehicles] Error:', err.message);
+    res.status(500).json({ error: 'internal error' });
+  }
 });
 
 // Staff: get players

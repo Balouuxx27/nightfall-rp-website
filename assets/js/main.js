@@ -123,6 +123,38 @@
         discord.setAttribute('href', data.discordInvite);
         discord.textContent = 'Rejoindre le Discord';
       }
+
+      // Afficher l'uptime
+      const uptimeEl = document.querySelector('[data-stat-uptime]');
+      if (uptimeEl && data.uptime) {
+        const minutes = data.uptime;
+        if (minutes < 60) {
+          uptimeEl.textContent = `${minutes}min`;
+        } else if (minutes < 1440) {
+          const hours = Math.floor(minutes / 60);
+          uptimeEl.textContent = `${hours}h`;
+        } else {
+          const days = Math.floor(minutes / 1440);
+          const hours = Math.floor((minutes % 1440) / 60);
+          uptimeEl.textContent = `${days}j ${hours}h`;
+        }
+      } else if (uptimeEl) {
+        uptimeEl.textContent = '—';
+      }
+
+      // Afficher le ping moyen
+      const pingEl = document.querySelector('[data-stat-ping]');
+      if (pingEl && data.avgPing) {
+        pingEl.textContent = `${data.avgPing}ms`;
+      } else if (pingEl) {
+        pingEl.textContent = '—';
+      }
+
+      // Mettre à jour la stat des joueurs dans la section stats aussi
+      const statPlayersEl = document.querySelector('[data-stat-players]');
+      if (statPlayersEl) {
+        statPlayersEl.textContent = Number(data.playersOnline ?? 0);
+      }
     } catch {
       if (onlineEl) onlineEl.textContent = '—';
       lastOnline = null;
@@ -131,6 +163,16 @@
         statusBadge.classList.add('badge--off');
         statusBadge.classList.remove('badge--ok');
       }
+      
+      // Reset des valeurs en cas d'erreur
+      const uptimeEl = document.querySelector('[data-stat-uptime]');
+      if (uptimeEl) uptimeEl.textContent = '—';
+      
+      const pingEl = document.querySelector('[data-stat-ping]');
+      if (pingEl) pingEl.textContent = '—';
+
+      const statPlayersEl = document.querySelector('[data-stat-players]');
+      if (statPlayersEl) statPlayersEl.textContent = '—';
     }
   }
 
