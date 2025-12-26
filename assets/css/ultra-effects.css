@@ -1,0 +1,318 @@
+/* ==========================================================================
+   ✨ NIGHTFALL RP - ULTRA EFFECTS WOW
+   ========================================================================== */
+
+/* 🌟 EFFET PARALLAXE SUR HERO */
+.hero__title {
+  animation: heroFloat 6s ease-in-out infinite !important;
+}
+
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-10px) scale(1.01); }
+}
+
+/* 🔥 BOUTONS ULTRA GLOW */
+.btn--primary {
+  position: relative;
+  overflow: hidden;
+  animation: btnPulseGlow 3s ease-in-out infinite;
+}
+
+.btn--primary::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn--primary:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+@keyframes btnPulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 30px rgba(183,148,255,0.5), 0 0 60px rgba(53,209,255,0.3), 0 4px 20px rgba(0,0,0,0.30);
+  }
+  50% {
+    box-shadow: 0 0 50px rgba(183,148,255,0.8), 0 0 100px rgba(53,209,255,0.5), 0 8px 30px rgba(0,0,0,0.40);
+  }
+}
+
+/* ⚡ CARDS AVEC EFFET 3D */
+.card, .tile {
+  transform-style: preserve-3d;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover, .tile:hover {
+  transform: translateY(-8px) rotateX(2deg) rotateY(2deg) scale(1.02);
+  box-shadow: 
+    0 30px 80px rgba(0,0,0,0.60),
+    0 15px 40px rgba(0,0,0,0.40),
+    0 0 0 1px rgba(183,148,255,0.35),
+    0 0 50px rgba(183,148,255,0.4),
+    0 0 100px rgba(53,209,255,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+/* 💫 SECTIONS AVEC GLOW INTENSE */
+.section {
+  position: relative;
+}
+
+.section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(183,148,255,0.6) 20%, 
+    rgba(53,209,255,0.8) 50%, 
+    rgba(183,148,255,0.6) 80%, 
+    transparent
+  );
+  opacity: 0.8;
+  filter: blur(2px);
+  animation: sectionGlow 4s ease-in-out infinite;
+}
+
+@keyframes sectionGlow {
+  0%, 100% {
+    opacity: 0.6;
+    box-shadow: 0 0 20px rgba(183,148,255,0.4), 0 0 40px rgba(53,209,255,0.2);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 40px rgba(183,148,255,0.8), 0 0 80px rgba(53,209,255,0.6);
+  }
+}
+
+/* 🎯 NAVIGATION AVEC EFFET NÉON */
+.nav a {
+  position: relative;
+  text-shadow: 0 0 10px rgba(183,148,255,0.3);
+  transition: all 0.3s ease;
+}
+
+.nav a::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(183,148,255,0.2), rgba(53,209,255,0.15));
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: -1;
+}
+
+.nav a:hover::before {
+  opacity: 1;
+  box-shadow: 0 0 20px rgba(183,148,255,0.4), inset 0 0 10px rgba(183,148,255,0.2);
+}
+
+.nav a:hover {
+  text-shadow: 0 0 20px rgba(183,148,255,0.8), 0 0 40px rgba(53,209,255,0.5);
+  transform: translateY(-2px);
+}
+
+/* 🌊 TOPBAR AVEC EFFET WAVE */
+.topbar::before {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(183,148,255,0.8) 15%,
+    rgba(53,209,255,0.8) 50%,
+    rgba(183,148,255,0.8) 85%,
+    transparent
+  );
+  opacity: 1;
+  animation: topbarWave 5s ease-in-out infinite;
+  filter: blur(1px);
+}
+
+@keyframes topbarWave {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scaleX(1) translateX(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1.02) translateX(2%);
+  }
+}
+
+/* 🎨 STATS AVEC ANIMATION COUNTER */
+.stat__k {
+  animation: statPop 0.6s ease-out;
+  display: inline-block;
+}
+
+@keyframes statPop {
+  0% {
+    transform: scale(0.5) rotateX(90deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1) rotateX(-5deg);
+  }
+  100% {
+    transform: scale(1) rotateX(0);
+    opacity: 1;
+  }
+}
+
+/* 🔮 HERO CARD EFFET HOLOGRAPHIQUE */
+.hero__card .card {
+  background: linear-gradient(145deg, 
+    rgba(255,255,255,0.09) 0%,
+    rgba(183,148,255,0.08) 50%,
+    rgba(53,209,255,0.06) 100%
+  );
+  animation: cardHolo 8s ease-in-out infinite;
+}
+
+@keyframes cardHolo {
+  0%, 100% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: hue-rotate(5deg);
+  }
+}
+
+/* ⭐ BADGE ONLINE ULTRA PULSE */
+.badge--ok {
+  animation: badgeUltraPulse 2s ease-in-out infinite !important;
+  position: relative;
+}
+
+.badge--ok::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  background: inherit;
+  opacity: 0.5;
+  filter: blur(8px);
+  animation: badgeHalo 2s ease-in-out infinite;
+}
+
+@keyframes badgeUltraPulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px rgba(53,209,255,0.45),
+      0 0 40px rgba(53,209,255,0.25),
+      inset 0 1px 0 rgba(255,255,255,0.15);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 
+      0 0 35px rgba(53,209,255,0.8),
+      0 0 70px rgba(53,209,255,0.5),
+      0 0 100px rgba(53,209,255,0.3),
+      inset 0 1px 0 rgba(255,255,255,0.25);
+    transform: scale(1.05);
+  }
+}
+
+@keyframes badgeHalo {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.1); }
+}
+
+/* 🌈 PILL EFFET RAINBOW SUBTIL */
+.pill {
+  animation: pillGlow 4s ease-in-out infinite;
+}
+
+@keyframes pillGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(183,148,255,0.3), inset 0 0 10px rgba(183,148,255,0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(53,209,255,0.4), inset 0 0 15px rgba(53,209,255,0.15);
+  }
+}
+
+/* 🎭 FOOTER AVEC GRADIENT ANIMÉ */
+.footer {
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 300%;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(183,148,255,0.5),
+    rgba(53,209,255,0.6),
+    rgba(183,148,255,0.5),
+    transparent
+  );
+  animation: footerSweep 8s linear infinite;
+}
+
+@keyframes footerSweep {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* 🎪 LIGHTBOX ULTRA EFFET */
+.lightbox {
+  backdrop-filter: blur(20px);
+  animation: lightboxFadeIn 0.3s ease-out;
+}
+
+@keyframes lightboxFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.lightbox__content {
+  animation: lightboxSlideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 50px 100px rgba(0,0,0,0.8),
+    0 0 80px rgba(183,148,255,0.4),
+    0 0 120px rgba(53,209,255,0.2);
+}
+
+@keyframes lightboxSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

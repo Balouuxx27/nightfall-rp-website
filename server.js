@@ -157,7 +157,7 @@ app.get('/api/status', async (_req, res) => {
       }
     }
 
-    const displayIp = cfg.serverIp ? `connect ${cfg.serverIp}` : '';
+    const displayIp = cfg.serverIp || '';
 
     res.setHeader('Cache-Control', 'no-store');
     res.json({
