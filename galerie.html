@@ -13,13 +13,42 @@
       width: 100%;
       height: 100%;
       text-decoration: none;
-      cursor: zoom-in;
+      cursor: pointer;
+      position: relative;
     }
     .gallery-item a img {
       transition: transform 0.3s ease;
     }
     .gallery-item:hover a img {
       transform: scale(1.05);
+    }
+    
+    /* Override Lightbox styles to ensure visibility */
+    .lightbox {
+      z-index: 10000 !important;
+    }
+    .lb-overlay {
+      z-index: 9999 !important;
+    }
+    .lb-outerContainer {
+      background-color: #000 !important;
+    }
+    .lb-nav a.lb-prev,
+    .lb-nav a.lb-next {
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: block !important;
+    }
+    .lb-data .lb-close {
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: block !important;
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAXElEQVRYhe3WMQqAMAxA0e7i/a+ii+AurghFRDoUtX+H/IWsKR8hDQAA/qcKPGqwdQT0AqyPgNsR8HgEvP4H3EZAIcBRAJvALgLYBHYRwCawi4A/NpHPAQDwrQE3yBYqwZe76gAAAABJRU5ErkJggg==) center center no-repeat;
+      width: 32px;
+      height: 32px;
+    }
+    .lb-dataContainer {
+      background: rgba(0,0,0,0.8) !important;
     }
   </style>
 </head>
@@ -158,12 +187,18 @@
       </div>
     </div>
   </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
   <script>
     lightbox.option({
       'resizeDuration': 200,
       'wrapAround': true,
-      'albumLabel': "Image %1 sur %2"
+      'albumLabel': "Image %1 sur %2",
+      'disableScrolling': true,
+      'fadeDuration': 300,
+      'imageFadeDuration': 300,
+      'positionFromTop': 50,
+      'showImageNumberLabel': true
     });
   </script>
 </body>
