@@ -12,11 +12,16 @@
     <a class="brand brand--enhanced" href="index.html" aria-label="Nightfall RP">
       <span class="brand__glow"></span>
       <img src="assets/img/Logo Discord Animée.gif" alt="Discord" style="height:44px;width:44px;margin-right:10px;border-radius:12px;box-shadow:0 0 16px #5865F2,0 0 32px #5865F2;object-fit:cover;vertical-align:middle;animation:brand-discord-pulse 2s infinite alternate;" />
-      <span class="brand__mark brand__mark--pulse" aria-hidden="true"></span>
       <span class="brand__text">
         <span class="brand__name brand__name--epic">NIGHTFALL</span>
         <span class="brand__sub brand__sub--glow">Roleplay • FiveM</span>
       </span>
+      <style>
+        @keyframes brand-discord-pulse {
+          0% { filter: drop-shadow(0 0 0 #5865F2); }
+          100% { filter: drop-shadow(0 0 16px #5865F2) brightness(1.15); }
+        }
+      </style>
     </a>
     <nav class="nav" aria-label="Navigation">
       <a href="index.html">Accueil</a>
@@ -35,12 +40,14 @@
       </div>
       <div class="gallery-grid">
         <div class="gallery-item gallery-item--video">
-          <video loop muted playsinline class="gallery-video">
-            <source src="assets/img/Final NightFallRP Version RAP .mp4" type="video/mp4">
-          </video>
+          <iframe class="gallery-video" 
+                  src="https://www.youtube.com/embed/8n-QJUE0qP8" 
+                  frameborder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowfullscreen>
+          </iframe>
           <div class="gallery-overlay">
-            <span class="gallery-play">▶</span>
-            <span class="gallery-label">Trailer officiel</span>
+            <span class="gallery-label">Trailer officiel Nightfall RP</span>
           </div>
         </div>
         <div class="gallery-item">
