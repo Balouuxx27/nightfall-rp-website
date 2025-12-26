@@ -48,8 +48,8 @@ function loadStatusConfig() {
       serverIp: String(process.env.FIVEM_SERVER_IP || j.serverIp || ''),
       discordInvite: String(process.env.DISCORD_INVITE || j.discordInvite || '')
     };
-  } catch (err) {
-    console.error('[Config] Error loading status.json:', err.message);
+  } catch {
+    // Fichier absent = on utilise uniquement les variables d'environnement
     return {
       serverIp: String(process.env.FIVEM_SERVER_IP || ''),
       discordInvite: String(process.env.DISCORD_INVITE || '')
