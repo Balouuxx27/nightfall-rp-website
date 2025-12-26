@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Économie — Nightfall RP</title>
+  <link rel="stylesheet" href="assets/css/styles.css?v=20251227" />
+  <link rel="stylesheet" href="assets/css/enhanced.css?v=ULTRA" />
+  <style>
+    .economy-hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, rgba(88,101,242,0.1), rgba(138,80,214,0.1));
+      border-radius: 16px;
+      margin-bottom: 48px;
+    }
+
+    .economy-sections {
+      display: grid;
+      gap: 48px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .economy-section {
+      background: rgba(255,255,255,0.02);
+      border: 2px solid rgba(88,101,242,0.2);
+      border-radius: 16px;
+      padding: 32px;
+      transition: all 0.3s;
+    }
+
+    .economy-section:hover {
+      border-color: rgba(88,101,242,0.4);
+      box-shadow: 0 8px 24px rgba(88,101,242,0.2);
+    }
+
+    .economy-section h2 {
+      font-size: 32px;
+      margin: 0 0 24px 0;
+      background: linear-gradient(135deg, #5865F2, #8A50D6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .job-card {
+      background: rgba(255,255,255,0.03);
+      border: 2px solid rgba(88,101,242,0.2);
+      border-radius: 12px;
+      padding: 20px;
+      transition: all 0.3s;
+    }
+
+    .job-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(88,101,242,0.5);
+      box-shadow: 0 4px 16px rgba(88,101,242,0.3);
+    }
+
+    .job-card__header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .job-card__icon {
+      font-size: 32px;
+    }
+
+    .job-card__title {
+      flex: 1;
+    }
+
+    .job-card__name {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      margin: 0;
+    }
+
+    .job-card__label {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      font-family: monospace;
+    }
+
+    .job-card__grades {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .grade-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      background: rgba(0,0,0,0.2);
+      border-radius: 8px;
+    }
+
+    .grade-item__name {
+      font-size: 14px;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .grade-item__salary {
+      font-size: 14px;
+      font-weight: 700;
+      color: #5865F2;
+    }
+
+    .businesses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .business-card {
+      background: rgba(255,255,255,0.03);
+      border: 2px solid rgba(88,101,242,0.2);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .business-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(88,101,242,0.5);
+      box-shadow: 0 4px 16px rgba(88,101,242,0.3);
+    }
+
+    .business-card__icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    .business-card__name {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 8px 0;
+    }
+
+    .business-card__type {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .info-box {
+      background: rgba(88,101,242,0.1);
+      border: 2px solid rgba(88,101,242,0.3);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 24px;
+    }
+
+    .info-box__title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #5865F2;
+      margin: 0 0 12px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-box__content {
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand brand--enhanced" href="index.html" aria-label="Nightfall RP">
+      <span class="brand__glow"></span>
+      <img src="assets/img/Logo Discord Animée.gif" alt="Discord" style="height:44px;width:44px;margin-right:10px;border-radius:12px;box-shadow:0 0 16px #5865F2,0 0 32px #5865F2;object-fit:cover;vertical-align:middle;animation:brand-discord-pulse 2s infinite alternate;" />
+      <span class="brand__text">
+        <span class="brand__name brand__name--epic">NIGHTFALL</span>
+        <span class="brand__sub brand__sub--glow">Roleplay • FiveM</span>
+      </span>
+      <style>
+        @keyframes brand-discord-pulse {
+          0% { filter: drop-shadow(0 0 0 #5865F2); }
+          100% { filter: drop-shadow(0 0 16px #5865F2) brightness(1.15); }
+        }
+      </style>
+    </a>
+    <nav class="nav" aria-label="Navigation">
+      <a href="index.html">Accueil</a>
+      <a href="reglement.html">Règlement</a>
+      <a href="equipe.html">Équipe</a>
+      <a href="vehicules.html">Véhicules</a>
+      <a href="economie.html" class="nav-active">Économie</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="contact.html">Contact</a>
+      <a class="nav__btn" href="staff/index.html">Staff Panel</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="economy-hero">
+        <h1 style="font-size: 48px; margin: 0 0 16px 0; background: linear-gradient(135deg, #5865F2, #8A50D6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          Économie de Nightfall RP
+        </h1>
+        <p style="font-size: 18px; color: rgba(255,255,255,0.7); margin: 0;">
+          Emplois, salaires et entreprises disponibles sur le serveur
+        </p>
+      </div>
+
+      <div class="economy-sections">
+        <!-- Section Emplois Légaux -->
+        <div class="economy-section">
+          <h2>💼 Emplois Légaux</h2>
+          <p style="color: rgba(255,255,255,0.7); margin-bottom: 24px;">
+            Découvre les différents emplois légaux disponibles avec leurs grades et salaires horaires.
+          </p>
+
+          <div class="jobs-grid">
+            <!-- LSPD -->
+            <div class="job-card">
+              <div class="job-card__header">
+                <div class="job-card__icon">👮</div>
+                <div class="job-card__title">
+                  <h3 class="job-card__name">LSPD</h3>
+                  <p class="job-card__label">police</p>
+                </div>
+              </div>
+              <div class="job-card__grades">
+                <div class="grade-item">
+                  <span class="grade-item__name">Recruit</span>
+                  <span class="grade-item__salary">$50/h</span>
+                </div>
+                <div class="grade-item">
+                  <span class="grade-item__name">Officer</span>
+                  <span class="grade-item__salary">$75/h</span>
+                </div>
+                <div class="grade-item">
+                  <span class="grade-item__name">Sergeant</span>
+                  <span class="grade-item__salary">$100/h</span>
+                </div>
+                <div class="grade-item">
+                  <span class="grade-item__name">Lieutenant</span>
+                  <span class="grade-item__salary">$125/h</span>
+                </div>
+                <div class="grade-item">
+                  <span class="grade-item__name">Chief</span>
+                  <span class="grade-item__salary">$150/h</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- EMS -->
+            <div class="job-card">
+              <div class="job-card__header">
+                <div class="job-card__icon">🚑</div>
+                <div class="job-card__title">
+                  <h3 class="job-card__name">EMS</h3>
+                  <p class="job-card__label">ambulance</p>
+                </div>
+              </div>
+              <div class="job-card__grades">
+                <div class="grade-item">
+                  <span class="grade-item__name">Recruit</span>
+                  <span class="grade-item__salary">$50/h</span>
+                </div>
+                <div class="grade-item">
+                  <span class="grade-item__name">Paramedic</span>
+                  <span class="grade-item__salary">$75/h</span>
+                </div>
+                <div class="grade-item">
+                  <span class="grade-item__name">Doctor</span>
+                  <span class="grade-item__salary">$100/h</span>
+                </div>
+                <div class="grade-item">
+                  <span class="grade-item__name">Surgeon</span>
+                  <span class="grade-item__salary">$125/h</span>
+                </div>
+                <div class="grade-item">
+                  <span class="grade-item__name">Chief</span>
+                  <span class="grade-item__salary">$150/h</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mécano -->
+            <div class="job-card">
+              <div class="job-card__header">
+                <div class="job-card__icon">🔧</div>
+                <div class="job-card__title">
+                  <h3 class="job-card__name">Mechanic</h3>
+                  <p class="job-card__label">mechanic</p>
+                </div>
+              </div>
+              <div class="job-card__grades">
+                <div class="grade-item">
+                  <span class="grade-item__name">Recruit</span>
+                  <span class="grade-item__salary">$50/h</span>
+                </div>
+                <div class="grade-item">
+                  <span class="grade-item__name">Novice</span>
+                  <span class="grade-item__salary">$75/h</span>
+                </div>
+                <div class="grade-item">
+                  <span class="grade-item__name">Experienced</span>
+                  <span class="grade-item__salary">$100/h</span>
+                </div>
+                <div class="grade-item">
+                  <span class="grade-item__name">Advanced</span>
+                  <span class="grade-item__salary">$125/h</span>
+                </div>
+                <div class="grade-item">
+                  <span class="grade-item__name">Manager</span>
+                  <span class="grade-item__salary">$150/h</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Taxi -->
+            <div class="job-card">
+              <div class="job-card__header">
+                <div class="job-card__icon">🚕</div>
+                <div class="job-card__title">
+                  <h3 class="job-card__name">Taxi</h3>
+                  <p class="job-card__label">taxi</p>
+                </div>
+              </div>
+              <div class="job-card__grades">
+                <div class="grade-item">
+                  <span class="grade-item__name">Recruit</span>
+                  <span class="grade-item__salary">$50/h</span>
+                </div>
+                <div class="grade-item">
+                  <span class="grade-item__name">Driver</span>
+                  <span class="grade-item__salary">$75/h</span>
+                </div>
+                <div class="grade-item">
+                  <span class="grade-item__name">Event Driver</span>
+                  <span class="grade-item__salary">$100/h</span>
+                </div>
+                <div class="grade-item">
+                  <span class="grade-item__name">Sales</span>
+                  <span class="grade-item__salary">$125/h</span>
+                </div>
+                <div class="grade-item">
+                  <span class="grade-item__name">Manager</span>
+                  <span class="grade-item__salary">$150/h</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Concessionnaire -->
+            <div class="job-card">
+              <div class="job-card__header">
+                <div class="job-card__icon">🚗</div>
+                <div class="job-card__title">
+                  <h3 class="job-card__name">Vehicle Dealer</h3>
+                  <p class="job-card__label">cardealer</p>
+                </div>
+              </div>
+              <div class="job-card__grades">
+                <div class="grade-item">
+                  <span class="grade-item__name">Recruit</span>
+                  <span class="grade-item__salary">$50/h</span>
+                </div>
+                <div class="grade-item">
+                  <span class="grade-item__name">Showroom Sales</span>
+                  <span class="grade-item__salary">$75/h</span>
+                </div>
+                <div class="grade-item">
+                  <span class="grade-item__name">Business Sales</span>
+                  <span class="grade-item__salary">$100/h</span>
+                </div>
+                <div class="grade-item">
+                  <span class="grade-item__name">Finance</span>
+                  <span class="grade-item__salary">$125/h</span>
+                </div>
+                <div class="grade-item">
+                  <span class="grade-item__name">Manager</span>
+                  <span class="grade-item__salary">$150/h</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Immobilier -->
+            <div class="job-card">
+              <div class="job-card__header">
+                <div class="job-card__icon">🏠</div>
+                <div class="job-card__title">
+                  <h3 class="job-card__name">Real Estate</h3>
+                  <p class="job-card__label">realestate</p>
+                </div>
+              </div>
+              <div class="job-card__grades">
+                <div class="grade-item">
+                  <span class="grade-item__name">Recruit</span>
+                  <span class="grade-item__salary">$50/h</span>
+                </div>
+                <div class="grade-item">
+                  <span class="grade-item__name">House Sales</span>
+                  <span class="grade-item__salary">$75/h</span>
+                </div>
+                <div class="grade-item">
+                  <span class="grade-item__name">Business Sales</span>
+                  <span class="grade-item__salary">$100/h</span>
+                </div>
+                <div class="grade-item">
+                  <span class="grade-item__name">Broker</span>
+                  <span class="grade-item__salary">$125/h</span>
+                </div>
+                <div class="grade-item">
+                  <span class="grade-item__name">Manager</span>
+                  <span class="grade-item__salary">$150/h</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-box">
+            <div class="info-box__title">ℹ️ Informations salaires</div>
+            <div class="info-box__content">
+              Les salaires sont versés toutes les heures. En plus du salaire de base, certains emplois offrent des commissions sur les ventes ou services rendus. Les managers ont accès à la gestion du coffre de l'entreprise.
+            </div>
+          </div>
+        </div>
+
+        <!-- Section Entreprises -->
+        <div class="economy-section">
+          <h2>🏢 Entreprises disponibles</h2>
+          <p style="color: rgba(255,255,255,0.7); margin-bottom: 24px;">
+            Les entreprises que tu peux posséder ou dans lesquelles tu peux travailler.
+          </p>
+
+          <div class="businesses-grid">
+            <div class="business-card">
+              <div class="business-card__icon">☕</div>
+              <h3 class="business-card__name">José Café</h3>
+              <p class="business-card__type">Restaurant</p>
+            </div>
+
+            <div class="business-card">
+              <div class="business-card__icon">🍕</div>
+              <h3 class="business-card__name">Pizza This</h3>
+              <p class="business-card__type">Restaurant</p>
+            </div>
+
+            <div class="business-card">
+              <div class="business-card__icon">🍔</div>
+              <h3 class="business-card__name">Burger Shot</h3>
+              <p class="business-card__type">Fast Food</p>
+            </div>
+
+            <div class="business-card">
+              <div class="business-card__icon">🛒</div>
+              <h3 class="business-card__name">24/7 Store</h3>
+              <p class="business-card__type">Commerce</p>
+            </div>
+
+            <div class="business-card">
+              <div class="business-card__icon">🏝️</div>
+              <h3 class="business-card__name">Bahamas</h3>
+              <p class="business-card__type">Bar / Club</p>
+            </div>
+
+            <div class="business-card">
+              <div class="business-card__icon">💈</div>
+              <h3 class="business-card__name">Barbershop</h3>
+              <p class="business-card__type">Service</p>
+            </div>
+
+            <div class="business-card">
+              <div class="business-card__icon">👔</div>
+              <h3 class="business-card__name">Clothing Store</h3>
+              <p class="business-card__type">Commerce</p>
+            </div>
+
+            <div class="business-card">
+              <div class="business-card__icon">🔫</div>
+              <h3 class="business-card__name">Ammunation</h3>
+              <p class="business-card__type">Commerce</p>
+            </div>
+          </div>
+
+          <div class="info-box">
+            <div class="info-box__title">💡 Comment devenir propriétaire ?</div>
+            <div class="info-box__content">
+              Contacte l'immobilier (Real Estate) en jeu pour acheter une entreprise. Les propriétaires peuvent embaucher des employés, gérer les stocks et développer leur business pour générer des revenus.
+            </div>
+          </div>
+        </div>
+
+        <!-- Section Emplois Freelance -->
+        <div class="economy-section">
+          <h2>🛠️ Activités Freelance</h2>
+          <p style="color: rgba(255,255,255,0.7); margin-bottom: 24px;">
+            Activités que tu peux faire sans être employé par une entreprise.
+          </p>
+
+          <div class="businesses-grid">
+            <div class="business-card">
+              <div class="business-card__icon">🚛</div>
+              <h3 class="business-card__name">Trucker</h3>
+              <p class="business-card__type">Transport</p>
+            </div>
+
+            <div class="business-card">
+              <div class="business-card__icon">🚌</div>
+              <h3 class="business-card__name">Bus Driver</h3>
+              <p class="business-card__type">Transport</p>
+            </div>
+
+            <div class="business-card">
+              <div class="business-card__icon">📰</div>
+              <h3 class="business-card__name">Reporter</h3>
+              <p class="business-card__type">Média</p>
+            </div>
+
+            <div class="business-card">
+              <div class="business-card__icon">⚡</div>
+              <h3 class="business-card__name">Electrician</h3>
+              <p class="business-card__type">Service</p>
+            </div>
+
+            <div class="business-card">
+              <div class="business-card__icon">📮</div>
+              <h3 class="business-card__name">Postal</h3>
+              <p class="business-card__type">Livraison</p>
+            </div>
+
+            <div class="business-card">
+              <div class="business-card__icon">🎣</div>
+              <h3 class="business-card__name">Fishing</h3>
+              <p class="business-card__type">Récolte</p>
+            </div>
+          </div>
+
+          <div class="info-box">
+            <div class="info-box__title">🎯 Activités accessibles à tous</div>
+            <div class="info-box__content">
+              Ces activités ne nécessitent pas d'entretien d'embauche. Tu peux les commencer directement en te rendant aux points de départ marqués sur ta carte. Les revenus varient selon ta performance et le temps passé.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div>© <span data-year></span> Nightfall RP</div>
+      <div class="footer__links">
+        <a href="reglement.html">Règlement</a>
+        <a href="equipe.html">Équipe</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const yearEl = document.querySelector('[data-year]');
+    if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+  </script>
+</body>
+</html>
