@@ -1,13 +1,15 @@
+require('dotenv').config();
 const path = require('path');
 const fs = require('fs');
 const crypto = require('crypto');
 const http = require('http');
 const https = require('https');
+const mysql = require('mysql2/promise');
 
 const express = require('express');
 
 const app = express();
-const PORT = Number(process.env.PORT || 5173);
+const PORT = Number(process.env.PORT || 3000);
 
 const ROOT = __dirname;
 const CFG_PATH = path.join(ROOT, 'api', 'staff_config.json');
@@ -106,6 +108,31 @@ let latest = {
 
 // Server uptime tracking
 const serverStartTime = Date.now();
+
+// MySQL connection pool (optional, only if DB credentials are provided)
+let dbPool = null;
+try {
+  const dbConfig = {
+    host: process.env.DB_HOST || 'localhost',
+    port: process.env.DB_PORT || 3306,
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || '',
+    database: process.env.DB_NAME || 'qbcore',
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
+  };
+  
+  // Only create pool if password is provided (means DB is configured)
+  if (dbConfig.password) {
+    dbPool = mysql.createPool(dbConfig);
+    console.log('[MySQL] Connection pool created');
+  } else {
+    console.log('[MySQL] No database configured (DB_PASSWORD not set)');
+  }
+} catch (err) {
+  console.error('[MySQL] Error creating pool:', err.message);
+}
 
 function makeToken() {
   return crypto.randomBytes(24).toString('hex');
@@ -223,6 +250,116 @@ app.get('/api/staff/players', authMiddleware, (_req, res) => {
     server: latest.server,
     players: latest.players
   });
+});
+
+// Staff: search all players in database
+app.get('/api/staff/search', authMiddleware, async (req, res) => {
+  if (!dbPool) {
+    return res.status(503).json({ error: 'Database not configured' });
+  }
+
+  try {
+    const query = String(req.query.q || '').trim();
+    const limit = Math.min(parseInt(req.query.limit) || 50, 200);
+
+    let sql = `
+      SELECT 
+        citizenid,
+        JSON_UNQUOTE(JSON_EXTRACT(charinfo, '$.firstname')) as firstname,
+        JSON_UNQUOTE(JSON_EXTRACT(charinfo, '$.lastname')) as lastname,
+        JSON_UNQUOTE(JSON_EXTRACT(charinfo, '$.phone')) as phone,
+        JSON_UNQUOTE(JSON_EXTRACT(job, '$.name')) as job_name,
+        JSON_UNQUOTE(JSON_EXTRACT(job, '$.label')) as job_label,
+        JSON_UNQUOTE(JSON_EXTRACT(job, '$.grade.name')) as job_grade,
+        JSON_UNQUOTE(JSON_EXTRACT(money, '$.cash')) as cash,
+        JSON_UNQUOTE(JSON_EXTRACT(money, '$.bank')) as bank,
+        last_updated
+      FROM players
+    `;
+
+    const params = [];
+
+    if (query) {
+      sql += ` WHERE 
+        citizenid LIKE ? OR
+        JSON_EXTRACT(charinfo, '$.firstname') LIKE ? OR
+        JSON_EXTRACT(charinfo, '$.lastname') LIKE ? OR
+        JSON_EXTRACT(charinfo, '$.phone') LIKE ?
+      `;
+      const searchPattern = `%${query}%`;
+      params.push(searchPattern, searchPattern, searchPattern, searchPattern);
+    }
+
+    sql += ` ORDER BY last_updated DESC LIMIT ?`;
+    params.push(limit);
+
+    const [rows] = await dbPool.query(sql, params);
+
+    const players = rows.map(row => ({
+      citizenid: row.citizenid,
+      firstname: row.firstname,
+      lastname: row.lastname,
+      phone: row.phone,
+      job: {
+        name: row.job_name,
+        label: row.job_label,
+        grade: row.job_grade
+      },
+      money: {
+        cash: parseInt(row.cash) || 0,
+        bank: parseInt(row.bank) || 0
+      },
+      lastUpdated: row.last_updated
+    }));
+
+    res.json({ players, count: players.length });
+  } catch (err) {
+    console.error('[API Search] Error:', err.message);
+    res.status(500).json({ error: 'Database error' });
+  }
+});
+
+// Staff: get specific player details
+app.get('/api/staff/player/:citizenid', authMiddleware, async (req, res) => {
+  if (!dbPool) {
+    return res.status(503).json({ error: 'Database not configured' });
+  }
+
+  try {
+    const citizenid = req.params.citizenid;
+
+    const [rows] = await dbPool.query(
+      'SELECT * FROM players WHERE citizenid = ? LIMIT 1',
+      [citizenid]
+    );
+
+    if (rows.length === 0) {
+      return res.status(404).json({ error: 'Player not found' });
+    }
+
+    const player = rows[0];
+    
+    // Parse JSON fields
+    const charinfo = JSON.parse(player.charinfo || '{}');
+    const job = JSON.parse(player.job || '{}');
+    const money = JSON.parse(player.money || '{}');
+    const metadata = JSON.parse(player.metadata || '{}');
+
+    res.json({
+      citizenid: player.citizenid,
+      license: player.license,
+      name: player.name,
+      charinfo: charinfo,
+      job: job,
+      money: money,
+      metadata: metadata,
+      position: JSON.parse(player.position || '{}'),
+      last_updated: player.last_updated
+    });
+  } catch (err) {
+    console.error('[API Player] Error:', err.message);
+    res.status(500).json({ error: 'Database error' });
+  }
 });
 
 // FiveM ingest endpoint (outgoing HTTP from server -> here)

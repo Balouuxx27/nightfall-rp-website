@@ -297,8 +297,244 @@
     });
   }
 
-  // Si token existe déjà, charger directement
+  // ============================================================
+  // TABS SYSTEM
+  // ============================================================
+  
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tabName = btn.dataset.tab;
+      
+      // Update buttons
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      // Update content
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.getElementById(`tab-${tabName}`).classList.add('active');
+    });
+  });
 
+  // ============================================================
+  // PLAYER SEARCH
+  // ============================================================
+
+  const searchInput = document.getElementById('search-input');
+  const searchResults = document.getElementById('search-results');
+  let searchTimeout;
+
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.trim();
+      
+      clearTimeout(searchTimeout);
+      
+      if (query.length < 2) {
+        searchResults.innerHTML = '<div class="no-results">Entrez au moins 2 caractères pour rechercher</div>';
+        return;
+      }
+      
+      searchTimeout = setTimeout(() => {
+        searchPlayers(query);
+      }, 300);
+    });
+  }
+
+  async function searchPlayers(query) {
+    if (!state.token) return;
+    
+    try {
+      searchResults.innerHTML = '<div class="no-results">🔍 Recherche en cours...</div>';
+      
+      const data = await api(`../api/staff/search?query=${encodeURIComponent(query)}&limit=20`);
+      const players = data || [];
+      
+      if (players.length === 0) {
+        searchResults.innerHTML = '<div class="no-results">❌ Aucun joueur trouvé</div>';
+        return;
+      }
+      
+      displaySearchResults(players);
+    } catch (error) {
+      console.error('Search error:', error);
+      searchResults.innerHTML = '<div class="no-results">❌ Erreur lors de la recherche</div>';
+    }
+  }
+
+  function displaySearchResults(players) {
+    searchResults.innerHTML = players.map(player => {
+      const job = player.job_name || 'unemployed';
+      const jobLabel = player.job_label || 'Sans emploi';
+      const grade = player.job_grade || 0;
+      const gradeLabel = player.job_grade_label || '';
+      
+      return `
+        <div class="player-card" data-citizenid="${escapeHtml(player.citizenid)}">
+          <div class="player-card__header">
+            <h3>${escapeHtml(player.firstname)} ${escapeHtml(player.lastname)}</h3>
+            <span class="job-badge">${escapeHtml(jobLabel)} ${gradeLabel ? `(${escapeHtml(gradeLabel)})` : ''}</span>
+          </div>
+          <div class="player-card__info">
+            <div class="info-item">
+              <span class="info-label">CitizenID</span>
+              <span class="info-value">${escapeHtml(player.citizenid)}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">📱 Téléphone</span>
+              <span class="info-value">${escapeHtml(player.phone || 'N/A')}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">💵 Liquide</span>
+              <span class="money-badge cash">${formatMoney(player.money_cash)}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">🏦 Banque</span>
+              <span class="money-badge bank">${formatMoney(player.money_bank)}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">📅 Dernière connexion</span>
+              <span class="info-value">${formatDate(player.last_updated)}</span>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="viewPlayerDetails('${escapeHtml(player.citizenid)}')">
+            📋 Voir détails complets
+          </button>
+        </div>
+      `;
+    }).join('');
+  }
+
+  window.viewPlayerDetails = async function(citizenid) {
+    if (!state.token) return;
+    
+    try {
+      const player = await api(`../api/staff/player/${citizenid}`);
+      
+      // Create modal with full details
+      const modal = document.createElement('div');
+      modal.className = 'modal-overlay';
+      modal.innerHTML = `
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>👤 Profil Complet - ${escapeHtml(player.charinfo?.firstname)} ${escapeHtml(player.charinfo?.lastname)}</h2>
+            <button class="btn-close" onclick="this.closest('.modal-overlay').remove()">✕</button>
+          </div>
+          <div class="modal-body">
+            <div class="info-grid">
+              <div class="info-section">
+                <h3>🆔 Identité</h3>
+                <div class="info-item">
+                  <span class="info-label">CitizenID</span>
+                  <span class="info-value">${escapeHtml(player.citizenid)}</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Nom complet</span>
+                  <span class="info-value">${escapeHtml(player.charinfo?.firstname)} ${escapeHtml(player.charinfo?.lastname)}</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Date de naissance</span>
+                  <span class="info-value">${escapeHtml(player.charinfo?.birthdate || 'N/A')}</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Nationalité</span>
+                  <span class="info-value">${escapeHtml(player.charinfo?.nationality || 'N/A')}</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Téléphone</span>
+                  <span class="info-value">${escapeHtml(player.charinfo?.phone || 'N/A')}</span>
+                </div>
+              </div>
+              
+              <div class="info-section">
+                <h3>💼 Emploi</h3>
+                <div class="info-item">
+                  <span class="info-label">Job</span>
+                  <span class="job-badge">${escapeHtml(player.job?.label || 'Sans emploi')}</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Grade</span>
+                  <span class="info-value">${escapeHtml(player.job?.grade?.name || 'N/A')} (Niveau ${player.job?.grade?.level || 0})</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">En service</span>
+                  <span class="info-value">${player.job?.onduty ? '✅ Oui' : '❌ Non'}</span>
+                </div>
+              </div>
+              
+              <div class="info-section">
+                <h3>💰 Finances</h3>
+                <div class="info-item">
+                  <span class="info-label">Liquide</span>
+                  <span class="money-badge cash">${formatMoney(player.money?.cash || 0)}</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Banque</span>
+                  <span class="money-badge bank">${formatMoney(player.money?.bank || 0)}</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Total</span>
+                  <span class="money-badge">${formatMoney((player.money?.cash || 0) + (player.money?.bank || 0))}</span>
+                </div>
+              </div>
+              
+              <div class="info-section">
+                <h3>📊 Statistiques</h3>
+                <div class="info-item">
+                  <span class="info-label">Dernière position</span>
+                  <span class="info-value">${player.position ? `X: ${Math.round(player.position.x)}, Y: ${Math.round(player.position.y)}` : 'N/A'}</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Dernière connexion</span>
+                  <span class="info-value">${formatDate(player.last_updated)}</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Inventory</span>
+                  <span class="info-value">${player.inventory ? Object.keys(JSON.parse(player.inventory)).length : 0} items</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
+      
+      // Close on overlay click
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.remove();
+        }
+      });
+      
+    } catch (error) {
+      console.error('Error loading player details:', error);
+      alert('Erreur lors du chargement des détails du joueur');
+    }
+  };
+
+  function formatMoney(amount) {
+    return new Intl.NumberFormat('fr-FR', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).format(amount || 0);
+  }
+
+  function formatDate(dateString) {
+    if (!dateString) return 'N/A';
+    
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffMs = now - date;
+    const diffMins = Math.floor(diffMs / 60000);
+    
+    if (diffMins < 60) return `Il y a ${diffMins} min`;
+    if (diffMins < 1440) return `Il y a ${Math.floor(diffMins / 60)} h`;
+    return `Il y a ${Math.floor(diffMins / 1440)} j`;
+  }
+
+  // Si token existe déjà, charger directement
   if (state.token) {
     if (loginContainer) loginContainer.style.display = 'none';
     if (staffPanel) staffPanel.style.display = 'block';

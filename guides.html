@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guides & Tutoriels — Nightfall RP</title>
+  <link rel="stylesheet" href="assets/css/styles.css?v=20251227" />
+  <link rel="stylesheet" href="assets/css/enhanced.css?v=ULTRA" />
+  <style>
+    .guides-hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, rgba(88,101,242,0.1), rgba(138,80,214,0.1));
+      border-radius: 16px;
+      margin-bottom: 48px;
+    }
+
+    .guides-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 40px;
+      padding: 0 20px;
+    }
+
+    .guide-nav-btn {
+      padding: 12px 24px;
+      background: rgba(255,255,255,0.05);
+      border: 2px solid rgba(88,101,242,0.3);
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .guide-nav-btn:hover {
+      background: rgba(88,101,242,0.2);
+      border-color: rgba(88,101,242,0.6);
+      transform: translateY(-2px);
+    }
+
+    .guide-section {
+      max-width: 900px;
+      margin: 0 auto 48px;
+      padding: 0 20px;
+    }
+
+    .guide-card {
+      background: rgba(255,255,255,0.02);
+      border: 2px solid rgba(88,101,242,0.2);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 24px;
+      transition: all 0.3s;
+    }
+
+    .guide-card:hover {
+      border-color: rgba(88,101,242,0.4);
+      box-shadow: 0 8px 24px rgba(88,101,242,0.2);
+    }
+
+    .guide-card h2 {
+      font-size: 28px;
+      margin: 0 0 16px 0;
+      background: linear-gradient(135deg, #5865F2, #8A50D6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .guide-card h3 {
+      font-size: 20px;
+      margin: 24px 0 12px 0;
+      color: #5865F2;
+    }
+
+    .guide-card p {
+      color: rgba(255,255,255,0.8);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .guide-card ul, .guide-card ol {
+      color: rgba(255,255,255,0.8);
+      line-height: 1.8;
+      margin: 16px 0;
+      padding-left: 24px;
+    }
+
+    .guide-card li {
+      margin-bottom: 8px;
+    }
+
+    .command-box {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(88,101,242,0.3);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin: 8px 0;
+      font-family: monospace;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .command-box__cmd {
+      color: #5865F2;
+      font-weight: 700;
+    }
+
+    .command-box__desc {
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+      flex: 1;
+    }
+
+    .tip-box {
+      background: rgba(88,101,242,0.1);
+      border-left: 4px solid #5865F2;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 16px 0;
+    }
+
+    .tip-box__title {
+      font-weight: 700;
+      color: #5865F2;
+      margin: 0 0 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tip-box__content {
+      color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+    }
+
+    .warning-box {
+      background: rgba(255,100,100,0.1);
+      border-left: 4px solid #ff6464;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 16px 0;
+    }
+
+    .warning-box__title {
+      font-weight: 700;
+      color: #ff6464;
+      margin: 0 0 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .warning-box__content {
+      color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+    }
+
+    .steps-list {
+      counter-reset: step-counter;
+      list-style: none;
+      padding: 0;
+    }
+
+    .steps-list li {
+      counter-increment: step-counter;
+      position: relative;
+      padding-left: 48px;
+      margin-bottom: 24px;
+    }
+
+    .steps-list li::before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #5865F2, #8A50D6);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .faq-item {
+      background: rgba(255,255,255,0.03);
+      border: 2px solid rgba(88,101,242,0.2);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .faq-item:hover {
+      border-color: rgba(88,101,242,0.4);
+    }
+
+    .faq-item__question {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .faq-item__answer {
+      color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+      margin-top: 12px;
+      display: none;
+    }
+
+    .faq-item.active .faq-item__answer {
+      display: block;
+    }
+
+    .faq-item__icon {
+      transition: transform 0.3s;
+    }
+
+    .faq-item.active .faq-item__icon {
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand brand--enhanced" href="index.html" aria-label="Nightfall RP">
+      <span class="brand__glow"></span>
+      <img src="assets/img/Logo Discord Animée.gif" alt="Discord" style="height:44px;width:44px;margin-right:10px;border-radius:12px;box-shadow:0 0 16px #5865F2,0 0 32px #5865F2;object-fit:cover;vertical-align:middle;animation:brand-discord-pulse 2s infinite alternate;" />
+      <span class="brand__text">
+        <span class="brand__name brand__name--epic">NIGHTFALL</span>
+        <span class="brand__sub brand__sub--glow">Roleplay • FiveM</span>
+      </span>
+      <style>
+        @keyframes brand-discord-pulse {
+          0% { filter: drop-shadow(0 0 0 #5865F2); }
+          100% { filter: drop-shadow(0 0 16px #5865F2) brightness(1.15); }
+        }
+      </style>
+    </a>
+    <nav class="nav" aria-label="Navigation">
+      <a href="index.html">Accueil</a>
+      <a href="reglement.html">Règlement</a>
+      <a href="equipe.html">Équipe</a>
+      <a href="vehicules.html">Véhicules</a>
+      <a href="economie.html">Économie</a>
+      <a href="guides.html" class="nav-active">Guides</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="contact.html">Contact</a>
+      <a class="nav__btn" href="staff/index.html">Staff Panel</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="guides-hero">
+        <h1 style="font-size: 48px; margin: 0 0 16px 0; background: linear-gradient(135deg, #5865F2, #8A50D6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          Guides & Tutoriels
+        </h1>
+        <p style="font-size: 18px; color: rgba(255,255,255,0.7); margin: 0;">
+          Tout ce que tu dois savoir pour bien débuter sur Nightfall RP
+        </p>
+      </div>
+
+      <div class="guides-nav">
+        <a href="#debutant" class="guide-nav-btn">🎮 Débutant</a>
+        <a href="#commandes" class="guide-nav-btn">⌨️ Commandes</a>
+        <a href="#roleplay" class="guide-nav-btn">🎭 Guide RP</a>
+        <a href="#jobs" class="guide-nav-btn">💼 Jobs</a>
+        <a href="#faq" class="guide-nav-btn">❓ FAQ</a>
+      </div>
+
+      <!-- Guide Débutant -->
+      <div class="guide-section" id="debutant">
+        <div class="guide-card">
+          <h2>🎮 Guide du Débutant</h2>
+          
+          <h3>Première connexion</h3>
+          <ol class="steps-list">
+            <li>
+              <strong>Rejoins le Discord</strong><br>
+              C'est essentiel pour recevoir les annonces, poser des questions et accéder au support.
+            </li>
+            <li>
+              <strong>Lance FiveM et connecte-toi</strong><br>
+              Recherche "Nightfall RP" dans la liste des serveurs ou utilise l'IP directe.
+            </li>
+            <li>
+              <strong>Crée ton personnage</strong><br>
+              Choisis ton apparence, ton nom, ta date de naissance. Prends ton temps, c'est important !
+            </li>
+            <li>
+              <strong>Suis le tutoriel in-game</strong><br>
+              Un guide interactif t'expliquera les bases : se déplacer, interagir, utiliser l'inventaire.
+            </li>
+            <li>
+              <strong>Explore la ville</strong><br>
+              Familiarise-toi avec les lieux importants : commissariat, hôpital, commerces, emplois.
+            </li>
+          </ol>
+
+          <div class="tip-box">
+            <div class="tip-box__title">💡 Conseil</div>
+            <div class="tip-box__content">
+              N'hésite pas à demander de l'aide aux autres joueurs en jeu ou sur Discord. La communauté est là pour t'aider !
+            </div>
+          </div>
+
+          <h3>Les bases du Roleplay</h3>
+          <ul>
+            <li><strong>Reste dans ton personnage</strong> - Ne mélange pas le RP et le HRP (Hors RP)</li>
+            <li><strong>Utilise /me pour les actions</strong> - Exemple : /me ouvre la porte doucement</li>
+            <li><strong>Respecte la vie de ton personnage</strong> - Agis comme si c'était réel</li>
+            <li><strong>Évite le Meta-Gaming</strong> - N'utilise pas d'infos obtenues hors RP</li>
+            <li><strong>Pas de Powergaming</strong> - Ne force pas les actions des autres</li>
+          </ul>
+
+          <div class="warning-box">
+            <div class="warning-box__title">⚠️ Attention</div>
+            <div class="warning-box__content">
+              Le non-respect des règles de base peut entraîner des sanctions. Lis bien le règlement complet sur la page dédiée.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Commandes -->
+      <div class="guide-section" id="commandes">
+        <div class="guide-card">
+          <h2>⌨️ Commandes Essentielles</h2>
+
+          <h3>Commandes Générales</h3>
+          <div class="command-box">
+            <span class="command-box__cmd">/me [action]</span>
+            <span class="command-box__desc">Décrit une action de ton personnage</span>
+          </div>
+          <div class="command-box">
+            <span class="command-box__cmd">/do [description]</span>
+            <span class="command-box__desc">Décrit une situation ou l'environnement</span>
+          </div>
+          <div class="command-box">
+            <span class="command-box__cmd">/try [action]</span>
+            <span class="command-box__desc">Tente une action avec réussite aléatoire</span>
+          </div>
+          <div class="command-box">
+            <span class="command-box__cmd">/ooc [message]</span>
+            <span class="command-box__desc">Parle hors roleplay (à utiliser avec modération)</span>
+          </div>
+
+          <h3>Commandes Utilitaires</h3>
+          <div class="command-box">
+            <span class="command-box__cmd">/id</span>
+            <span class="command-box__desc">Affiche ton ID serveur</span>
+          </div>
+          <div class="command-box">
+            <span class="command-box__cmd">/car</span>
+            <span class="command-box__desc">Ouvre le menu véhicule</span>
+          </div>
+          <div class="command-box">
+            <span class="command-box__cmd">/phone</span>
+            <span class="command-box__desc">Ouvre ton téléphone</span>
+          </div>
+          <div class="command-box">
+            <span class="command-box__cmd">/e [animation]</span>
+            <span class="command-box__desc">Joue une animation (dance, sit, etc.)</span>
+          </div>
+          <div class="command-box">
+            <span class="command-box__cmd">/carry</span>
+            <span class="command-box__desc">Porte une personne</span>
+          </div>
+          <div class="command-box">
+            <span class="command-box__cmd">/tie</span>
+            <span class="command-box__desc">Menotte une personne</span>
+          </div>
+
+          <h3>Commandes Véhicule</h3>
+          <div class="command-box">
+            <span class="command-box__cmd">/engine</span>
+            <span class="command-box__desc">Allume/Éteint le moteur</span>
+          </div>
+          <div class="command-box">
+            <span class="command-box__cmd">/hood</span>
+            <span class="command-box__desc">Ouvre/Ferme le capot</span>
+          </div>
+          <div class="command-box">
+            <span class="command-box__cmd">/trunk</span>
+            <span class="command-box__desc">Ouvre/Ferme le coffre</span>
+          </div>
+
+          <div class="tip-box">
+            <div class="tip-box__title">💡 Astuce</div>
+            <div class="tip-box__content">
+              Tape /help en jeu pour voir toutes les commandes disponibles. Certaines commandes nécessitent des permissions spéciales (jobs, admin).
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guide RP -->
+      <div class="guide-section" id="roleplay">
+        <div class="guide-card">
+          <h2>🎭 Guide Roleplay Avancé</h2>
+
+          <h3>Créer un bon personnage</h3>
+          <ul>
+            <li><strong>Backstory cohérente</strong> - Crée une histoire crédible pour ton personnage</li>
+            <li><strong>Personnalité définie</strong> - Traits de caractère, qualités, défauts</li>
+            <li><strong>Objectifs clairs</strong> - Que veut accomplir ton personnage ?</li>
+            <li><strong>Évolution</strong> - Laisse ton personnage évoluer avec les RP</li>
+          </ul>
+
+          <h3>Interactions RP</h3>
+          <p><strong>Interactions de qualité :</strong></p>
+          <ul>
+            <li>Donne du contexte à tes actions avec /me et /do</li>
+            <li>Laisse le temps aux autres de répondre</li>
+            <li>Ne coupe pas la parole en permanence</li>
+            <li>Adapte-toi aux situations et aux autres personnages</li>
+          </ul>
+
+          <div class="tip-box">
+            <div class="tip-box__title">💡 Exemple de bon RP</div>
+            <div class="tip-box__content">
+              <strong>Mauvais :</strong> "salut tu va bien"<br>
+              <strong>Bon :</strong> "/me s'approche avec un sourire chaleureux - Bonjour ! Comment allez-vous aujourd'hui ?"
+            </div>
+          </div>
+
+          <h3>Situations Tendues</h3>
+          <ul>
+            <li><strong>Braquages</strong> - Respecte les règles de braquage (nombre minimum de flics, montant minimum)</li>
+            <li><strong>Prise d'otage</strong> - Négocie, ne tue pas sans raison RP valable</li>
+            <li><strong>Fusillades</strong> - Valorise le RP avant de tirer, évite le RDM</li>
+            <li><strong>Course-poursuite</strong> - Reste réaliste, ne conduis pas comme dans GTA Online</li>
+          </ul>
+
+          <div class="warning-box">
+            <div class="warning-box__title">⚠️ FearRP</div>
+            <div class="warning-box__content">
+              Si tu es sous la menace d'une arme, tu dois valoriser ta vie. Ne provoque pas, ne t'enfuis pas, coopère. Le FearRP est obligatoire.
+            </div>
+          </div>
+
+          <h3>RP Spécifiques</h3>
+          <p><strong>RP Médical :</strong></p>
+          <ul>
+            <li>Décris tes blessures avec /me et /do</li>
+            <li>Laisse l'EMS faire son travail</li>
+            <li>Ne te relève pas instantanément après avoir été soigné</li>
+          </ul>
+
+          <p><strong>RP Policier :</strong></p>
+          <ul>
+            <li>Respecte les procédures lors des contrôles</li>
+            <li>Garde ton calme même sous pression</li>
+            <li>N'abuse pas de ton pouvoir</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Guide Jobs -->
+      <div class="guide-section" id="jobs">
+        <div class="guide-card">
+          <h2>💼 Guide des Jobs</h2>
+
+          <h3>Comment obtenir un job ?</h3>
+          <p>Il existe deux types d'emplois sur Nightfall RP :</p>
+
+          <p><strong>1. Jobs Whitelist (LSPD, EMS)</strong></p>
+          <ul>
+            <li>Nécessite une candidature sur Discord</li>
+            <li>Entretien avec les responsables du job</li>
+            <li>Formation obligatoire avant de commencer</li>
+          </ul>
+
+          <p><strong>2. Jobs Libres</strong></p>
+          <ul>
+            <li>Accessible directement en jeu</li>
+            <li>Rends-toi au point de départ du job sur la carte</li>
+            <li>Commence immédiatement</li>
+          </ul>
+
+          <h3>Conseils par Job</h3>
+          
+          <p><strong>LSPD (Police) 👮</strong></p>
+          <ul>
+            <li>Connais le code pénal par cœur</li>
+            <li>Respecte la hiérarchie et les protocoles</li>
+            <li>Privilégie le RP aux arrestations à la chaîne</li>
+            <li>Communique avec ton équipe via la radio</li>
+          </ul>
+
+          <p><strong>EMS (Ambulance) 🚑</strong></p>
+          <ul>
+            <li>Sois réactif aux appels</li>
+            <li>Fais un RP médical de qualité</li>
+            <li>Transporte les blessés à l'hôpital si nécessaire</li>
+            <li>Ne prends pas parti dans les conflits</li>
+          </ul>
+
+          <p><strong>Mécano 🔧</strong></p>
+          <ul>
+            <li>Offre un service de qualité</li>
+            <li>Fixe des prix raisonnables</li>
+            <li>Fais du RP pendant les réparations</li>
+            <li>Développe ta clientèle</li>
+          </ul>
+
+          <p><strong>Taxi 🚕</strong></p>
+          <ul>
+            <li>Sois courtois avec tes clients</li>
+            <li>Connais bien la carte</li>
+            <li>Propose une expérience RP agréable</li>
+            <li>Respecte le code de la route</li>
+          </ul>
+
+          <div class="tip-box">
+            <div class="tip-box__title">💡 Salaires</div>
+            <div class="tip-box__content">
+              Les salaires sont versés toutes les heures. Consulte la page <a href="economie.html" style="color: #5865F2;">Économie</a> pour voir tous les salaires par grade.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="guide-section" id="faq">
+        <div class="guide-card">
+          <h2>❓ Foire Aux Questions (FAQ)</h2>
+
+          <div class="faq-item">
+            <div class="faq-item__question">
+              Comment gagner de l'argent rapidement ?
+              <span class="faq-item__icon">▼</span>
+            </div>
+            <div class="faq-item__answer">
+              Les jobs freelance (pêche, livraison, électricien) sont un bon début. Une fois que tu as un peu d'argent, investis dans un job stable ou une entreprise. Les activités illégales rapportent plus mais comportent des risques.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-item__question">
+              Puis-je avoir plusieurs personnages ?
+              <span class="faq-item__icon">▼</span>
+            </div>
+            <div class="faq-item__answer">
+              Oui, tu peux créer plusieurs personnages. Attention au Meta-Gaming : ne transfère pas d'informations entre tes personnages. Chaque personnage doit avoir sa propre histoire et ne pas se connaître.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-item__question">
+              Que faire si je suis victime de FailRP ?
+              <span class="faq-item__icon">▼</span>
+            </div>
+            <div class="faq-item__answer">
+              Enregistre des preuves (vidéo/screenshot) et ouvre un ticket sur Discord. Ne prends pas justice toi-même, laisse le staff gérer la situation. Continue ton RP normalement si possible.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-item__question">
+              Comment acheter une maison ou une entreprise ?
+              <span class="faq-item__icon">▼</span>
+            </div>
+            <div class="faq-item__answer">
+              Contacte un agent immobilier (Real Estate) en jeu. Il te montrera les propriétés disponibles et les prix. Assure-toi d'avoir assez d'argent et un revenu stable avant d'acheter.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-item__question">
+              Le serveur a redémarré, j'ai perdu mes affaires ?
+              <span class="faq-item__icon">▼</span>
+            </div>
+            <div class="faq-item__answer">
+              Non, tout est sauvegardé automatiquement. Reconnecte-toi après le restart. Si tu as vraiment perdu des items, ouvre un ticket sur Discord avec des preuves.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-item__question">
+              Puis-je streamer sur Nightfall RP ?
+              <span class="faq-item__icon">▼</span>
+            </div>
+            <div class="faq-item__answer">
+              Oui, le stream est autorisé ! Assure-toi de respecter les règles du serveur et de masquer les informations sensibles (numéros de téléphone, adresses, etc.). Préviens les joueurs autour de toi que tu stream.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-item__question">
+              Comment signaler un bug ?
+              <span class="faq-item__icon">▼</span>
+            </div>
+            <div class="faq-item__answer">
+              Ouvre un ticket sur Discord dans la catégorie "Support". Décris le bug en détail, donne des steps pour le reproduire, et fournis des screenshots/vidéos si possible.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div>© <span data-year></span> Nightfall RP</div>
+      <div class="footer__links">
+        <a href="reglement.html">Règlement</a>
+        <a href="equipe.html">Équipe</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const yearEl = document.querySelector('[data-year]');
+    if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+    // FAQ accordéon
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+    });
+
+    // Smooth scroll pour navigation
+    document.querySelectorAll('.guide-nav-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(btn.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
