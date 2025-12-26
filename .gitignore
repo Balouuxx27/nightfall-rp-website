@@ -1,0 +1,24 @@
+# Fichiers sensibles
+api/staff_config.json
+api/status.json
+.env
+
+# Dépendances
+node_modules/
+
+# Logs
+*.log
+
+# Fichiers temporaires
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Archives
+*.tar.gz
+*.zip
+
+# Fichiers volumineux
+*.mp4
+*.mov
+*.avi
