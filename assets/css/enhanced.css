@@ -2,20 +2,30 @@
    🎨 NIGHTFALL RP - ENHANCED STYLES
    ========================================================================== */
 
-/* Vidéo en fond */
-.bg-video {
+/* Vidéo YouTube en fond */
+.bg-video-container {
   position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg-video {
+  position: absolute;
   top: 50%;
   left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
+  width: 100vw;
+  height: 56.25vw; /* 16:9 ratio */
+  min-height: 100vh;
+  min-width: 177.77vh; /* 16:9 ratio */
   transform: translate(-50%, -50%);
-  z-index: -2;
   opacity: 0.15;
   filter: blur(3px);
-  object-fit: cover;
+  pointer-events: none;
 }
 
 /* Titre amélioré - Plus grand et plus impressionnant */
