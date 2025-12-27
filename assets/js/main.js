@@ -2,6 +2,30 @@
   const yearEl = document.querySelector('[data-year]');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
+  // Fermer le menu mobile quand on clique sur un lien
+  document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('.nav a');
+    const nav = document.querySelector('.nav');
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (nav) nav.classList.remove('mobile-open');
+        if (menuToggle) menuToggle.classList.remove('active');
+      });
+    });
+
+    // Fermer le menu si on clique en dehors
+    document.addEventListener('click', (e) => {
+      if (nav && nav.classList.contains('mobile-open')) {
+        if (!e.target.closest('.nav') && !e.target.closest('.mobile-menu-toggle')) {
+          nav.classList.remove('mobile-open');
+          if (menuToggle) menuToggle.classList.remove('active');
+        }
+      }
+    });
+  });
+
   // Reveal au scroll (léger, sans dépendances)
   const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const revealTargets = document.querySelectorAll('.hero, .section, .footer');

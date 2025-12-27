@@ -1,57 +1,389 @@
-/* Mobile Responsive Styles */
+/* Mobile Responsive Styles - Menu Hamburger */
 
-/* Amélioration du header sur mobile */
+/* Bouton hamburger */
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
+}
+
+.mobile-menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(7px, 7px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Responsive mobile */
 @media (max-width: 768px) {
+  /* Afficher le bouton hamburger */
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  /* Header ajusté */
   .topbar {
-    flex-direction: column;
-    gap: 12px;
     padding: 12px 16px !important;
   }
 
   .header-right {
-    width: 100%;
-    flex-direction: column;
+    width: auto;
+    flex-direction: row;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
   }
 
+  /* Cacher la navigation par défaut sur mobile */
   .nav {
-    display: flex !important;
+    display: none !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 13, 24, 0.98);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
     flex-direction: column;
-    gap: 8px;
-    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 60px 20px;
   }
 
+  /* Navigation ouverte */
+  .nav.mobile-open {
+    display: flex !important;
+  }
+
+  /* Liens de navigation mobile */
   .nav a {
+    font-size: 20px;
+    padding: 12px 24px;
+    width: 80%;
+    max-width: 300px;
     text-align: center;
-    padding: 12px 16px;
     background: rgba(255,255,255,0.05);
-    border-radius: 8px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .nav a:hover {
+    background: rgba(88,101,242,0.2);
+    border-color: rgba(88,101,242,0.4);
   }
 
   .nav__btn {
+    width: 80%;
+    max-width: 300px;
+    text-align: center;
+  }
+
+  /* Live counter plus compact */
+  .live-counter {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+
+  .live-count {
+    font-size: 16px;
+  }
+
+  .live-label {
+    display: none;
+  }
+
+  /* Brand plus petit */
+  .brand img {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .brand__name {
+    font-size: 14px;
+  }
+
+  .brand__sub {
+    font-size: 10px;
+  }
+}
+
+/* Grille de véhicules responsive */
+@media (max-width: 768px) {
+  .vehicles-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    padding: 0 16px !important;
+  }
+
+  .vehicle-card {
+    max-width: 100%;
+  }
+
+  .vehicles-filters {
+    padding: 0 16px !important;
+  }
+
+  .filter-btn {
+    font-size: 13px;
+    padding: 8px 16px;
+  }
+
+  .search-box {
+    padding: 0 16px !important;
+  }
+
+  .vehicles-header h1 {
+    font-size: 32px !important;
+  }
+
+  .vehicles-header p {
+    font-size: 16px !important;
+  }
+
+  .stats-summary {
+    gap: 16px !important;
+  }
+
+  .stat-item__value {
+    font-size: 24px !important;
+  }
+}
+
+/* Cartes d'économie responsive */
+@media (max-width: 768px) {
+  .economy-sections {
+    gap: 24px !important;
+  }
+
+  .jobs-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .job-card {
+    padding: 20px !important;
+  }
+
+  .economy-hero h1 {
+    font-size: 32px !important;
+  }
+
+  .economy-hero p {
+    font-size: 16px !important;
+  }
+}
+
+/* Guides responsive */
+@media (max-width: 768px) {
+  .guides-nav {
+    padding: 0 16px !important;
+  }
+
+  .guide-tab {
+    font-size: 13px;
+    padding: 10px 16px;
+  }
+
+  .guides-container {
+    padding: 0 16px !important;
+  }
+
+  .guide-card {
+    padding: 20px !important;
+  }
+
+  .guides-hero h1 {
+    font-size: 32px !important;
+  }
+}
+
+/* Galerie responsive */
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
+
+/* Staff grid responsive */
+@media (max-width: 768px) {
+  .staff-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .staff-card {
+    padding: 20px !important;
+  }
+}
+
+/* Footer responsive */
+@media (max-width: 768px) {
+  .footer__inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .footer__links {
+    justify-content: center;
+  }
+}
+
+/* Tiles et grids responsive */
+@media (max-width: 768px) {
+  .grid3 {
+    grid-template-columns: 1fr !important;
+  }
+
+  .tile {
+    padding: 20px !important;
+  }
+
+  .hero__title {
+    font-size: 36px !important;
+    line-height: 1.2 !important;
+  }
+
+  .hero__lead {
+    font-size: 16px !important;
+  }
+
+  .hero__cta {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn {
     width: 100%;
     text-align: center;
   }
 
-  .live-counter {
-    font-size: 14px;
+  .section__head h2 {
+    font-size: 24px !important;
   }
 
-  .brand {
-    transform: scale(0.9);
-  }
-
-  .brand__text {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-  }
-
-  .brand__sub {
-    font-size: 11px;
+  main {
+    padding: 12px 16px 40px !important;
   }
 }
+
+/* Très petits écrans (< 480px) */
+@media (max-width: 480px) {
+  .hero__title {
+    font-size: 28px !important;
+  }
+
+  .vehicles-header h1 {
+    font-size: 24px !important;
+  }
+
+  .economy-hero h1, .guides-hero h1 {
+    font-size: 24px !important;
+  }
+
+  .stat-item__value {
+    font-size: 20px !important;
+  }
+
+  .vehicle-card__name {
+    font-size: 16px !important;
+  }
+
+  .vehicle-card__price {
+    font-size: 18px !important;
+  }
+}
+
+/* Amélioration des cartes sur tablettes */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .vehicles-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .jobs-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .staff-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Optimisation des images de fond vidéo sur mobile */
+@media (max-width: 768px) {
+  .bg-video-container {
+    display: none !important;
+  }
+
+  .bg-video {
+    display: none !important;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0a0d18 0%, #1a1d2e 50%, #0a0d18 100%);
+    z-index: -2;
+  }
+
+  .bg {
+    opacity: 0.95;
+  }
+}
+
+/* Amélioration des modals sur mobile */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95vw !important;
+    max-width: 95vw !important;
+    margin: 10px !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+  }
+
+  .modal-header {
+    padding: 16px !important;
+  }
+
+  .modal-body {
+    padding: 16px !important;
+  }
+
+  .modal-footer {
+    padding: 16px !important;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .modal-footer .btn {
+    width: 100%;
+  }
+}
+
 
 /* Grille de véhicules responsive */
 @media (max-width: 768px) {
