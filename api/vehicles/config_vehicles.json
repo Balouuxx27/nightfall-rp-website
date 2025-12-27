@@ -1,6 +1,6 @@
 [
     {
-        "image": "images/driftcypher.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/driftcypher.png",
         "name": "Cypher drift",
         "model": "driftcypher",
         "price": 300000,
@@ -8,7 +8,7 @@
         "category": "drift"
     },
     {
-        "image": "images/drifttampa.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/drifttampa.png",
         "name": "Tampa drift",
         "model": "drifttampa",
         "price": 210000,
@@ -16,7 +16,7 @@
         "category": "drift"
     },
     {
-        "image": "images/driftyosemite.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/driftyosemite.png",
         "name": "Yosemite drift",
         "model": "driftyosemite",
         "price": 230000,
@@ -24,3150 +24,3150 @@
         "category": "drift"
     },
     {
-        "image": "images/drifteuros.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/drifteuros.png",
         "name": "Euros drift",
         "model": "drifteuros",
         "price": 185000,
         "category": "drift"
     },
     {
-        "image": "images/driftfr36.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/driftfr36.png",
         "name": "FR36 drift",
         "model": "driftfr36",
         "price": 280000,
         "category": "drift"
     },
     {
-        "image": "images/driftfuto.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/driftfuto.png",
         "name": "Futo GTX drift",
         "model": "driftfuto",
         "price": 75000,
         "category": "drift"
     },
     {
-        "image": "images/drfitjester.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/drfitjester.png",
         "name": "Jester RR",
         "model": "driftjester",
         "price": 350000,
         "category": "drift"
     },
     {
-        "image": "images/driftnebula.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/driftnebula.png",
         "name": "Nebula Turbo drift",
         "model": "driftnebula",
         "price": 110000,
         "category": "drift"
     },
     {
-        "image": "images/driftremus.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/driftremus.png",
         "name": "Remus drift",
         "model": "driftremus",
         "price": 90000,
         "category": "drift"
     },
     {
-        "image": "images/driftsentinel.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/driftsentinel.png",
         "name": "Sentinel Classic drift",
         "model": "driftsentinel",
         "price": 125000,
         "category": "drift"
     },
     {
-        "image": "images/driftvorschlag.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/driftvorschlag.png",
         "name": "Vorschlaghammer drift",
         "model": "driftvorschlag",
         "price": 250000,
         "category": "drift"
     },
     {
-        "image": "images/driftzr350.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/driftzr350.png",
         "name": "ZR350 drift",
         "model": "driftzr350",
         "price": 160000,
         "category": "drift"
     },
     {
-        "image": "images/akuma.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/akuma.png",
         "name": "Akuma",
         "model": "akuma",
         "price": 9000,
         "category": "motorcycles"
     },
     {
-        "image": "images/bagger.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/bagger.png",
         "name": "Bagger",
         "model": "bagger",
         "price": 15000,
         "category": "motorcycles"
     },
     {
-        "image": "images/bati800.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/bati800.png",
         "name": "Bati 801",
         "model": "bati",
         "price": 15000,
         "category": "motorcycles"
     },
     {
-        "image": "images/bati800r.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/bati800r.png",
         "name": "Bati 801RR",
         "model": "bati2",
         "price": 15000,
         "category": "motorcycles"
     },
     {
-        "image": "images/carbonrs.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/carbonrs.png",
         "name": "Carbon RS",
         "model": "carbonrs",
         "price": 40000,
         "category": "motorcycles"
     },
     {
-        "image": "images/chimera.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/chimera.png",
         "name": "Chimera",
         "model": "chimera",
         "price": 25000,
         "category": "motorcycles"
     },
     {
-        "image": "images/cliffhanger.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/cliffhanger.png",
         "name": "Cliffhanger",
         "model": "cliffhanger",
         "price": 25000,
         "category": "motorcycles"
     },
     {
-        "image": "images/daemon.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/daemon.png",
         "name": "Daemon",
         "model": "daemon",
         "price": 15000,
         "category": "motorcycles"
     },
     {
-        "image": "images/daemon2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/daemon2.png",
         "name": "Daemon Custom",
         "model": "daemon2",
         "price": 25000,
         "category": "motorcycles"
     },
     {
-        "image": "images/defiler.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/defiler.png",
         "name": "Defiler",
         "model": "defiler",
         "price": 20000,
         "category": "motorcycles"
     },
     {
-        "image": "images/diabolus.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/diabolus.png",
         "name": "Diabolus",
         "model": "diablous",
         "price": 20000,
         "category": "motorcycles"
     },
     {
-        "image": "images/diabolus2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/diabolus2.png",
         "name": "Diabolus Custom",
         "model": "diablous2",
         "price": 25000,
         "category": "motorcycles"
     },
     {
-        "image": "images/Sanctus.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/Sanctus.png",
         "name": "Sanctus",
         "model": "sanctus",
         "price": 25000,
         "category": "motorcycles"
     },
     {
-        "image": "images/avarus.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/avarus.png",
         "name": "Avarus",
         "model": "avarus",
         "price": 25000,
         "category": "motorcycles"
     },
     {
-        "image": "images/bf400.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/bf400.png",
         "name": "BF 400",
         "model": "bf400",
         "price": 25000,
         "category": "motorcycles"
     },
     {
-        "image": "images/doublet.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/doublet.png",
         "name": "Double T",
         "model": "double",
         "price": 25000,
         "category": "motorcycles"
     },
     {
-        "image": "images/enduro.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/enduro.png",
         "name": "Enduro",
         "model": "enduro",
         "price": 25000,
         "category": "motorcycles"
     },
     {
-        "image": "images/esskey.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/esskey.png",
         "name": "Esskey",
         "model": "esskey",
         "price": 25000,
         "category": "motorcycles"
     },
     {
-        "image": "images/fcr2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/fcr2.png",
         "name": "FRC 1000 Custom",
         "model": "fcr2",
         "price": 25000,
         "category": "motorcycles"
     },
     {
-        "image": "images/gargoyle.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/gargoyle.png",
         "name": "Gargoyle",
         "model": "gargoyle",
         "price": 25000,
         "category": "motorcycles"
     },
     {
-        "image": "images/hakuchou.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/hakuchou.png",
         "name": "Hakuchou",
         "model": "hakuchou",
         "price": 25000,
         "category": "motorcycles"
     },
     {
-        "image": "images/hakuchou2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/hakuchou2.png",
         "name": "Hakuchou Drag",
         "model": "hakuchou2",
         "price": 25000,
         "category": "motorcycles"
     },
     {
-        "image": "images/manchez.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/manchez.png",
         "name": "Manchez",
         "model": "manchez",
         "price": 25000,
         "category": "motorcycles"
     },
     {
-        "image": "images/manchez2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/manchez2.png",
         "name": "Manchez Scout",
         "model": "manchez2",
         "price": 25000,
         "category": "motorcycles"
     },
     {
-        "image": "images/innovation.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/innovation.png",
         "name": "Innovation",
         "model": "innovation",
         "price": 25000,
         "category": "motorcycles"
     },
     {
-        "image": "images/nightblade.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/nightblade.png",
         "name": "Nightblade",
         "model": "nightblade",
         "price": 25000,
         "category": "motorcycles"
     },
     {
-        "image": "images/sanchez2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/sanchez2.png",
         "name": "Sanchez",
         "model": "sanchez2",
         "price": 25000,
         "category": "motorcycles"
     },
     {
-        "image": "images/bmx.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/bmx.png",
         "name": "BMX",
         "model": "bmx",
         "price": 600,
         "category": "cycles"
     },
     {
-        "image": "images/cruiser.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/cruiser.png",
         "name": "Cruiser",
         "model": "cruiser",
         "price": 650,
         "category": "cycles"
     },
     {
-        "image": "images/fixter.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/fixter.png",
         "name": "Fixter",
         "model": "fixter",
         "price": 800,
         "category": "cycles"
     },
     {
-        "image": "images/scorcher.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/scorcher.png",
         "name": "Scorcher",
         "model": "scorcher",
         "price": 800,
         "category": "cycles"
     },
     {
-        "image": "images/tribike.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/tribike.png",
         "name": "Tri-Bike",
         "model": "tribike",
         "price": 1100,
         "category": "cycles"
     },
     {
-        "image": "images/inductor.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/inductor.png",
         "name": "Inductor",
         "model": "inductor",
         "price": 1300,
         "category": "cycles"
     },
     {
-        "image": "images/gburrito2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/gburrito2.png",
         "name": "Gang Burrito",
         "model": "gburrito2",
         "price": 17500,
         "category": "vans"
     },
     {
-        "image": "images/rumpo3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/rumpo3.png",
         "name": "Rumpo 4x4",
         "model": "rumpo3",
         "price": 20500,
         "category": "vans"
     },
     {
-        "image": "images/rumpo2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/rumpo2.png",
         "name": "Rumpo Custom",
         "model": "rumpo2",
         "price": 16500,
         "category": "vans"
     },
     {
-        "image": "images/burrito4.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/burrito4.png",
         "name": "Burrito Custom",
         "model": "burrito4",
         "price": 16500,
         "category": "vans"
     },
     {
-        "image": "images/minivan.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/minivan.png",
         "name": "Minivan",
         "model": "minivan",
         "price": 18630,
         "category": "vans"
     },
     {
-        "image": "images/minivan2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/minivan2.png",
         "name": "Minivan Custom",
         "model": "minivan2",
         "price": 21500,
         "category": "vans"
     },
     {
-        "image": "images/youga_classic.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/youga_classic.png",
         "name": "Youga 4x4",
         "model": "youga3",
         "price": 20000,
         "category": "vans"
     },
     {
-        "image": "images/youga.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/youga.png",
         "name": "Youga",
         "model": "youga",
         "price": 17500,
         "category": "vans"
     },
     {
-        "image": "images/youga4.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/youga4.png",
         "name": "Youga Classic",
         "model": "youga4",
         "price": 16000,
         "category": "vans"
     },
     {
-        "image": "images/surfer.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/surfer.png",
         "name": "Surfer",
         "model": "surfer",
         "price": 11000,
         "category": "vans"
     },
     {
-        "image": "images/surfer2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/surfer2.png",
         "name": "Surfer Rusty",
         "model": "surfer2",
         "price": 7500,
         "category": "vans"
     },
     {
-        "image": "images/surfer3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/surfer3.png",
         "name": "Surfer Custom",
         "model": "surfer3",
         "price": 14500,
         "category": "vans"
     },
     {
-        "image": "images/youga_custom.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/youga_custom.png",
         "name": "Youga Custom",
         "model": "youga2",
         "price": 15000,
         "category": "vans"
     },
     {
-        "image": "images/camper.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/camper.png",
         "name": "Camper",
         "model": "camper",
         "price": 16500,
         "category": "vans"
     },
     {
-        "image": "images/journey.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/journey.png",
         "name": "Journey old",
         "model": "journey",
         "price": 7600,
         "category": "vans"
     },
     {
-        "image": "images/journey2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/journey2.png",
         "name": "Journey",
         "model": "journey2",
         "price": 14500,
         "category": "vans"
     },
     {
-        "image": "images/asbo.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/asbo.png",
         "name": "Asbo",
         "model": "asbo",
         "price": 6500,
         "category": "compacts"
     },
     {
-        "image": "images/blista.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/blista.png",
         "name": "Blista",
         "model": "blista",
         "price": 7500,
         "category": "compacts"
     },
     {
-        "image": "images/kanjo.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/kanjo.png",
         "name": "Blista Kanjo",
         "model": "kanjo",
         "price": 10000,
         "category": "compacts"
     },
     {
-        "image": "images/brioso2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/brioso2.png",
         "name": "Brioso 300",
         "model": "brioso2",
         "price": 4500,
         "category": "compacts"
     },
     {
-        "image": "images/brioso3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/brioso3.png",
         "name": "Brioso 300 Widebody",
         "model": "brioso3",
         "price": 9500,
         "category": "compacts"
     },
     {
-        "image": "images/brioso.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/brioso.png",
         "name": "Brioso R/A",
         "model": "brioso",
         "price": 22000,
         "category": "compacts"
     },
     {
-        "image": "images/club.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/club.png",
         "name": "Club",
         "model": "club",
         "price": 9000,
         "category": "compacts"
     },
     {
-        "image": "images/dilettante.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/dilettante.png",
         "name": "Dilettante",
         "model": "dilettante",
         "price": 6000,
         "category": "compacts"
     },
     {
-        "image": "images/issi2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/issi2.png",
         "name": "Issi",
         "model": "issi2",
         "price": 7650,
         "category": "compacts"
     },
     {
-        "image": "images/issi3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/issi3.png",
         "name": "Issi Classic",
         "model": "issi3",
         "price": 5650,
         "category": "compacts"
     },
     {
-        "image": "images/panto.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/panto.png",
         "name": "Panto",
         "model": "panto",
         "price": 4000,
         "category": "compacts"
     },
     {
-        "image": "images/prairie.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/prairie.png",
         "name": "Prairie",
         "model": "prairie",
         "price": 10000,
         "category": "compacts"
     },
     {
-        "image": "images/rhapsody.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/rhapsody.png",
         "name": "Rhapsody",
         "model": "rhapsody",
         "price": 7500,
         "category": "compacts"
     },
     {
-        "image": "images/weevil.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/weevil.png",
         "name": "Weevil",
         "model": "weevil",
         "price": 8500,
         "category": "compacts"
     },
     {
-        "image": "images/asea.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/asea.png",
         "name": "Asea",
         "model": "asea",
         "price": 9500,
         "category": "sedans"
     },
     {
-        "image": "images/emperor2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/emperor2.png",
         "name": "Emperor rust",
         "model": "emperor2",
         "price": 9000,
         "category": "sedans"
     },
     {
-        "image": "images/emperor.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/emperor.png",
         "name": "Emperor",
         "model": "emperor",
         "price": 17500,
         "category": "sedans"
     },
     {
-        "image": "images/glendale.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/glendale.png",
         "name": "Glendale",
         "model": "glendale",
         "price": 12000,
         "category": "sedans"
     },
     {
-        "image": "images/glendale2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/glendale2.png",
         "name": "Glendale Custom",
         "model": "glendale2",
         "price": 18000,
         "category": "sedans"
     },
     {
-        "image": "images/ingot.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/ingot.png",
         "name": "Ingot",
         "model": "ingot",
         "price": 11000,
         "category": "sedans"
     },
     {
-        "image": "images/intruder.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/intruder.png",
         "name": "Intruder",
         "model": "intruder",
         "price": 16000,
         "category": "sedans"
     },
     {
-        "image": "images/primo.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/primo.png",
         "name": "Primo",
         "model": "primo",
         "price": 15000,
         "category": "sedans"
     },
     {
-        "image": "images/primo2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/primo2.png",
         "name": "Primo custom",
         "model": "primo2",
         "price": 18000,
         "category": "sedans"
     },
     {
-        "image": "images/rhinehart.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/rhinehart.png",
         "name": "Rhinehart",
         "model": "rhinehart",
         "price": 70000,
         "category": "sedans"
     },
     {
-        "image": "images/stafford.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/stafford.png",
         "name": "Stafford",
         "model": "stafford",
         "price": 50000,
         "category": "sedans"
     },
     {
-        "image": "images/surge.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/surge.png",
         "name": "Surge",
         "model": "surge",
         "price": 25000,
         "category": "sedans"
     },
     {
-        "image": "images/vorschlaghammer.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/vorschlaghammer.png",
         "name": "Vorschlaghammer",
         "model": "vorschlaghammer",
         "price": 14000,
         "category": "sedans"
     },
     {
-        "image": "images/asterope.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/asterope.png",
         "name": "Asterope",
         "model": "asterope",
         "price": 15000,
         "category": "sedans"
     },
     {
-        "image": "images/asterope2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/asterope2.png",
         "name": "Asterope GZ",
         "model": "asterope2",
         "price": 18000,
         "category": "sedans"
     },
     {
-        "image": "images/cinquemila.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/cinquemila.png",
         "name": "Cinquemila",
         "model": "cinquemila",
         "price": 45000,
         "category": "sedans"
     },
     {
-        "image": "images/fugitive.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/fugitive.png",
         "name": "Fugitive",
         "model": "fugitive",
         "price": 26000,
         "category": "sedans"
     },
     {
-        "image": "images/washington.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/washington.png",
         "name": "Washington",
         "model": "washington",
         "price": 30000,
         "category": "sedans"
     },
     {
-        "image": "images/schafter2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/schafter2.png",
         "name": "Schafter",
         "model": "schafter2",
         "price": 45000,
         "category": "sedans"
     },
     {
-        "image": "images/premier.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/premier.png",
         "name": "Premier",
         "model": "premier",
         "price": 15000,
         "category": "sedans"
     },
     {
-        "image": "images/regina.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/regina.png",
         "name": "Regina",
         "model": "regina",
         "price": 13000,
         "category": "sedans"
     },
     {
-        "image": "images/tailgater.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/tailgater.png",
         "name": "Tailgater",
         "model": "tailgater",
         "price": 35000,
         "category": "sedans"
     },
     {
-        "image": "images/tailgater2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/tailgater2.png",
         "name": "Tailgater S",
         "model": "tailgater2",
         "price": 45000,
         "category": "sedans"
     },
     {
-        "image": "images/warrener.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/warrener.png",
         "name": "Warrener",
         "model": "warrener",
         "price": 23000,
         "category": "sedans"
     },
     {
-        "image": "images/warrener2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/warrener2.png",
         "name": "Warrener HKR",
         "model": "warrener2",
         "price": 40000,
         "category": "sedans"
     },
     {
-        "image": "images/stanier.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/stanier.png",
         "name": "Stanier",
         "model": "stanier",
         "price": 16000,
         "category": "sedans"
     },
     {
-        "image": "images/stratum.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/stratum.png",
         "name": "Stratum",
         "model": "stratum",
         "price": 13000,
         "category": "sedans"
     },
     {
-        "image": "images/cognoscenti.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/cognoscenti.png",
         "name": "Cognoscenti",
         "model": "cognoscenti",
         "price": 55000,
         "category": "sedans"
     },
     {
-        "image": "images/cog55.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/cog55.png",
         "name": "Cognoscenti 55",
         "model": "cog55",
         "price": 90000,
         "category": "sedans"
     },
     {
-        "image": "images/deity.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/deity.png",
         "name": "Deity",
         "model": "deity",
         "price": 60000,
         "category": "sedans"
     },
     {
-        "image": "images/superd.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/superd.png",
         "name": "Super Diamond",
         "model": "superd",
         "price": 90000,
         "category": "sedans"
     },
     {
-        "image": "images/aleutian.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/aleutian.png",
         "name": "Aleutian",
         "model": "aleutian",
         "price": 55000,
         "category": "suvs"
     },
     {
-        "image": "images/astron.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/astron.png",
         "name": "Astron",
         "model": "astron",
         "price": 40000,
         "category": "suvs"
     },
     {
-        "image": "images/baller2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/baller2.png",
         "name": "Baller",
         "model": "baller2",
         "price": 50000,
         "category": "suvs"
     },
     {
-        "image": "images/baller.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/baller.png",
         "name": "Baller old",
         "model": "baller",
         "price": 45000,
         "category": "suvs"
     },
     {
-        "image": "images/baller3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/baller3.png",
         "name": "Baller LE",
         "model": "baller3",
         "price": 70000,
         "category": "suvs"
     },
     {
-        "image": "images/baller7.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/baller7.png",
         "name": "Baller ST",
         "model": "baller7",
         "price": 90000,
         "category": "suvs"
     },
     {
-        "image": "images/bjxl.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/bjxl.png",
         "name": "BeeJay XL",
         "model": "bjxl",
         "price": 60000,
         "category": "suvs"
     },
     {
-        "image": "images/castigator.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/castigator.png",
         "name": "Castigator",
         "model": "castigator",
         "price": 80000,
         "category": "suvs"
     },
     {
-        "image": "images/cavalcade2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/cavalcade2.png",
         "name": "Cavalcade",
         "model": "cavalcade2",
         "price": 45000,
         "category": "suvs"
     },
     {
-        "image": "images/cavalcade.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/cavalcade.png",
         "name": "Cavalcade old",
         "model": "cavalcade",
         "price": 40000,
         "category": "suvs"
     },
     {
-        "image": "images/cavalcade3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/cavalcade3.png",
         "name": "Cavalcade XL",
         "model": "cavalcade3",
         "price": 50000,
         "category": "suvs"
     },
     {
-        "image": "images/contender.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/contender.png",
         "name": "Contender",
         "model": "contender",
         "price": 75000,
         "category": "suvs"
     },
     {
-        "image": "images/dorado.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/dorado.png",
         "name": "Dorado",
         "model": "dorado",
         "price": 35000,
         "category": "suvs"
     },
     {
-        "image": "images/dubsta.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/dubsta.png",
         "name": "Dubsta",
         "model": "dubsta",
         "price": 80000,
         "category": "suvs"
     },
     {
-        "image": "images/dubsta2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/dubsta2.png",
         "name": "Dubsta luxe",
         "model": "dubsta2",
         "price": 90000,
         "category": "suvs"
     },
     {
-        "image": "images/fq2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/fq2.png",
         "name": "FQ 2",
         "model": "fq2",
         "price": 60000,
         "category": "suvs"
     },
     {
-        "image": "images/granger.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/granger.png",
         "name": "Granger",
         "model": "granger",
         "price": 50000,
         "category": "suvs"
     },
     {
-        "image": "images/granger2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/granger2.png",
         "name": "Grandger 3600lx",
         "model": "granger2",
         "price": 90000,
         "category": "suvs"
     },
     {
-        "image": "images/gresley.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/gresley.png",
         "name": "Gresley",
         "model": "gresley",
         "price": 40000,
         "category": "suvs"
     },
     {
-        "image": "images/habanero.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/habanero.png",
         "name": "Habanero",
         "model": "habanero",
         "price": 45000,
         "category": "suvs"
     },
     {
-        "image": "images/huntley.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/huntley.png",
         "name": "Huntley S",
         "model": "huntley",
         "price": 35000,
         "category": "suvs"
     },
     {
-        "image": "images/issi8.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/issi8.png",
         "name": "Issi Rally",
         "model": "issi8",
         "price": 30000,
         "category": "suvs"
     },
     {
-        "image": "images/iwagen.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/iwagen.png",
         "name": "I-Wagen",
         "model": "iwagen",
         "price": 75000,
         "category": "suvs"
     },
     {
-        "image": "images/jubilee.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/jubilee.png",
         "name": "Jubilee",
         "model": "jubilee",
         "price": 50000,
         "category": "suvs"
     },
     {
-        "image": "images/landstalker.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/landstalker.png",
         "name": "Landstalker",
         "model": "landstalker",
         "price": 40000,
         "category": "suvs"
     },
     {
-        "image": "images/landstalker2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/landstalker2.png",
         "name": "Landstalker XL",
         "model": "landstalker2",
         "price": 55000,
         "category": "suvs"
     },
     {
-        "image": "images/mesa.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/mesa.png",
         "name": "Messa",
         "model": "mesa",
         "price": 30000,
         "category": "suvs"
     },
     {
-        "image": "images/novak.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/novak.png",
         "name": "Novak",
         "model": "novak",
         "price": 75000,
         "category": "suvs"
     },
     {
-        "image": "images/patriot.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/patriot.png",
         "name": "Patriot",
         "model": "patriot",
         "price": 100000,
         "category": "suvs"
     },
     {
-        "image": "images/radi.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/radi.png",
         "name": "Radius",
         "model": "radi",
         "price": 40000,
         "category": "suvs"
     },
     {
-        "image": "images/rebla.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/rebla.png",
         "name": "Rebla GTS",
         "model": "rebla",
         "price": 95000,
         "category": "suvs"
     },
     {
-        "image": "images/rocoto.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/rocoto.png",
         "name": "Rocoto",
         "model": "rocoto",
         "price": 350000,
         "category": "suvs"
     },
     {
-        "image": "images/seminole.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/seminole.png",
         "name": "Seminole",
         "model": "seminole",
         "price": 45000,
         "category": "suvs"
     },
     {
-        "image": "images/seminole2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/seminole2.png",
         "name": "Seminole Frontier",
         "model": "seminole2",
         "price": 35000,
         "category": "suvs"
     },
     {
-        "image": "images/serrano.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/serrano.png",
         "name": "Serrano",
         "model": "serrano",
         "price": 45000,
         "category": "suvs"
     },
     {
-        "image": "images/toros.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/toros.png",
         "name": "Toros",
         "model": "toros",
         "price": 96000,
         "category": "suvs"
     },
     {
-        "image": "images/vivanite.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/vivanite.png",
         "name": "Vivanite",
         "model": "vivanite",
         "price": 60000,
         "category": "suvs"
     },
     {
-        "image": "images/xls.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/xls.png",
         "name": "XLS",
         "model": "xls",
         "price": 55000,
         "category": "suvs"
     },
     {
-        "image": "images/bifta.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/bifta.png",
         "name": "Bifta",
         "model": "bifta",
         "price": 35000,
         "category": "offroad"
     },
     {
-        "image": "images/blazer.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/blazer.png",
         "name": "Blazzer",
         "model": "blazer",
         "price": 5000,
         "category": "offroad"
     },
     {
-        "image": "images/bodhi2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/bodhi2.png",
         "name": "Bodhi",
         "model": "bodhi2",
         "price": 45000,
         "category": "offroad"
     },
     {
-        "image": "images/boor.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/boor.png",
         "name": "Boor",
         "model": "boor",
         "price": 30000,
         "category": "offroad"
     },
     {
-        "image": "images/brawler.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/brawler.png",
         "name": "Brawler",
         "model": "brawler",
         "price": 60000,
         "category": "offroad"
     },
     {
-        "image": "images/caracara2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/caracara2.png",
         "name": "Caracara 4x4",
         "model": "caracara2",
         "price": 50000,
         "category": "offroad"
     },
     {
-        "image": "images/trophytruck2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/trophytruck2.png",
         "name": "Desert Raid",
         "model": "trophytruck2",
         "price": 550000,
         "category": "offroad"
     },
     {
-        "image": "images/draugur.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/draugur.png",
         "name": "Draugur",
         "model": "draugur",
         "price": 450000,
         "category": "offroad"
     },
     {
-        "image": "images/dubsta3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/dubsta3.png",
         "name": "Dubsta 6x6",
         "model": "dubsta3",
         "price": 400000,
         "category": "offroad"
     },
     {
-        "image": "images/dune.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/dune.png",
         "name": "Dune Buggy",
         "model": "dune",
         "price": 25000,
         "category": "offroad"
     },
     {
-        "image": "images/dloader.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/dloader.png",
         "name": "Duneloader",
         "model": "dloader",
         "price": 30000,
         "category": "offroad"
     },
     {
-        "image": "images/everon.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/everon.png",
         "name": "Everon",
         "model": "everon",
         "price": 20000,
         "category": "offroad"
     },
     {
-        "image": "images/guardian.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/guardian.png",
         "name": "Guardian",
         "model": "guardian",
         "price": 100000,
         "category": "offroad"
     },
     {
-        "image": "images/freecrawler.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/freecrawler.png",
         "name": "Freecrawler",
         "model": "freecrawler",
         "price": 90000,
         "category": "offroad"
     },
     {
-        "image": "images/hellion.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/hellion.png",
         "name": "Hellion",
         "model": "hellion",
         "price": 35000,
         "category": "offroad"
     },
     {
-        "image": "images/blazer3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/blazer3.png",
         "name": "Hot Rod Blazer",
         "model": "blazer3",
         "price": 50000,
         "category": "offroad"
     },
     {
-        "image": "images/bfinjection.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/bfinjection.png",
         "name": "Injection",
         "model": "bfinjection",
         "price": 40000,
         "category": "offroad"
     },
     {
-        "image": "images/kalahari.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/kalahari.png",
         "name": "Kalahari",
         "model": "kalahari",
         "price": 45000,
         "category": "offroad"
     },
     {
-        "image": "images/kamacho.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/kamacho.png",
         "name": "Kamacho",
         "model": "kamacho",
         "price": 120000,
         "category": "offroad"
     },
     {
-        "image": "images/mesa3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/mesa3.png",
         "name": "Mesa 4x4",
         "model": "mesa3",
         "price": 35000,
         "category": "offroad"
     },
     {
-        "image": "images/monstrociti.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/monstrociti.png",
         "name": "Monstrociti",
         "model": "monstrociti",
         "price": 400000,
         "category": "offroad"
     },
     {
-        "image": "images/outlaw.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/outlaw.png",
         "name": "Outlaw",
         "model": "outlaw",
         "price": 45000,
         "category": "offroad"
     },
     {
-        "image": "images/rancherxl.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/rancherxl.png",
         "name": "Rancher XL",
         "model": "rancherxl",
         "price": 90000,
         "category": "offroad"
     },
     {
-        "image": "images/ratel.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/ratel.png",
         "name": "Ratel",
         "model": "ratel",
         "price": 70000,
         "category": "offroad"
     },
     {
-        "image": "images/rebel2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/rebel2.png",
         "name": "Rebel",
         "model": "rebel2",
         "price": 30000,
         "category": "offroad"
     },
     {
-        "image": "images/rebel.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/rebel.png",
         "name": "Rusty Rebel",
         "model": "rebel",
         "price": 35000,
         "category": "offroad"
     },
     {
-        "image": "images/riata.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/riata.png",
         "name": "Riata",
         "model": "riata",
         "price": 20000,
         "category": "offroad"
     },
     {
-        "image": "images/sandking.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/sandking.png",
         "name": "Sandking XL",
         "model": "sandking",
         "price": 180000,
         "category": "offroad"
     },
     {
-        "image": "images/blazer4.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/blazer4.png",
         "name": "Street Blazer",
         "model": "blazer4",
         "price": 40000,
         "category": "offroad"
     },
     {
-        "image": "images/terminus.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/terminus.png",
         "name": "Terminus",
         "model": "terminus",
         "price": 350000,
         "category": "offroad"
     },
     {
-        "image": "images/trophytruck.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/trophytruck.png",
         "name": "Trophy Truck",
         "model": "trophytruck",
         "price": 500000,
         "category": "offroad"
     },
     {
-        "image": "images/vagrant.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/vagrant.png",
         "name": "Vagrant",
         "model": "vagrant",
         "price": 45000,
         "category": "offroad"
     },
     {
-        "image": "images/verus.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/verus.png",
         "name": "Verus",
         "model": "verus",
         "price": 60000,
         "category": "offroad"
     },
     {
-        "image": "images/l35.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/l35.png",
         "name": "Walton L35",
         "model": "l35",
         "price": 35000,
         "category": "offroad"
     },
     {
-        "image": "images/yosemite1500.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/yosemite1500.png",
         "name": "Yosemite 1500",
         "model": "yosemite1500",
         "price": 30000,
         "category": "offroad"
     },
     {
-        "image": "images/yosemite3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/yosemite3.png",
         "name": "Yosemite Rancher",
         "model": "yosemite3",
         "price": 55000,
         "category": "offroad"
     },
     {
-        "image": "images/cogcabrio.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/cogcabrio.png",
         "name": "Cognoscenti Cabrio",
         "model": "cogcabrio",
         "price": 50000,
         "category": "coupes"
     },
     {
-        "image": "images/eurosx32.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/eurosx32.png",
         "name": "Euros X32",
         "model": "eurosx32",
         "price": 40000,
         "category": "coupes"
     },
     {
-        "image": "images/exemplar.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/exemplar.png",
         "name": "Exemplar",
         "model": "exemplar",
         "price": 35000,
         "category": "coupes"
     },
     {
-        "image": "images/f620.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/f620.png",
         "name": "F620",
         "model": "f620",
         "price": 30000,
         "category": "coupes"
     },
     {
-        "image": "images/felon.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/felon.png",
         "name": "Felon",
         "model": "felon",
         "price": 25000,
         "category": "coupes"
     },
     {
-        "image": "images/felon2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/felon2.png",
         "name": "Felon GT",
         "model": "felon2",
         "price": 28000,
         "category": "coupes"
     },
     {
-        "image": "images/fr36.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/fr36.png",
         "name": "FR36",
         "model": "fr36",
         "price": 36000,
         "category": "coupes"
     },
     {
-        "image": "images/jackal.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/jackal.png",
         "name": "Jackal",
         "model": "jackal",
         "price": 42000,
         "category": "coupes"
     },
     {
-        "image": "images/kanjosj.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/kanjosj.png",
         "name": "Kanjo SJ",
         "model": "kanjosj",
         "price": 30000,
         "category": "coupes"
     },
     {
-        "image": "images/oracle2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/oracle2.png",
         "name": "Oracle",
         "model": "oracle2",
         "price": 34000,
         "category": "coupes"
     },
     {
-        "image": "images/oracle.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/oracle.png",
         "name": "Oracle XS",
         "model": "oracle",
         "price": 37000,
         "category": "coupes"
     },
     {
-        "image": "images/postlude.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/postlude.png",
         "name": "Postlude",
         "model": "postlude",
         "price": 28000,
         "category": "coupes"
     },
     {
-        "image": "images/previon.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/previon.png",
         "name": "Previon",
         "model": "previon",
         "price": 31000,
         "category": "coupes"
     },
     {
-        "image": "images/sentinel2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/sentinel2.png",
         "name": "Sentinel",
         "model": "sentinel2",
         "price": 32000,
         "category": "coupes"
     },
     {
-        "image": "images/sentinel.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/sentinel.png",
         "name": "Sentinel XS",
         "model": "sentinel",
         "price": 34000,
         "category": "coupes"
     },
     {
-        "image": "images/windsor.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/windsor.png",
         "name": "Windsor",
         "model": "windsor",
         "price": 38000,
         "category": "coupes"
     },
     {
-        "image": "images/windsor2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/windsor2.png",
         "name": "Windsor Drop",
         "model": "windsor2",
         "price": 40000,
         "category": "coupes"
     },
     {
-        "image": "images/zion.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/zion.png",
         "name": "Zion",
         "model": "zion",
         "price": 45000,
         "category": "coupes"
     },
     {
-        "image": "images/zion2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/zion2.png",
         "name": "Zion Cabrio",
         "model": "zion2",
         "price": 47000,
         "category": "coupes"
     },
     {
-        "image": "images/tenf.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/tenf.png",
         "name": "10F",
         "model": "tenf",
         "price": 120000,
         "category": "sports"
     },
     {
-        "image": "images/tenf2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/tenf2.png",
         "name": "10F Widebody",
         "model": "tenf2",
         "price": 130000,
         "category": "sports"
     },
     {
-        "image": "images/r300.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/r300.png",
         "name": "300R",
         "model": "r300",
         "price": 110000,
         "category": "sports"
     },
     {
-        "image": "images/drafter.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/drafter.png",
         "name": "8F Drafter",
         "model": "drafter",
         "price": 140000,
         "category": "sports"
     },
     {
-        "image": "images/ninef.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/ninef.png",
         "name": "9F",
         "model": "ninef",
         "price": 150000,
         "category": "sports"
     },
     {
-        "image": "images/ninef2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/ninef2.png",
         "name": "9F Cabrio",
         "model": "ninef2",
         "price": 155000,
         "category": "sports"
     },
     {
-        "image": "images/alpha.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/alpha.png",
         "name": "Alpha",
         "model": "alpha",
         "price": 100000,
         "category": "sports"
     },
     {
-        "image": "images/banshee.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/banshee.png",
         "name": "Banshee",
         "model": "banshee",
         "price": 200000,
         "category": "sports"
     },
     {
-        "image": "images/bestiagts.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/bestiagts.png",
         "name": "Bestia GTS",
         "model": "bestiagts",
         "price": 220000,
         "category": "sports"
     },
     {
-        "image": "images/blista2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/blista2.png",
         "name": "Blista Compact",
         "model": "blista2",
         "price": 80000,
         "category": "sports"
     },
     {
-        "image": "images/buffalo.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/buffalo.png",
         "name": "Buffalo",
         "model": "buffalo",
         "price": 180000,
         "category": "sports"
     },
     {
-        "image": "images/buffalo2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/buffalo2.png",
         "name": "Buffalo S",
         "model": "buffalo2",
         "price": 190000,
         "category": "sports"
     },
     {
-        "image": "images/calico.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/calico.png",
         "name": "Calico GTF",
         "model": "calico",
         "price": 160000,
         "category": "sports"
     },
     {
-        "image": "images/carbonizzare.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/carbonizzare.png",
         "name": "Carbonizzare",
         "model": "carbonizzare",
         "price": 400000,
         "category": "sports"
     },
     {
-        "image": "images/comet2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/comet2.png",
         "name": "Comet",
         "model": "comet2",
         "price": 210000,
         "category": "sports"
     },
     {
-        "image": "images/comet3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/comet3.png",
         "name": "Comet Retro Custom",
         "model": "comet3",
         "price": 250000,
         "category": "sports"
     },
     {
-        "image": "images/comet6.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/comet6.png",
         "name": "Comet S2",
         "model": "comet6",
         "price": 270000,
         "category": "sports"
     },
     {
-        "image": "images/comet4.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/comet4.png",
         "name": "Comet Safari",
         "model": "comet4",
         "price": 230000,
         "category": "sports"
     },
     {
-        "image": "images/comet5.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/comet5.png",
         "name": "Comet SR",
         "model": "comet5",
         "price": 300000,
         "category": "sports"
     },
     {
-        "image": "images/coquette.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/coquette.png",
         "name": "Coquette",
         "model": "coquette",
         "price": 350000,
         "category": "sports"
     },
     {
-        "image": "images/coquette4.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/coquette4.png",
         "name": "Coquette D10",
         "model": "coquette4",
         "price": 360000,
         "category": "sports"
     },
     {
-        "image": "images/corsita.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/corsita.png",
         "name": "Corsita",
         "model": "corsita",
         "price": 120000,
         "category": "sports"
     },
     {
-        "image": "images/cypher.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/cypher.png",
         "name": "Cypher",
         "model": "cypher",
         "price": 280000,
         "category": "sports"
     },
     {
-        "image": "images/elegy.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/elegy.png",
         "name": "Elegy Retro custom",
         "model": "elegy",
         "price": 200000,
         "category": "sports"
     },
     {
-        "image": "images/elegy2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/elegy2.png",
         "name": "Elegy RH8",
         "model": "elegy2",
         "price": 220000,
         "category": "sports"
     },
     {
-        "image": "images/envisage.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/envisage.png",
         "name": "Envisage",
         "model": "envisage",
         "price": 450000,
         "category": "sports"
     },
     {
-        "image": "images/euros.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/euros.png",
         "name": "Euros",
         "model": "euros",
         "price": 180000,
         "category": "sports"
     },
     {
-        "image": "images/feltzer2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/feltzer2.png",
         "name": "Feltzer",
         "model": "feltzer2",
         "price": 150000,
         "category": "sports"
     },
     {
-        "image": "images/flashgt.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/flashgt.png",
         "name": "Flash GT",
         "model": "flashgt",
         "price": 320000,
         "category": "sports"
     },
     {
-        "image": "images/furoregt.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/furoregt.png",
         "name": "Furore GT",
         "model": "furoregt",
         "price": 270000,
         "category": "sports"
     },
     {
-        "image": "images/fusilade.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/fusilade.png",
         "name": "Fusilade",
         "model": "fusilade",
         "price": 140000,
         "category": "sports"
     },
     {
-        "image": "images/futo.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/futo.png",
         "name": "Futo",
         "model": "futo",
         "price": 70000,
         "category": "sports"
     },
     {
-        "image": "images/futo2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/futo2.png",
         "name": "Futo GTX",
         "model": "futo2",
         "price": 90000,
         "category": "sports"
     },
     {
-        "image": "images/gb200.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/gb200.png",
         "name": "GB 200",
         "model": "gb200",
         "price": 100000,
         "category": "sports"
     },
     {
-        "image": "images/blista3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/blista3.png",
         "name": "GO GO Monkey Blista",
         "model": "blista3",
         "price": 60000,
         "category": "sports"
     },
     {
-        "image": "images/growler.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/growler.png",
         "name": "Growler",
         "model": "growler",
         "price": 180000,
         "category": "sports"
     },
     {
-        "image": "images/everon2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/everon2.png",
         "name": "Hotring Everon",
         "model": "everon2",
         "price": 150000,
         "category": "sports"
     },
     {
-        "image": "images/gauntlet6.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/gauntlet6.png",
         "name": "Hotring Hellfire",
         "model": "gauntlet6",
         "price": 250000,
         "category": "sports"
     },
     {
-        "image": "images/hotring.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/hotring.png",
         "name": "Hotring Sabre",
         "model": "hotring",
         "price": 200000,
         "category": "sports"
     },
     {
-        "image": "images/imorgon.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/imorgon.png",
         "name": "Imorgon",
         "model": "imorgon",
         "price": 400000,
         "category": "sports"
     },
     {
-        "image": "images/issi7.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/issi7.png",
         "name": "Issi Sport",
         "model": "issi7",
         "price": 70000,
         "category": "sports"
     },
     {
-        "image": "images/italigto.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/italigto.png",
         "name": "Itali GTO",
         "model": "italigto",
         "price": 500000,
         "category": "sports"
     },
     {
-        "image": "images/stingertt.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/stingertt.png",
         "name": "Itali GTO Stinger TT",
         "model": "stingertt",
         "price": 520000,
         "category": "sports"
     },
     {
-        "image": "images/italirsx.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/italirsx.png",
         "name": "Itali RSX",
         "model": "italirsx",
         "price": 470000,
         "category": "sports"
     },
     {
-        "image": "images/jester.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/jester.png",
         "name": "Jester",
         "model": "jester",
         "price": 350000,
         "category": "sports"
     },
     {
-        "image": "images/jester3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/jester3.png",
         "name": "Jester Classic",
         "model": "jester3",
         "price": 360000,
         "category": "sports"
     },
     {
-        "image": "images/jester2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/jester2.png",
         "name": "Jester Racecar",
         "model": "jester2",
         "price": 380000,
         "category": "sports"
     },
     {
-        "image": "images/jester4.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/jester4.png",
         "name": "Jester RR",
         "model": "jester4",
         "price": 400000,
         "category": "sports"
     },
     {
-        "image": "images/jugular.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/jugular.png",
         "name": "Jugular",
         "model": "jugular",
         "price": 420000,
         "category": "sports"
     },
     {
-        "image": "images/khamelion.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/khamelion.png",
         "name": "Kamelion",
         "model": "khamelion",
         "price": 200000,
         "category": "sports"
     },
     {
-        "image": "images/komoda.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/komoda.png",
         "name": "Komoda",
         "model": "komoda",
         "price": 300000,
         "category": "sports"
     },
     {
-        "image": "images/kuruma.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/kuruma.png",
         "name": "Kuruma",
         "model": "kuruma",
         "price": 250000,
         "category": "sports"
     },
     {
-        "image": "images/coureur.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/coureur.png",
         "name": "La Coureuse",
         "model": "coureur",
         "price": 180000,
         "category": "sports"
     },
     {
-        "image": "images/locust.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/locust.png",
         "name": "Locust",
         "model": "locust",
         "price": 150000,
         "category": "sports"
     },
     {
-        "image": "images/lynx.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/lynx.png",
         "name": "Lynx",
         "model": "lynx",
         "price": 200000,
         "category": "sports"
     },
     {
-        "image": "images/massacro.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/massacro.png",
         "name": "Massacro",
         "model": "massacro",
         "price": 320000,
         "category": "sports"
     },
     {
-        "image": "images/massacro2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/massacro2.png",
         "name": "Massacro Racecar",
         "model": "massacro2",
         "price": 350000,
         "category": "sports"
     },
     {
-        "image": "images/neo.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/neo.png",
         "name": "Neo",
         "model": "neo",
         "price": 380000,
         "category": "sports"
     },
     {
-        "image": "images/neon.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/neon.png",
         "name": "Neon",
         "model": "neon",
         "price": 400000,
         "category": "sports"
     },
     {
-        "image": "images/niobe.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/niobe.png",
         "name": "Niobe",
         "model": "niobe",
         "price": 420000,
         "category": "sports"
     },
     {
-        "image": "images/omnis.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/omnis.png",
         "name": "Omnis",
         "model": "omnis",
         "price": 230000,
         "category": "sports"
     },
     {
-        "image": "images/omnisegt.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/omnisegt.png",
         "name": "Omnis e-GT",
         "model": "omnisegt",
         "price": 250000,
         "category": "sports"
     },
     {
-        "image": "images/panthere.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/panthere.png",
         "name": "Panthere",
         "model": "panthere",
         "price": 300000,
         "category": "sports"
     },
     {
-        "image": "images/paragon.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/paragon.png",
         "name": "Paragon R",
         "model": "paragon",
         "price": 320000,
         "category": "sports"
     },
     {
-        "image": "images/paragon3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/paragon3.png",
         "name": "Paragon S",
         "model": "paragon3",
         "price": 340000,
         "category": "sports"
     },
     {
-        "image": "images/pariah.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/pariah.png",
         "name": "Pariah",
         "model": "pariah",
         "price": 400000,
         "category": "sports"
     },
     {
-        "image": "images/penumbra.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/penumbra.png",
         "name": "Penumbra",
         "model": "penumbra",
         "price": 100000,
         "category": "sports"
     },
     {
-        "image": "images/penumbra2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/penumbra2.png",
         "name": "Penumbra FF",
         "model": "penumbra2",
         "price": 120000,
         "category": "sports"
     },
     {
-        "image": "images/raiden.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/raiden.png",
         "name": "Raiden",
         "model": "raiden",
         "price": 350000,
         "category": "sports"
     },
     {
-        "image": "images/rapidgt.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/rapidgt.png",
         "name": "Rapid GT",
         "model": "rapidgt",
         "price": 180000,
         "category": "sports"
     },
     {
-        "image": "images/raptor.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/raptor.png",
         "name": "Raptor",
         "model": "raptor",
         "price": 200000,
         "category": "sports"
     },
     {
-        "image": "images/remus.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/remus.png",
         "name": "Remus",
         "model": "remus",
         "price": 250000,
         "category": "sports"
     },
     {
-        "image": "images/revolter.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/revolter.png",
         "name": "Revolter",
         "model": "revolter",
         "price": 420000,
         "category": "sports"
     },
     {
-        "image": "images/rt3000.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/rt3000.png",
         "name": "RT3000",
         "model": "rt3000",
         "price": 230000,
         "category": "sports"
     },
     {
-        "image": "images/ruston.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/ruston.png",
         "name": "Ruston",
         "model": "ruston",
         "price": 300000,
         "category": "sports"
     },
     {
-        "image": "images/schafter3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/schafter3.png",
         "name": "Schafter V12",
         "model": "schafter3",
         "price": 250000,
         "category": "sports"
     },
     {
-        "image": "images/schlagen.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/schlagen.png",
         "name": "Schlagen GT",
         "model": "schlagen",
         "price": 320000,
         "category": "sports"
     },
     {
-        "image": "images/schwarzer.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/schwarzer.png",
         "name": "Schwartzer",
         "model": "schwarzer",
         "price": 180000,
         "category": "sports"
     },
     {
-        "image": "images/sentinel3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/sentinel3.png",
         "name": "Sentinel Classic",
         "model": "sentinel3",
         "price": 120000,
         "category": "sports"
     },
     {
-        "image": "images/sentinel4.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/sentinel4.png",
         "name": "Sentinel Classic Widebody",
         "model": "sentinel4",
         "price": 130000,
         "category": "sports"
     },
     {
-        "image": "images/seven70.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/seven70.png",
         "name": "Seven 70",
         "model": "seven70",
         "price": 360000,
         "category": "sports"
     },
     {
-        "image": "images/sm722.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/sm722.png",
         "name": "SM722",
         "model": "sm722",
         "price": 320000,
         "category": "sports"
     },
     {
-        "image": "images/specter.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/specter.png",
         "name": "Specter",
         "model": "specter",
         "price": 500000,
         "category": "sports"
     },
     {
-        "image": "images/specter2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/specter2.png",
         "name": "Specter Custom",
         "model": "specter2",
         "price": 520000,
         "category": "sports"
     },
     {
-        "image": "images/streiter.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/streiter.png",
         "name": "Streiter",
         "model": "streiter",
         "price": 250000,
         "category": "sports"
     },
     {
-        "image": "images/sugoi.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/sugoi.png",
         "name": "Sugoi",
         "model": "sugoi",
         "price": 220000,
         "category": "sports"
     },
     {
-        "image": "images/sultan.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/sultan.png",
         "name": "Sultan",
         "model": "sultan",
         "price": 150000,
         "category": "sports"
     },
     {
-        "image": "images/sultan2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/sultan2.png",
         "name": "Sultan Classic",
         "model": "sultan2",
         "price": 160000,
         "category": "sports"
     },
     {
-        "image": "images/sultan3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/sultan3.png",
         "name": "Sultan RS Classic",
         "model": "sultan3",
         "price": 200000,
         "category": "sports"
     },
     {
-        "image": "images/sultanrs.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/sultanrs.png",
         "name": "Sultan RS",
         "model": "sultanrs",
         "price": 220000,
         "category": "sports"
     },
     {
-        "image": "images/surano.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/surano.png",
         "name": "Surano",
         "model": "surano",
         "price": 300000,
         "category": "sports"
     },
     {
-        "image": "images/tropos.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/tropos.png",
         "name": "Tropos Rallye",
         "model": "tropos",
         "price": 180000,
         "category": "sports"
     },
     {
-        "image": "images/vectre.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/vectre.png",
         "name": "Vectre",
         "model": "vectre",
         "price": 200000,
         "category": "sports"
     },
     {
-        "image": "images/verlierer2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/verlierer2.png",
         "name": "Vermlierer",
         "model": "verlierer2",
         "price": 350000,
         "category": "sports"
     },
     {
-        "image": "images/vstr.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/vstr.png",
         "name": "V-STR",
         "model": "vstr",
         "price": 220000,
         "category": "sports"
     },
     {
-        "image": "images/zr350.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/zr350.png",
         "name": "ZR350",
         "model": "zr350",
         "price": 150000,
         "category": "sports"
     },
     {
-        "image": "images/z190.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/z190.png",
         "name": "190Z",
         "model": "z190",
         "price": 300000,
         "category": "classics"
     },
     {
-        "image": "images/ardent.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/ardent.png",
         "name": "Ardent",
         "model": "ardent",
         "price": 180000,
         "category": "classics"
     },
     {
-        "image": "images/casco.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/casco.png",
         "name": "Casco",
         "model": "casco",
         "price": 420000,
         "category": "classics"
     },
     {
-        "image": "images/cheburek.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/cheburek.png",
         "name": "Cheburek",
         "model": "cheburek",
         "price": 90000,
         "category": "classics"
     },
     {
-        "image": "images/cheetah2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/cheetah2.png",
         "name": "Cheetah Classic",
         "model": "cheetah2",
         "price": 640000,
         "category": "classics"
     },
     {
-        "image": "images/coquette2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/coquette2.png",
         "name": "Coquette Classic",
         "model": "coquette2",
         "price": 500000,
         "category": "classics"
     },
     {
-        "image": "images/coquette5.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/coquette5.png",
         "name": "Coquette D1",
         "model": "coquette5",
         "price": 380000,
         "category": "classics"
     },
     {
-        "image": "images/dynasty.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/dynasty.png",
         "name": "Dynasty",
         "model": "dynasty",
         "price": 80000,
         "category": "classics"
     },
     {
-        "image": "images/fagaloa.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/fagaloa.png",
         "name": "Fagaloa",
         "model": "fagaloa",
         "price": 70000,
         "category": "classics"
     },
     {
-        "image": "images/gt500.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/gt500.png",
         "name": "GT 500",
         "model": "gt500",
         "price": 360000,
         "category": "classics"
     },
     {
-        "image": "images/infernus2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/infernus2.png",
         "name": "Infernus Classic",
         "model": "infernus2",
         "price": 650000,
         "category": "classics"
     },
     {
-        "image": "images/mamba.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/mamba.png",
         "name": "Mamba",
         "model": "mamba",
         "price": 330000,
         "category": "classics"
     },
     {
-        "image": "images/manana.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/manana.png",
         "name": "MANANA",
         "model": "manana",
         "price": 55000,
         "category": "classics"
     },
     {
-        "image": "images/michelli.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/michelli.png",
         "name": "Michelli GT",
         "model": "michelli",
         "price": 250000,
         "category": "classics"
     },
     {
-        "image": "images/monroe.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/monroe.png",
         "name": "Monroe",
         "model": "monroe",
         "price": 120000,
         "category": "classics"
     },
     {
-        "image": "images/nebula.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/nebula.png",
         "name": "Nebula Turbo",
         "model": "nebula",
         "price": 200000,
         "category": "classics"
     },
     {
-        "image": "images/peyote.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/peyote.png",
         "name": "Peyote",
         "model": "peyote",
         "price": 100000,
         "category": "classics"
     },
     {
-        "image": "images/peyote3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/peyote3.png",
         "name": "Peyote Custom",
         "model": "peyote3",
         "price": 140000,
         "category": "classics"
     },
     {
-        "image": "images/pigalle.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/pigalle.png",
         "name": "Pigalle",
         "model": "pigalle",
         "price": 110000,
         "category": "classics"
     },
     {
-        "image": "images/rapidgt3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/rapidgt3.png",
         "name": "Rapid GT Classic",
         "model": "rapidgt3",
         "price": 520000,
         "category": "classics"
     },
     {
-        "image": "images/retinue.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/retinue.png",
         "name": "Retinue",
         "model": "retinue",
         "price": 260000,
         "category": "classics"
     },
     {
-        "image": "images/retinue2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/retinue2.png",
         "name": "Retinue MKII",
         "model": "retinue2",
         "price": 300000,
         "category": "classics"
     },
     {
-        "image": "images/btype.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/btype.png",
         "name": "Roosevelt",
         "model": "btype",
         "price": 230000,
         "category": "classics"
     },
     {
-        "image": "images/btype3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/btype3.png",
         "name": "Roosevelt Valor",
         "model": "btype3",
         "price": 280000,
         "category": "classics"
     },
     {
-        "image": "images/savestra.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/savestra.png",
         "name": "Salvestra",
         "model": "savestra",
         "price": 175000,
         "category": "classics"
     },
     {
-        "image": "images/stinger.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/stinger.png",
         "name": "Stinger",
         "model": "stinger",
         "price": 480000,
         "category": "classics"
     },
     {
-        "image": "images/stingergt.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/stingergt.png",
         "name": "Stinger GT",
         "model": "stingergt",
         "price": 540000,
         "category": "classics"
     },
     {
-        "image": "images/feltzer3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/feltzer3.png",
         "name": "Stirling GT",
         "model": "feltzer3",
         "price": 630000,
         "category": "classics"
     },
     {
-        "image": "images/swinger.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/swinger.png",
         "name": "Swinger",
         "model": "swinger",
         "price": 95000,
         "category": "classics"
     },
     {
-        "image": "images/torero.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/torero.png",
         "name": "Torero",
         "model": "torero",
         "price": 210000,
         "category": "classics"
     },
     {
-        "image": "images/tornado4.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/tornado4.png",
         "name": "Tornado rust",
         "model": "tornado4",
         "price": 60000,
         "category": "classics"
     },
     {
-        "image": "images/tornado.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/tornado.png",
         "name": "Tornado",
         "model": "tornado",
         "price": 65000,
         "category": "classics"
     },
     {
-        "image": "images/tornado5.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/tornado5.png",
         "name": "Tornado Custom",
         "model": "tornado5",
         "price": 75000,
         "category": "classics"
     },
     {
-        "image": "images/tornado6.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/tornado6.png",
         "name": "Tornado Rat Rod",
         "model": "tornado6",
         "price": 85000,
         "category": "classics"
     },
     {
-        "image": "images/turismo2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/turismo2.png",
         "name": "Turismo Classic",
         "model": "turismo2",
         "price": 610000,
         "category": "classics"
     },
     {
-        "image": "images/viseris.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/viseris.png",
         "name": "Viseris",
         "model": "viseris",
         "price": 470000,
         "category": "classics"
     },
     {
-        "image": "images/zion3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/zion3.png",
         "name": "Zion Classic",
         "model": "zion3",
         "price": 390000,
         "category": "classics"
     },
     {
-        "image": "images/ztype.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/ztype.png",
         "name": "Z-Type",
         "model": "ztype",
         "price": 600000,
         "category": "classics"
     },
     {
-        "image": "images/viseris.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/viseris.png",
         "name": "Beater Dukes",
         "model": "dukes3",
         "price": 12750,
         "category": "muscle"
     },
     {
-        "image": "images/blade.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/blade.png",
         "name": "Blade",
         "model": "blade",
         "price": 13600,
         "category": "muscle"
     },
     {
-        "image": "images/brigham.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/brigham.png",
         "name": "Brigham",
         "model": "brigham",
         "price": 14450,
         "category": "muscle"
     },
     {
-        "image": "images/broadway.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/broadway.png",
         "name": "Broadway",
         "model": "broadway",
         "price": 15300,
         "category": "muscle"
     },
     {
-        "image": "images/buccaneer.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/buccaneer.png",
         "name": "Buccaneer",
         "model": "buccaneer",
         "price": 16150,
         "category": "muscle"
     },
     {
-        "image": "images/buccaneer2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/buccaneer2.png",
         "name": "Buccaneer Custom",
         "model": "buccaneer2",
         "price": 17000,
         "category": "muscle"
     },
     {
-        "image": "images/buffalo5.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/buffalo5.png",
         "name": "Buffalo EVX",
         "model": "buffalo5",
         "price": 17850,
         "category": "muscle"
     },
     {
-        "image": "images/buffalo4.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/buffalo4.png",
         "name": "Buffalo STX",
         "model": "buffalo4",
         "price": 18700,
         "category": "muscle"
     },
     {
-        "image": "images/chino.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/chino.png",
         "name": "Chino",
         "model": "chino",
         "price": 19550,
         "category": "muscle"
     },
     {
-        "image": "images/chino2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/chino2.png",
         "name": "Chino Custom",
         "model": "chino2",
         "price": 20400,
         "category": "muscle"
     },
     {
-        "image": "images/clique.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/clique.png",
         "name": "Clique",
         "model": "clique",
         "price": 21250,
         "category": "muscle"
     },
     {
-        "image": "images/clique2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/clique2.png",
         "name": "Clique Wagon",
         "model": "clique2",
         "price": 22100,
         "category": "muscle"
     },
     {
-        "image": "images/coquette3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/coquette3.png",
         "name": "Coquette BlackFin",
         "model": "coquette3",
         "price": 22950,
         "category": "muscle"
     },
     {
-        "image": "images/deviant.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/deviant.png",
         "name": "Deviant",
         "model": "deviant",
         "price": 23800,
         "category": "muscle"
     },
     {
-        "image": "images/dominator.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/dominator.png",
         "name": "Dominator",
         "model": "dominator",
         "price": 24650,
         "category": "muscle"
     },
     {
-        "image": "images/dominator7.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/dominator7.png",
         "name": "Dominator ASP",
         "model": "dominator7",
         "price": 25500,
         "category": "muscle"
     },
     {
-        "image": "images/dominator10.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/dominator10.png",
         "name": "Dominator FX",
         "model": "dominator10",
         "price": 26350,
         "category": "muscle"
     },
     {
-        "image": "images/dominator9.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/dominator9.png",
         "name": "Dominator GT",
         "model": "dominator9",
         "price": 27200,
         "category": "muscle"
     },
     {
-        "image": "images/dominator8.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/dominator8.png",
         "name": "Dominator GTT",
         "model": "dominator8",
         "price": 28050,
         "category": "muscle"
     },
     {
-        "image": "images/dominator3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/dominator3.png",
         "name": "Dominator GTX",
         "model": "dominator3",
         "price": 28900,
         "category": "muscle"
     },
     {
-        "image": "images/dukes.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/dukes.png",
         "name": "Dukes",
         "model": "dukes",
         "price": 29750,
         "category": "muscle"
     },
     {
-        "image": "images/ellie.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/ellie.png",
         "name": "Ellie",
         "model": "ellie",
         "price": 30600,
         "category": "muscle"
     },
     {
-        "image": "images/eudora.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/eudora.png",
         "name": "Eudora",
         "model": "eudora",
         "price": 31450,
         "category": "muscle"
     },
     {
-        "image": "images/faction.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/faction.png",
         "name": "Faction",
         "model": "faction",
         "price": 32300,
         "category": "muscle"
     },
     {
-        "image": "images/faction2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/faction2.png",
         "name": "Faction Custom",
         "model": "faction2",
         "price": 33150,
         "category": "muscle"
     },
     {
-        "image": "images/faction3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/faction3.png",
         "name": "Faction Custom Donk",
         "model": "faction3",
         "price": 34000,
         "category": "muscle"
     },
     {
-        "image": "images/gauntlet.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/gauntlet.png",
         "name": "Gauntlet",
         "model": "gauntlet",
         "price": 34850,
         "category": "muscle"
     },
     {
-        "image": "images/gauntlet3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/gauntlet3.png",
         "name": "Gauntlet Classic",
         "model": "gauntlet3",
         "price": 35700,
         "category": "muscle"
     },
     {
-        "image": "images/gauntlet5.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/gauntlet5.png",
         "name": "Gauntlet Classic Custom",
         "model": "gauntlet5",
         "price": 36550,
         "category": "muscle"
     },
     {
-        "image": "images/gauntlet4.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/gauntlet4.png",
         "name": "Gauntlet Hellfire",
         "model": "gauntlet4",
         "price": 37400,
         "category": "muscle"
     },
     {
-        "image": "images/greenwood.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/greenwood.png",
         "name": "Greenwood",
         "model": "greenwood",
         "price": 38250,
         "category": "muscle"
     },
     {
-        "image": "images/hermes.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/hermes.png",
         "name": "Hermes",
         "model": "hermes",
         "price": 39100,
         "category": "muscle"
     },
     {
-        "image": "images/hotknife.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/hotknife.png",
         "name": "Hotknife",
         "model": "hotknife",
         "price": 39950,
         "category": "muscle"
     },
     {
-        "image": "images/hustler.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/hustler.png",
         "name": "Hustler",
         "model": "hustler",
         "price": 40800,
         "category": "muscle"
     },
     {
-        "image": "images/impaler.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/impaler.png",
         "name": "Impaler",
         "model": "impaler",
         "price": 41650,
         "category": "muscle"
     },
     {
-        "image": "images/impaler6.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/impaler6.png",
         "name": "Impaler LX",
         "model": "impaler6",
         "price": 42500,
         "category": "muscle"
     },
     {
-        "image": "images/impaler5.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/impaler5.png",
         "name": "Impaler SZ",
         "model": "impaler5",
         "price": 43350,
         "category": "muscle"
     },
     {
-        "image": "images/manana2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/manana2.png",
         "name": "Manana Custom",
         "model": "manana2",
         "price": 44200,
         "category": "muscle"
     },
     {
-        "image": "images/moonbeam.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/moonbeam.png",
         "name": "Moonbean",
         "model": "moonbeam",
         "price": 45050,
         "category": "muscle"
     },
     {
-        "image": "images/moonbeam2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/moonbeam2.png",
         "name": "Moonbean Custom",
         "model": "moonbeam2",
         "price": 45900,
         "category": "muscle"
     },
     {
-        "image": "images/nightshade.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/nightshade.png",
         "name": "Nightshade",
         "model": "nightshade",
         "price": 46750,
         "category": "muscle"
     },
     {
-        "image": "images/peyote2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/peyote2.png",
         "name": "Pyote Gasser",
         "model": "peyote2",
         "price": 47600,
         "category": "muscle"
     },
     {
-        "image": "images/phoenix.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/phoenix.png",
         "name": "Phoenix",
         "model": "phoenix",
         "price": 48450,
         "category": "muscle"
     },
     {
-        "image": "images/picador.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/picador.png",
         "name": "Picador",
         "model": "picador",
         "price": 49300,
         "category": "muscle"
     },
     {
-        "image": "images/ratloader2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/ratloader2.png",
         "name": "Rat-Truck",
         "model": "ratloader2",
         "price": 50150,
         "category": "muscle"
     },
     {
-        "image": "images/ruiner.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/ruiner.png",
         "name": "Ruiner",
         "model": "ruiner",
         "price": 51000,
         "category": "muscle"
     },
     {
-        "image": "images/ruiner4.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/ruiner4.png",
         "name": "Ruiner ZZ-8",
         "model": "ruiner4",
         "price": 51850,
         "category": "muscle"
     },
     {
-        "image": "images/sabregt.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/sabregt.png",
         "name": "Sabre Turbo",
         "model": "sabregt",
         "price": 52700,
         "category": "muscle"
     },
     {
-        "image": "images/sabregt2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/sabregt2.png",
         "name": "Sabre Turbo Custom",
         "model": "sabregt2",
         "price": 53550,
         "category": "muscle"
     },
     {
-        "image": "images/slamvan.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/slamvan.png",
         "name": "Salmvan",
         "model": "slamvan",
         "price": 54400,
         "category": "muscle"
     },
     {
-        "image": "images/slamvan3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/slamvan3.png",
         "name": "Slamvan Custom",
         "model": "slamvan3",
         "price": 55250,
         "category": "muscle"
     },
     {
-        "image": "images/stalion.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/stalion.png",
         "name": "Stallion",
         "model": "stalion",
         "price": 56100,
         "category": "muscle"
     },
     {
-        "image": "images/tahoma.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/tahoma.png",
         "name": "Tahoma Coupe",
         "model": "tahoma",
         "price": 56950,
         "category": "muscle"
     },
     {
-        "image": "images/tampa.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/tampa.png",
         "name": "Tampa",
         "model": "tampa",
         "price": 57800,
         "category": "muscle"
     },
     {
-        "image": "images/tulip.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/tulip.png",
         "name": "Tulip",
         "model": "tulip",
         "price": 58650,
         "category": "muscle"
     },
     {
-        "image": "images/tulip2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/tulip2.png",
         "name": "Tulip M-100",
         "model": "tulip2",
         "price": 59500,
         "category": "muscle"
     },
     {
-        "image": "images/vamos.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/vamos.png",
         "name": "Vamos",
         "model": "vamos",
         "price": 60350,
         "category": "muscle"
     },
     {
-        "image": "images/vigero.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/vigero.png",
         "name": "Vigero",
         "model": "vigero",
         "price": 61200,
         "category": "muscle"
     },
     {
-        "image": "images/vigero2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/vigero2.png",
         "name": "Vigero ZX",
         "model": "vigero2",
         "price": 62050,
         "category": "muscle"
     },
     {
-        "image": "images/virgo.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/virgo.png",
         "name": "Virgo",
         "model": "virgo",
         "price": 62900,
         "category": "muscle"
     },
     {
-        "image": "images/virgo3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/virgo3.png",
         "name": "Virgo Classic",
         "model": "virgo3",
         "price": 63750,
         "category": "muscle"
     },
     {
-        "image": "images/virgo2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/virgo2.png",
         "name": "Virgo Classic Custom",
         "model": "virgo2",
         "price": 64600,
         "category": "muscle"
     },
     {
-        "image": "images/voodoo2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/voodoo2.png",
         "name": "Vodoo",
         "model": "voodoo2",
         "price": 65450,
         "category": "muscle"
     },
     {
-        "image": "images/voodoo.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/voodoo.png",
         "name": "Vodoo Custom",
         "model": "voodoo",
         "price": 66300,
         "category": "muscle"
     },
     {
-        "image": "images/weevil2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/weevil2.png",
         "name": "Weevil Custom",
         "model": "weevil2",
         "price": 67150,
         "category": "muscle"
     },
     {
-        "image": "images/yosemite.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/yosemite.png",
         "name": "Yosemite",
         "model": "yosemite",
         "price": 68000,
         "category": "muscle"
     },
     {
-        "image": "images/pfister811.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/pfister811.png",
         "name": "811",
         "model": "pfister811",
         "price": 1850000,
         "category": "super"
     },
     {
-        "image": "images/adder.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/adder.png",
         "name": "Adder",
         "model": "adder",
         "price": 950000,
         "category": "super"
     },
     {
-        "image": "images/autarch.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/autarch.png",
         "name": "Autarch",
         "model": "autarch",
         "price": 3100000,
         "category": "super"
     },
     {
-        "image": "images/banshee2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/banshee2.png",
         "name": "Banshee 900r",
         "model": "banshee2",
         "price": 1200000,
         "category": "super"
     },
     {
-        "image": "images/bullet.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/bullet.png",
         "name": "Bullet",
         "model": "bullet",
         "price": 750000,
         "category": "super"
     },
     {
-        "image": "images/champion.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/champion.png",
         "name": "Champion",
         "model": "champion",
         "price": 2500000,
         "category": "super"
     },
     {
-        "image": "images/cheetah.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/cheetah.png",
         "name": "Cheetah",
         "model": "cheetah",
         "price": 950000,
         "category": "super"
     },
     {
-        "image": "images/cyclone.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/cyclone.png",
         "name": "Cyclone",
         "model": "cyclone",
         "price": 2750000,
         "category": "super"
     },
     {
-        "image": "images/deveste.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/deveste.png",
         "name": "Deveste Eight",
         "model": "deveste",
         "price": 4200000,
         "category": "super"
     },
     {
-        "image": "images/emerus.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/emerus.png",
         "name": "Emerus",
         "model": "emerus",
         "price": 3500000,
         "category": "super"
     },
     {
-        "image": "images/entity3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/entity3.png",
         "name": "Entity MT",
         "model": "entity3",
         "price": 2850000,
         "category": "super"
     },
     {
-        "image": "images/entityxf.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/entityxf.png",
         "name": "Entity XF",
         "model": "entityxf",
         "price": 1200000,
         "category": "super"
     },
     {
-        "image": "images/entity2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/entity2.png",
         "name": "Entity XXR",
         "model": "entity2",
         "price": 2100000,
         "category": "super"
     },
     {
-        "image": "images/sheava.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/sheava.png",
         "name": "ETR1",
         "model": "sheava",
         "price": 1600000,
         "category": "super"
     },
     {
-        "image": "images/fmj.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/fmj.png",
         "name": "FMJ",
         "model": "fmj",
         "price": 1700000,
         "category": "super"
     },
     {
-        "image": "images/furia.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/furia.png",
         "name": "Furia",
         "model": "furia",
         "price": 2400000,
         "category": "super"
     },
     {
-        "image": "images/gp1.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/gp1.png",
         "name": "GP1",
         "model": "gp1",
         "price": 1450000,
         "category": "super"
     },
     {
-        "image": "images/ignus.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/ignus.png",
         "name": "Ignus",
         "model": "ignus",
         "price": 3900000,
         "category": "super"
     },
     {
-        "image": "images/infernus.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/infernus.png",
         "name": "Infernus",
         "model": "infernus",
         "price": 850000,
         "category": "super"
     },
     {
-        "image": "images/italigtb.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/italigtb.png",
         "name": "Itali GTB",
         "model": "italigtb",
         "price": 1600000,
         "category": "super"
     },
     {
-        "image": "images/italigtb2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/italigtb2.png",
         "name": "Itali GTB Custom",
         "model": "italigtb2",
         "price": 1900000,
         "category": "super"
     },
     {
-        "image": "images/krieger.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/krieger.png",
         "name": "Krieger",
         "model": "krieger",
         "price": 3400000,
         "category": "super"
     },
     {
-        "image": "images/lm87.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/lm87.png",
         "name": "LM87",
         "model": "lm87",
         "price": 2600000,
         "category": "super"
     },
     {
-        "image": "images/nero.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/nero.png",
         "name": "Nero",
         "model": "nero",
         "price": 1750000,
         "category": "super"
     },
     {
-        "image": "images/nero2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/nero2.png",
         "name": "Nero Custom",
         "model": "nero2",
         "price": 2000000,
         "category": "super"
     },
     {
-        "image": "images/osiris.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/osiris.png",
         "name": "Osiris",
         "model": "osiris",
         "price": 2100000,
         "category": "super"
     },
     {
-        "image": "images/penetrator.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/penetrator.png",
         "name": "Penetrator",
         "model": "penetrator",
         "price": 1400000,
         "category": "super"
     },
     {
-        "image": "images/pipistrello.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/pipistrello.png",
         "name": "Pipistrello",
         "model": "pipistrello",
         "price": 1950000,
         "category": "super"
     },
     {
-        "image": "images/le7b.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/le7b.png",
         "name": "RE-7B",
         "model": "le7b",
         "price": 3100000,
         "category": "super"
     },
     {
-        "image": "images/reaper.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/reaper.png",
         "name": "Reaper",
         "model": "reaper",
         "price": 1450000,
         "category": "super"
     },
     {
-        "image": "images/s80.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/s80.png",
         "name": "S80RR",
         "model": "s80",
         "price": 2900000,
         "category": "super"
     },
     {
-        "image": "images/sc1.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/sc1.png",
         "name": "SC1",
         "model": "sc1",
         "price": 1600000,
         "category": "super"
     },
     {
-        "image": "images/t20.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/t20.png",
         "name": "T20",
         "model": "t20",
         "price": 2500000,
         "category": "super"
     },
     {
-        "image": "images/taipan.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/taipan.png",
         "name": "Taipan",
         "model": "taipan",
         "price": 2250000,
         "category": "super"
     },
     {
-        "image": "images/tempesta.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/tempesta.png",
         "name": "Tempesta",
         "model": "tempesta",
         "price": 1650000,
         "category": "super"
     },
     {
-        "image": "images/tezeract.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/tezeract.png",
         "name": "Tezeract",
         "model": "tezeract",
         "price": 4500000,
         "category": "super"
     },
     {
-        "image": "images/thrax.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/thrax.png",
         "name": "Thrax",
         "model": "thrax",
         "price": 2300000,
         "category": "super"
     },
     {
-        "image": "images/tigon.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/tigon.png",
         "name": "Tigon",
         "model": "tigon",
         "price": 2200000,
         "category": "super"
     },
     {
-        "image": "images/torero2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/torero2.png",
         "name": "Torero X0",
         "model": "torero2",
         "price": 1500000,
         "category": "super"
     },
     {
-        "image": "images/turismo3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/turismo3.png",
         "name": "Turismo Omaggio",
         "model": "turismo3",
         "price": 2100000,
         "category": "super"
     },
     {
-        "image": "images/turismor.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/turismor.png",
         "name": "Turismo R",
         "model": "turismor",
         "price": 1850000,
         "category": "super"
     },
     {
-        "image": "images/tyrant.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/tyrant.png",
         "name": "Tyrant",
         "model": "tyrant",
         "price": 2600000,
         "category": "super"
     },
     {
-        "image": "images/tyrus.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/tyrus.png",
         "name": "Tyrus",
         "model": "tyrus",
         "price": 2400000,
         "category": "super"
     },
     {
-        "image": "images/vacca.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/vacca.png",
         "name": "Vacca",
         "model": "vacca",
         "price": 850000,
         "category": "super"
     },
     {
-        "image": "images/vagner.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/vagner.png",
         "name": "Vagner",
         "model": "vagner",
         "price": 3300000,
         "category": "super"
     },
     {
-        "image": "images/virtue.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/virtue.png",
         "name": "Virtue",
         "model": "virtue",
         "price": 2800000,
         "category": "super"
     },
     {
-        "image": "images/visione.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/visione.png",
         "name": "Visione",
         "model": "visione",
         "price": 2400000,
         "category": "super"
     },
     {
-        "image": "images/voltic.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/voltic.png",
         "name": "Voltic",
         "model": "voltic",
         "price": 900000,
         "category": "super"
     },
     {
-        "image": "images/prototipo.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/prototipo.png",
         "name": "X80 Proto",
         "model": "prototipo",
         "price": 4800000,
         "category": "super"
     },
     {
-        "image": "images/xa21.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/xa21.png",
         "name": "XA-21",
         "model": "xa21",
         "price": 2000000,
         "category": "super"
     },
     {
-        "image": "images/zeno.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/zeno.png",
         "name": "Zeno",
         "model": "zeno",
         "price": 2450000,
         "category": "super"
     },
     {
-        "image": "images/zentorno.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/zentorno.png",
         "name": "Zentorno",
         "model": "zentorno",
         "price": 2000000,
         "category": "super"
     },
     {
-        "image": "images/zorrusso.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/zorrusso.png",
         "name": "Zorrusso",
         "model": "zorrusso",
         "price": 2100000,
         "category": "super"
     },
     {
-        "image": "images/Dinghy2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/Dinghy2.png",
         "name": "Dinghy 2 Place",
         "model": "Dinghy2",
         "price": 190000,
@@ -3175,7 +3175,7 @@
         "category": "500"
     },
     {
-        "image": "images/Dinghy2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/Dinghy2.png",
         "name": "Dinghy 4 Place",
         "model": "Dinghy",
         "price": 260000,
@@ -3183,7 +3183,7 @@
         "category": "boats"
     },
     {
-        "image": "images/jetmax.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/jetmax.png",
         "name": "Jetmax",
         "model": "jetmax",
         "price": 362362,
@@ -3191,7 +3191,7 @@
         "category": "boats"
     },
     {
-        "image": "images/longfin.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/longfin.png",
         "name": "Longfin",
         "model": "longfin",
         "price": 650000,
@@ -3199,7 +3199,7 @@
         "category": "boats"
     },
     {
-        "image": "images/marquis.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/marquis.png",
         "name": "Marquis",
         "model": "marquis",
         "price": 750000,
@@ -3207,7 +3207,7 @@
         "category": "boats"
     },
     {
-        "image": "images/seashark3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/seashark3.png",
         "name": "Seashark Custo",
         "model": "seashark3",
         "price": 32600,
@@ -3215,7 +3215,7 @@
         "category": "boats"
     },
     {
-        "image": "images/seashark.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/seashark.png",
         "name": "Seashark ",
         "model": "seashark",
         "price": 32600,
@@ -3223,7 +3223,7 @@
         "category": "boats"
     },
     {
-        "image": "images/speeder.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/speeder.png",
         "name": "Speeder",
         "model": "speeder",
         "price": 563000,
@@ -3231,7 +3231,7 @@
         "category": "boats"
     },
     {
-        "image": "images/squalo.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/squalo.png",
         "name": "Squalo",
         "model": "squalo",
         "price": 160000,
@@ -3239,7 +3239,7 @@
         "category": "boats"
     },
     {
-        "image": "images/suntrap.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/suntrap.png",
         "name": "Suntrap ",
         "model": "suntrap",
         "price": 115050,
@@ -3247,7 +3247,7 @@
         "category": "boats"
     },
     {
-        "image": "images/toro.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/toro.png",
         "name": "Toro",
         "model": "toro",
         "price": 450000,
@@ -3255,7 +3255,7 @@
         "category": "boats"
     },
     {
-        "image": "images/tropic.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/tropic.png",
         "name": "Tropic ",
         "model": "tropic",
         "price": 150000,
@@ -3263,7 +3263,7 @@
         "category": "boats"
     },
     {
-        "image": "images/havok.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/havok.png",
         "name": "Havok ",
         "model": "havok",
         "price": 300760,
@@ -3271,7 +3271,7 @@
         "category": "helicopters"
     },
     {
-        "image": "images/conada.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/conada.png",
         "name": "conada ",
         "model": "conada",
         "price": 635400,
@@ -3279,7 +3279,7 @@
         "category": "helicopters"
     },
     {
-        "image": "images/seasparrow.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/seasparrow.png",
         "name": "Sea Sparrow ",
         "model": "seasparrow",
         "price": 630000,
@@ -3287,7 +3287,7 @@
         "category": "helicopters"
     },
     {
-        "image": "images/seasparrow2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/seasparrow2.png",
         "name": "Sparrow ",
         "model": "seasparrow2",
         "price": 610000,
@@ -3295,7 +3295,7 @@
         "category": "helicopters"
     },
     {
-        "image": "images/supervolito.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/supervolito.png",
         "name": "Super Volitio ",
         "model": "supervolito",
         "price": 750000,
@@ -3303,7 +3303,7 @@
         "category": "helicopters"
     },
     {
-        "image": "images/supervolito.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/supervolito.png",
         "name": "Super Volitio Carbon ",
         "model": "supervolito2",
         "price": 800000,
@@ -3311,7 +3311,7 @@
         "category": "helicopters"
     },
     {
-        "image": "images/supervolito.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/supervolito.png",
         "name": "Swift Deluxe ",
         "model": "swift2",
         "price": 2500000,
@@ -3319,7 +3319,7 @@
         "category": "helicopters"
     },
     {
-        "image": "images/volatus.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/volatus.png",
         "name": "Volatus",
         "model": "volatus",
         "price": 6800000,
@@ -3327,7 +3327,7 @@
         "category": "helicopters"
     },
     {
-        "image": "images/ambulance.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/ambulance.png",
         "name": "Ambulance",
         "model": "ambulance",
         "price": 15000,
@@ -3335,7 +3335,7 @@
         "job": "ambulance"
     },
     {
-        "image": "images/police3.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/police3.png",
         "name": "patrouilleuse",
         "model": "police3",
         "price": 10000,
@@ -3343,7 +3343,7 @@
         "job": "police"
     },
     {
-        "image": "images/polsentinel.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/polsentinel.png",
         "name": "Sentinel interceptor",
         "model": "polsentinel",
         "price": 35000,
@@ -3351,7 +3351,7 @@
         "job": "police"
     },
     {
-        "image": "images/pdrafter2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/pdrafter2.png",
         "name": "Drafter interceptor",
         "model": "pdrafter2",
         "price": 35000,
@@ -3359,7 +3359,7 @@
         "job": "police"
     },
     {
-        "image": "images/pgranger2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/pgranger2.png",
         "name": "Granger",
         "model": "pgranger2",
         "price": 20000,
@@ -3367,7 +3367,7 @@
         "job": "police"
     },
     {
-        "image": "images/dexbuff18.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/dexbuff18.png",
         "name": "Buffalo bana",
         "model": "dexbuff18",
         "price": 25000,
@@ -3375,7 +3375,7 @@
         "job": "police"
     },
     {
-        "image": "images/pbus.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/pbus.png",
         "name": "Bus prison",
         "model": "pbus",
         "price": 15000,
@@ -3383,7 +3383,7 @@
         "job": "police"
     },
     {
-        "image": "images/policeb.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/policeb.png",
         "name": "Moto",
         "model": "policeb",
         "price": 15000,
@@ -3391,7 +3391,7 @@
         "job": "police"
     },
     {
-        "image": "images/polaleutian.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/polaleutian.png",
         "name": "Aleutian",
         "model": "polaleutian",
         "price": 15000,
@@ -3399,7 +3399,7 @@
         "job": "police"
     },
     {
-        "image": "images/lspdcara.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/lspdcara.png",
         "name": "caracara",
         "model": "lspdcara",
         "price": 20000,
@@ -3407,7 +3407,7 @@
         "job": "police"
     },
     {
-        "image": "images/lspdcara2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/lspdcara2.png",
         "name": "Caracara bana",
         "model": "lspdcara2",
         "price": 20000,
@@ -3415,7 +3415,7 @@
         "job": "police"
     },
     {
-        "image": "images/lspdinsur.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/lspdinsur.png",
         "name": "insurgent",
         "model": "lspdinsur",
         "price": 150000,
@@ -3423,7 +3423,7 @@
         "job": "police"
     },
     {
-        "image": "images/flatbed.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/flatbed.png",
         "name": "Flatbed",
         "model": "flatbed",
         "price": 50000,
@@ -3431,7 +3431,7 @@
         "job": "mechanic"
     },
     {
-        "image": "images/towtruck4.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/towtruck4.png",
         "name": "Tow Truck",
         "model": "towtruck4",
         "price": 100000,
@@ -3439,7 +3439,7 @@
         "job": "mechanic"
     },
     {
-        "image": "images/towtruck2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/towtruck2.png",
         "name": "Tow Truck mini",
         "model": "towtruck2",
         "price": 50000,
@@ -3447,7 +3447,7 @@
         "job": "mechanic"
     },
     {
-        "image": "images/towtruck2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/towtruck2.png",
         "name": "Speedo",
         "model": "nspeedo",
         "price": 15000,
@@ -3455,7 +3455,7 @@
         "job": "mechanic"
     },
     {
-        "image": "images/speedo.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/speedo.png",
         "name": "Speedo",
         "model": "nspeedo",
         "price": 15000,
@@ -3463,7 +3463,7 @@
         "job": "josecafe"
     },
     {
-        "image": "images/taco2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/taco2.png",
         "name": "Food Truck",
         "model": "taco2",
         "price": 15000,
@@ -3471,7 +3471,7 @@
         "job": "josecafe"
     },
     {
-        "image": "images/mule5.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/mule5.png",
         "name": "Mule",
         "model": "mule5",
         "price": 50000,
@@ -3479,7 +3479,7 @@
         "job": "josecafe"
     },
     {
-        "image": "images/pounder2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/pounder2.png",
         "name": "Pounder",
         "model": "pounder2",
         "price": 250000,
@@ -3487,7 +3487,7 @@
         "job": "josecafe"
     },
     {
-        "image": "images/speedo.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/speedo.png",
         "name": "Speedo",
         "model": "nspeedo",
         "price": 15000,
@@ -3495,7 +3495,7 @@
         "job": "tequilala"
     },
     {
-        "image": "images/taco2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/taco2.png",
         "name": "Food Truck",
         "model": "taco2",
         "price": 15000,
@@ -3503,7 +3503,7 @@
         "job": "tequilala"
     },
     {
-        "image": "images/mule5.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/mule5.png",
         "name": "Mule",
         "model": "mule5",
         "price": 50000,
@@ -3511,7 +3511,7 @@
         "job": "tequilala"
     },
     {
-        "image": "images/pounder2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/pounder2.png",
         "name": "Pounder",
         "model": "pounder2",
         "price": 250000,
@@ -3519,7 +3519,7 @@
         "job": "tequilala"
     },
     {
-        "image": "images/speedo.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/speedo.png",
         "name": "Speedo",
         "model": "nspeedo",
         "price": 15000,
@@ -3527,7 +3527,7 @@
         "job": "bahamas"
     },
     {
-        "image": "images/taco2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/taco2.png",
         "name": "Food Truck",
         "model": "taco2",
         "price": 15000,
@@ -3535,7 +3535,7 @@
         "job": "bahamas"
     },
     {
-        "image": "images/mule5.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/mule5.png",
         "name": "Mule",
         "model": "mule5",
         "price": 50000,
@@ -3543,7 +3543,7 @@
         "job": "bahamas"
     },
     {
-        "image": "images/pounder2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/pounder2.png",
         "name": "Pounder",
         "model": "pounder2",
         "price": 250000,
@@ -3551,7 +3551,7 @@
         "job": "bahamas"
     },
     {
-        "image": "images/speedo.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/speedo.png",
         "name": "Speedo",
         "model": "nspeedo",
         "price": 15000,
@@ -3559,7 +3559,7 @@
         "job": "vineyard"
     },
     {
-        "image": "images/taco2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/taco2.png",
         "name": "Food Truck",
         "model": "taco2",
         "price": 15000,
@@ -3567,7 +3567,7 @@
         "job": "vineyard"
     },
     {
-        "image": "images/mule5.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/mule5.png",
         "name": "Mule",
         "model": "mule5",
         "price": 50000,
@@ -3575,7 +3575,7 @@
         "job": "vineyard"
     },
     {
-        "image": "images/pounder2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/pounder2.png",
         "name": "Pounder",
         "model": "pounder2",
         "price": 250000,
@@ -3583,7 +3583,7 @@
         "job": "vineyard"
     },
     {
-        "image": "images/speedo.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/speedo.png",
         "name": "Speedo",
         "model": "nspeedo",
         "price": 15000,
@@ -3591,7 +3591,7 @@
         "job": "pizza"
     },
     {
-        "image": "images/taco2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/taco2.png",
         "name": "Food Truck",
         "model": "taco2",
         "price": 15000,
@@ -3599,7 +3599,7 @@
         "job": "pizza"
     },
     {
-        "image": "images/speedo.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/speedo.png",
         "name": "Speedo",
         "model": "nspeedo",
         "price": 15000,
@@ -3607,7 +3607,7 @@
         "job": "tacos"
     },
     {
-        "image": "images/taco2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/taco2.png",
         "name": "Food Truck",
         "model": "taco2",
         "price": 15000,
@@ -3615,7 +3615,7 @@
         "job": "tacos"
     },
     {
-        "image": "images/speedo.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/speedo.png",
         "name": "Speedo",
         "model": "nspeedo",
         "price": 15000,
@@ -3623,7 +3623,7 @@
         "job": "ferme"
     },
     {
-        "image": "images/taco2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/taco2.png",
         "name": "Food Truck",
         "model": "taco2",
         "price": 15000,
@@ -3631,7 +3631,7 @@
         "job": "ferme"
     },
     {
-        "image": "images/mule5.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/mule5.png",
         "name": "Mule",
         "model": "mule5",
         "price": 50000,
@@ -3639,7 +3639,7 @@
         "job": "ferme"
     },
     {
-        "image": "images/pounder2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/pounder2.png",
         "name": "Pounder",
         "model": "pounder2",
         "price": 250000,
@@ -3647,7 +3647,7 @@
         "job": "ferme"
     },
     {
-        "image": "images/tractor2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/tractor2.png",
         "name": "Fieldmaster",
         "model": "tractor2",
         "price": 25000,
@@ -3655,7 +3655,7 @@
         "job": "ferme"
     },
     {
-        "image": "images/cognoscenti2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/cognoscenti2.png",
         "name": "Cognoscenti blinder",
         "model": "cognoscenti2",
         "price": 250000,
@@ -3663,7 +3663,7 @@
         "job": "gouv"
     },
     {
-        "image": "images/xls2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/xls2.png",
         "name": "xls blinder",
         "model": "xls2",
         "price": 250000,
@@ -3671,7 +3671,7 @@
         "job": "gouv"
     },
     {
-        "image": "images/stretch.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/stretch.png",
         "name": "limousine ",
         "model": "stretch",
         "price": 500000,
@@ -3679,7 +3679,7 @@
         "job": "gouv"
     },
     {
-        "image": "images/cogcabrio.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/cogcabrio.png",
         "name": "Cognoscenti",
         "model": "cogcabrio",
         "price": 120000,
@@ -3687,7 +3687,7 @@
         "job": "doj"
     },
     {
-        "image": "images/toros.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/toros.png",
         "name": "Toros",
         "model": "toros",
         "price": 120000,
@@ -3695,7 +3695,7 @@
         "job": "doj"
     },
     {
-        "image": "images/rumpo.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/rumpo.png",
         "vehicleType": "cars",
         "model": "rumpo",
         "price": 20000,
@@ -3706,7 +3706,7 @@
         "id": 498
     },
     {
-        "image": "images/2vd_vscout2.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/2vd_vscout2.png",
         "vehicleType": "cars",
         "model": "2vd_vscout2",
         "price": 30000,
@@ -3717,7 +3717,7 @@
         "id": 499
     },
     {
-        "image": "images/nspeedo.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/nspeedo.png",
         "vehicleType": "cars",
         "model": "nspeedo",
         "price": 15000,
@@ -3728,7 +3728,7 @@
         "id": 500
     },
     {
-        "image": "images/newsfrog.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/newsfrog.png",
         "vehicleType": "helicopters",
         "model": "newsfrog",
         "price": 150000,
@@ -3739,7 +3739,7 @@
         "id": 501
     },
     {
-        "image": "images/argento.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/argento.png",
         "vehicleType": "cars",
         "model": "argento",
         "price": 250000,
@@ -3750,7 +3750,7 @@
         "id": 516
     },
     {
-        "image": "images/sentinelt.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/sentinelt.png",
         "vehicleType": "cars",
         "model": "sentinelt",
         "price": 250000,
@@ -3761,7 +3761,7 @@
         "id": 517
     },
     {
-        "image": "images/polmav.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/polmav.png",
         "name": "hélicopter",
         "model": "polmav",
         "price": 30000,
@@ -3770,7 +3770,7 @@
         "job": "police"
     },
     {
-        "image": "images/skidoo800r.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/skidoo800r.png",
         "vehicleType": "cars",
         "model": "skidoo800r",
         "price": 10000,
@@ -3781,7 +3781,7 @@
         "id": 526
     },
     {
-        "image": "images/snowbike.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/snowbike.png",
         "vehicleType": "cars",
         "model": "snowbike",
         "price": 2000,
@@ -3792,7 +3792,7 @@
         "id": 527
     },
     {
-        "image": "images/snowmobile.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/snowmobile.png",
         "vehicleType": "cars",
         "model": "snowmobile",
         "price": 5000,
@@ -3803,7 +3803,7 @@
         "id": 528
     },
     {
-        "image": "images/nkbuffalos.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/nkbuffalos.png",
         "vehicleType": "cars",
         "model": "nkbuffalos",
         "price": 25000,
@@ -3814,7 +3814,7 @@
         "id": 529
     },
     {
-        "image": "images/tailgater2wbc.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/tailgater2wbc.png",
         "vehicleType": "cars",
         "model": "tailgater2wbc",
         "price": 350000,
@@ -3825,7 +3825,7 @@
         "id": 530
     },
     {
-        "image": "images/tailgater2wb.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/tailgater2wb.png",
         "vehicleType": "cars",
         "model": "tailgater2wb",
         "price": 350000,
@@ -3836,7 +3836,7 @@
         "id": 531
     },
     {
-        "image": "images/kurumawb.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/kurumawb.png",
         "vehicleType": "cars",
         "model": "kurumawb",
         "price": 275000,
@@ -3847,7 +3847,7 @@
         "id": 532
     },
     {
-        "image": "images/dominator3wb.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/dominator3wb.png",
         "vehicleType": "cars",
         "model": "dominator3wb",
         "price": 275000,
@@ -3858,7 +3858,7 @@
         "id": 533
     },
     {
-        "image": "images/oracle_gts.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/oracle_gts.png",
         "vehicleType": "cars",
         "model": "oracle_gts",
         "price": 255000,
@@ -3869,7 +3869,7 @@
         "id": 534
     },
     {
-        "image": "images/komodas.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/komodas.png",
         "vehicleType": "cars",
         "model": "komodas",
         "price": 320000,
@@ -3880,7 +3880,7 @@
         "id": 535
     },
     {
-        "image": "images/dubsta_grovados.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/dubsta_grovados.png",
         "vehicleType": "cars",
         "model": "dubsta_grovados",
         "price": 325000,
@@ -3891,7 +3891,7 @@
         "id": 536
     },
     {
-        "image": "images/ballerwb.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/ballerwb.png",
         "vehicleType": "cars",
         "model": "baller8wb",
         "price": 300000,
@@ -3902,7 +3902,7 @@
         "id": 537
     },
     {
-        "image": "images/xls_grovados.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/xls_grovados.png",
         "vehicleType": "cars",
         "model": "xls_grovados",
         "price": 300000,
@@ -3913,7 +3913,7 @@
         "id": 538
     },
     {
-        "image": "images/rebla_street.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/rebla_street.png",
         "vehicleType": "cars",
         "model": "rebla_street",
         "price": 300000,
@@ -3924,7 +3924,7 @@
         "id": 539
     },
     {
-        "image": "images/vorschlaghammer_grovados.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/vorschlaghammer_grovados.png",
         "vehicleType": "cars",
         "model": "vorschlaghammer_grovados",
         "price": 270000,
@@ -3935,7 +3935,7 @@
         "id": 540
     },
     {
-        "image": "images/streiter_grovados.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/streiter_grovados.png",
         "vehicleType": "cars",
         "model": "streiter_grovados",
         "price": 300000,
@@ -3946,7 +3946,7 @@
         "id": 541
     },
     {
-        "image": "images/cyphart.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/cyphart.png",
         "vehicleType": "cars",
         "model": "cyphart",
         "price": 325000,
@@ -3957,7 +3957,7 @@
         "id": 542
     },
     {
-        "image": "images/cyphartwb.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/cyphartwb.png",
         "vehicleType": "cars",
         "model": "cyphartwb",
         "price": 345000,
@@ -3968,7 +3968,7 @@
         "id": 543
     },
     {
-        "image": "images/cypherwbs.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/cypherwbs.png",
         "vehicleType": "cars",
         "model": "cypherwbs",
         "price": 375000,
@@ -3979,7 +3979,7 @@
         "id": 544
     },
     {
-        "image": "images/senhart.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/senhart.png",
         "vehicleType": "cars",
         "model": "senhart",
         "price": 325000,
@@ -3990,7 +3990,7 @@
         "id": 545
     },
     {
-        "image": "images/sentinel5_street.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/sentinel5_street.png",
         "vehicleType": "cars",
         "model": "sentinel5_street",
         "price": 315000,
@@ -4001,7 +4001,7 @@
         "id": 546
     },
     {
-        "image": "images/pbike.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/pbike.png",
         "vehicleType": "cars",
         "model": "pbike",
         "price": 2000,
@@ -4012,7 +4012,7 @@
         "id": 547
     },
     {
-        "image": "images/polthrust.png",
+        "image": "https://raw.githubusercontent.com/TasoOneAsia/fivem-dealership/main/html/img/polthrust.png",
         "vehicleType": "cars",
         "model": "polthrust",
         "price": 15000,
