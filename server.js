@@ -155,6 +155,9 @@ function authMiddleware(req, res, next) {
 
 // ========== SÉCURITÉ: Headers, CORS, Rate Limiting ==========
 
+// 🔥 CRITIQUE: Trust proxy pour Render (nécessaire pour secure cookies)
+app.set('trust proxy', 1);
+
 // Sessions (requis pour Passport Discord)
 // 🔥 CRITIQUE: Configuration session pour OAuth2 sur Render
 const sessionConfig = {
@@ -163,7 +166,7 @@ const sessionConfig = {
   saveUninitialized: false,
   rolling: true, // Renouveler le cookie à chaque requête
   cookie: {
-    secure: process.env.NODE_ENV === 'production',
+    secure: false, // 🔴 Désactivé temporairement pour debug
     httpOnly: true,
     maxAge: 24 * 60 * 60 * 1000, // 24 heures
     sameSite: 'lax' // Important pour OAuth2
@@ -173,10 +176,23 @@ const sessionConfig = {
 console.log('[Session] ⚙️ Session config:', {
   secure: sessionConfig.cookie.secure,
   sameSite: sessionConfig.cookie.sameSite,
-  maxAge: sessionConfig.cookie.maxAge
+  maxAge: sessionConfig.cookie.maxAge,
+  trustProxy: app.get('trust proxy')
 });
 
 app.use(session(sessionConfig));
+
+// Middleware de debug pour logger chaque requête
+app.use((req, res, next) => {
+  if (req.path.includes('/staff') || req.path.includes('/auth')) {
+    console.log(`[Request] ${req.method} ${req.path}`);
+    console.log('[Request] Session ID:', req.sessionID);
+    console.log('[Request] Session:', req.session);
+    console.log('[Request] User:', req.user ? `ID: ${req.user.id}` : 'undefined');
+    console.log('[Request] isAuthenticated:', req.isAuthenticated());
+  }
+  next();
+});
 
 // Initialiser Passport
 app.use(passport.initialize());
@@ -295,9 +311,12 @@ function requireDiscordAuth(req, res, next) {
 // Middleware pour vérifier le rôle staff
 async function requireStaffRole(req, res, next) {
   console.log('[Staff Middleware] 🔍 Checking authentication...');
+  console.log('[Staff Middleware] SessionID:', req.sessionID);
+  console.log('[Staff Middleware] Session data:', JSON.stringify(req.session, null, 2));
   console.log('[Staff Middleware] req.isAuthenticated():', req.isAuthenticated());
   console.log('[Staff Middleware] req.user:', req.user ? `ID: ${req.user.id}` : 'undefined');
   console.log('[Staff Middleware] req.session.userRoles:', req.session.userRoles);
+  console.log('[Staff Middleware] Cookies:', req.headers.cookie);
   
   if (!req.user) {
     console.log('[Staff Middleware] ❌ No user found, redirecting to /auth/discord');
