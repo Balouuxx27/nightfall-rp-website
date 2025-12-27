@@ -37,6 +37,14 @@
   /* Afficher le bouton hamburger */
   .mobile-menu-toggle {
     display: flex;
+    position: relative;
+    z-index: 10000 !important;
+  }
+
+  /* Header avec z-index élevé */
+  .topbar {
+    position: sticky;
+    z-index: 9998 !important;
   }
 
   /* Header ajusté */
@@ -61,7 +69,7 @@
     bottom: 0;
     background: rgba(10, 13, 24, 0.98);
     backdrop-filter: blur(20px);
-    z-index: 1000;
+    z-index: 9999 !important;
     flex-direction: column;
     justify-content: center;
     align-items: center;
