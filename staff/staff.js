@@ -1,17 +1,27 @@
 (() => {
+  // ========== FONCTION DE SÉCURITÉ CONTRE XSS ==========
+  // ⚠️ CRITIQUE: Échappe TOUT le HTML pour éviter les injections XSS
+  function escapeHtml(unsafe) {
+    if (typeof unsafe !== 'string') return unsafe;
+    return unsafe
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
   // Éléments du DOM
-  const loginForm = document.getElementById('loginForm');
   const loginContainer = document.getElementById('login-form');
   const staffPanel = document.getElementById('staff-panel');
-  const loginError = document.getElementById('login-error');
   const logoutBtn = document.getElementById('logout-btn');
   const toggleRefreshBtn = document.getElementById('toggle-refresh');
   const playerList = document.getElementById('player-list');
   const playerCount = document.getElementById('player-count');
 
-  const storageKey = 'nightfall_staff_token';
   const state = {
-    token: localStorage.getItem(storageKey) || null,
+    authenticated: false,
+    user: null,
     map: null,
     markers: new Map(),
     autoRefresh: true,
@@ -22,20 +32,56 @@
   if (loginContainer) loginContainer.style.display = 'block';
   if (staffPanel) staffPanel.style.display = 'none';
 
+  // Vérifier l'authentification Discord
+  async function checkAuth() {
+    try {
+      const res = await fetch('/api/auth/status', { credentials: 'include' });
+      const data = await res.json();
+      
+      if (!data.authenticated) {
+        // Rediriger vers Discord OAuth2
+        window.location.href = '/auth/discord';
+        return false;
+      }
+      
+      state.authenticated = true;
+      state.user = data.user;
+      
+      // Afficher le nom d'utilisateur Discord
+      const discordUserEl = document.getElementById('discord-user');
+      if (discordUserEl) {
+        discordUserEl.textContent = `👤 ${state.user.username}#${state.user.discriminator}`;
+      }
+      
+      return true;
+    } catch (error) {
+      console.error('Auth check failed:', error);
+      window.location.href = '/auth/discord';
+      return false;
+    }
+  }
+
   async function api(path, opts = {}) {
     const headers = new Headers(opts.headers || {});
     headers.set('Content-Type', 'application/json');
-    if (state.token) headers.set('Authorization', `Bearer ${state.token}`);
 
     const res = await fetch(path, {
       ...opts,
-      headers
+      headers,
+      credentials: 'include' // Important pour les sessions
     });
     if (!res.ok) {
       let detail = '';
       try {
         const j = await res.json();
         detail = j?.error ? ` (${j.error})` : '';
+        
+        // Si non autorisé, rediriger vers Discord
+        if (res.status === 401 || res.status === 403) {
+          window.location.href = '/auth/discord';
+        }
+      } catch {}
+      throw new Error(`${res.status}${detail}`);
       } catch {}
       throw new Error(`${res.status}${detail}`);
     }
@@ -534,15 +580,28 @@
     return `Il y a ${Math.floor(diffMins / 1440)} j`;
   }
 
-  // Si token existe déjà, charger directement
-  if (state.token) {
+  // Initialisation au chargement - Vérifier l'authentification Discord
+  (async function init() {
+    const authenticated = await checkAuth();
+    if (!authenticated) return;
+    
+    // Utilisateur authentifié, afficher le panel
     if (loginContainer) loginContainer.style.display = 'none';
     if (staffPanel) staffPanel.style.display = 'block';
+    
     initMap();
-    refreshPlayers();
+    await refreshPlayers();
+    
     if (state.autoRefresh) {
       state.refreshInterval = setInterval(refreshPlayers, 1200);
     }
+  })();
+
+  // Bouton déconnexion
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+      window.location.href = '/auth/logout';
+    });
   }
 
 })();

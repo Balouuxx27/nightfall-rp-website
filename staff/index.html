@@ -446,17 +446,16 @@
 </head>
 <body>
   <div class="container">
-    <!-- Login Form -->
+    <!-- Login Form - Connexion Discord -->
     <div class="login-container" id="login-form">
       <h2>🔐 Panel Staff</h2>
-      <p style="margin-bottom: 24px; color: rgba(255,255,255,0.7);">Connexion sécurisée</p>
-      <form id="loginForm">
-        <div class="form-group">
-          <input type="password" id="password" placeholder="Mot de passe" required>
-        </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%;">Se connecter</button>
-        <div id="login-error" class="error"></div>
-      </form>
+      <p style="margin-bottom: 24px; color: rgba(255,255,255,0.7);">Connexion sécurisée via Discord</p>
+      <p style="margin-bottom: 16px; color: rgba(255,255,255,0.6); font-size: 14px;">
+        Vous devez posséder le rôle <strong>Staff</strong> sur Discord pour accéder à cette page.
+      </p>
+      <a href="/auth/discord" class="btn btn-primary" style="width: 100%; display: block; text-align: center; text-decoration: none; padding: 14px;">
+        <span style="font-size: 18px;">💬</span> Se connecter avec Discord
+      </a>
       <a href="../index.html" class="btn btn-ghost" style="width: 100%; margin-top: 16px; display: block; text-align: center; text-decoration: none;">
         ← Retour au site
       </a>
@@ -470,6 +469,7 @@
             ← Retour au site
           </a>
           <h1>🌙 Panel Staff — Nightfall RP</h1>
+          <span id="discord-user" style="font-size: 14px; color: rgba(255,255,255,0.7);"></span>
         </div>
         <div>
           <button class="btn btn-ghost" id="toggle-refresh">

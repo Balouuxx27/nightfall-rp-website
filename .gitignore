@@ -1,18 +1,41 @@
-# Fichiers sensibles
+# Fichiers sensibles et credentials
 api/staff_config.json
 api/status.json
 .env
+.env.local
+.env.production
+.env.development
+*.pem
+*.key
+*.cert
+
+# Scripts SQL sensibles
+setup_discord_link.sql
+*.sql
+
+# Guides et documentation (peuvent contenir des infos sensibles)
+GUIDE_*.md
+SECURITY.md
+INSTALL.md
+README_SECURITY.md
+QUICKSTART.md
 
 # Dépendances
 node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
 
 # Logs
 *.log
+logs/
 
 # Fichiers temporaires
 *.tmp
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # Archives
 *.tar.gz
@@ -22,3 +45,17 @@ Thumbs.db
 *.mp4
 *.mov
 *.avi
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Base de données
+*.db
+*.sqlite
+*.sqlite3
+*.backup
+*.bak
