@@ -359,7 +359,11 @@
 
       grid.innerHTML = filtered.map(v => `
         <div class="vehicle-card">
-          <img class="vehicle-card__image" src="${v.image || 'assets/img/placeholder-car.png'}" alt="${v.name}" loading="lazy" onerror="this.src='assets/img/placeholder-car.png'">
+          <img class="vehicle-card__image" 
+               src="${v.image || `https://docs.fivem.net/vehicles/${v.model}.webp`}" 
+               alt="${v.name}" 
+               loading="lazy" 
+               onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/LVRP-BEN/bl_weapons/main/vehicles/${v.model}.png'; this.onerror=function(){ this.onerror=null; this.src='assets/img/placeholder-car.svg'; }">
           <div class="vehicle-card__content">
             <h3 class="vehicle-card__name">${v.name}</h3>
             <p class="vehicle-card__model">${v.model}</p>
