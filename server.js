@@ -470,14 +470,29 @@ app.get('/auth/discord/callback',
       req.session.userRoles = roles;
       req.session.rolesFetchedAt = Date.now();
       
-      // Redirection selon le rôle
-      if (roles.hasStaffRole) {
-        res.redirect('/staff');
-      } else if (roles.hasPlayerRole) {
-        res.redirect('/player');
-      } else {
-        res.redirect('/auth/no-role');
-      }
+      console.log('[Auth] 💾 Saving session before redirect...');
+      
+      // 🔥 CRITIQUE : Sauvegarder la session AVANT de rediriger !
+      req.session.save((err) => {
+        if (err) {
+          console.error('[Auth] ❌ Session save error:', err);
+          return res.redirect('/auth/failed');
+        }
+        
+        console.log('[Auth] ✅ Session saved successfully!');
+        
+        // Redirection selon le rôle
+        if (roles.hasStaffRole) {
+          console.log('[Auth] 🎯 Redirecting to /staff');
+          res.redirect('/staff');
+        } else if (roles.hasPlayerRole) {
+          console.log('[Auth] 🎯 Redirecting to /player');
+          res.redirect('/player');
+        } else {
+          console.log('[Auth] ⚠️ No role found, redirecting to /auth/no-role');
+          res.redirect('/auth/no-role');
+        }
+      });
     } catch (error) {
       console.error('[Auth] Error checking roles:', error);
       res.redirect('/auth/failed');
