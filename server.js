@@ -773,6 +773,28 @@ app.post('/api/fivem/players',
   }
 );
 
+// ========== PROTECTION DES PAGES STAFF & PLAYER ==========
+
+// Protéger la page staff avec authentification Discord + rôle staff
+app.get('/staff', requireDiscordAuth, requireStaffRole, (req, res) => {
+  res.sendFile(path.join(ROOT, 'staff', 'index.html'));
+});
+
+app.get('/staff/*', requireDiscordAuth, requireStaffRole, (req, res, next) => {
+  // Servir les fichiers statiques du dossier staff (CSS, JS, etc.)
+  express.static(path.join(ROOT, 'staff'))(req, res, next);
+});
+
+// Protéger la page player avec authentification Discord + rôle player
+app.get('/player', requireDiscordAuth, requirePlayerRole, (req, res) => {
+  res.sendFile(path.join(ROOT, 'player', 'index.html'));
+});
+
+app.get('/player/*', requireDiscordAuth, requirePlayerRole, (req, res, next) => {
+  // Servir les fichiers statiques du dossier player (CSS, JS, etc.)
+  express.static(path.join(ROOT, 'player'))(req, res, next);
+});
+
 // ========== EXPRESS STATIC (APRÈS les routes API) ==========
 
 // Serve static site with no-cache for CSS/JS to force refresh

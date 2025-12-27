@@ -39,13 +39,18 @@
       const data = await res.json();
       
       if (!data.authenticated) {
-        // Rediriger vers Discord OAuth2
-        window.location.href = '/auth/discord';
+        // Non authentifié - afficher le bouton de connexion Discord
+        if (loginContainer) loginContainer.style.display = 'block';
+        if (staffPanel) staffPanel.style.display = 'none';
         return false;
       }
       
       state.authenticated = true;
       state.user = data.user;
+      
+      // Afficher le panel staff
+      if (loginContainer) loginContainer.style.display = 'none';
+      if (staffPanel) staffPanel.style.display = 'block';
       
       // Afficher le nom d'utilisateur Discord
       const discordUserEl = document.getElementById('discord-user');
@@ -56,7 +61,8 @@
       return true;
     } catch (error) {
       console.error('Auth check failed:', error);
-      window.location.href = '/auth/discord';
+      if (loginContainer) loginContainer.style.display = 'block';
+      if (staffPanel) staffPanel.style.display = 'none';
       return false;
     }
   }
@@ -65,27 +71,32 @@
     const headers = new Headers(opts.headers || {});
     headers.set('Content-Type', 'application/json');
 
-    const res = await fetch(path, {
-      ...opts,
-      headers,
-      credentials: 'include' // Important pour les sessions
-    });
-    if (!res.ok) {
-      let detail = '';
-      try {
-        const j = await res.json();
-        detail = j?.error ? ` (${j.error})` : '';
-        
-        // Si non autorisé, rediriger vers Discord
-        if (res.status === 401 || res.status === 403) {
-          window.location.href = '/auth/discord';
+      const res = await fetch(path, {
+        ...opts,
+        headers,
+        credentials: 'include' // Important pour les sessions
+      });
+      if (!res.ok) {
+        let detail = '';
+        try {
+          const j = await res.json();
+          detail = j?.error ? ` (${j.error})` : '';
+          
+          // Si non autorisé, afficher le bouton de connexion
+          if (res.status === 401 || res.status === 403) {
+            if (loginContainer) loginContainer.style.display = 'block';
+            if (staffPanel) staffPanel.style.display = 'none';
+            throw new Error('Unauthorized');
+          }
+        } catch (parseError) {
+          // Erreur de parsing JSON
         }
-      } catch {}
-      throw new Error(`${res.status}${detail}`);
-      } catch {}
-      throw new Error(`${res.status}${detail}`);
+        throw new Error(`${res.status}${detail}`);
+      }
+      return res.json();
+    } catch (error) {
+      throw error;
     }
-    return res.json();
   }
 
   function gtaToMap({ x, y }) {
