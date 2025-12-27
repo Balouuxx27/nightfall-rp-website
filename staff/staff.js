@@ -266,8 +266,6 @@
   }
 
   async function refreshPlayers() {
-    if (!state.token) return;
-    
     try {
       const data = await api('../api/staff/players');
       const players = data?.players || [];
@@ -281,62 +279,6 @@
     } catch (err) {
       console.error('Erreur refresh:', err);
     }
-  }
-
-  // Login
-  if (loginForm) {
-    loginForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const password = document.getElementById('password').value;
-      
-      try {
-        const data = await api('../api/staff/login', {
-          method: 'POST',
-          body: JSON.stringify({ password })
-        });
-        
-        state.token = data.token;
-        localStorage.setItem(storageKey, data.token);
-        
-        // Afficher le panel, cacher le login
-        if (loginContainer) loginContainer.style.display = 'none';
-        if (staffPanel) staffPanel.style.display = 'block';
-        
-        // Init la carte et charger les joueurs
-        initMap();
-        refreshPlayers();
-        
-        // Démarrer l'auto-refresh
-        if (state.autoRefresh) {
-          state.refreshInterval = setInterval(refreshPlayers, 1200);
-        }
-      } catch (err) {
-        if (loginError) {
-          loginError.textContent = 'Mot de passe incorrect';
-        }
-      }
-    });
-  }
-
-  // Logout
-  if (logoutBtn) {
-    logoutBtn.addEventListener('click', () => {
-      state.token = null;
-      localStorage.removeItem(storageKey);
-      
-      if (state.refreshInterval) {
-        clearInterval(state.refreshInterval);
-        state.refreshInterval = null;
-      }
-      
-      // Cacher le panel, afficher le login
-      if (loginContainer) loginContainer.style.display = 'block';
-      if (staffPanel) staffPanel.style.display = 'none';
-      
-      // Clear markers
-      for (const marker of state.markers.values()) marker.remove();
-      state.markers.clear();
-    });
   }
 
   // Toggle auto-refresh
@@ -398,13 +340,11 @@
   }
 
   async function searchPlayers(query) {
-    if (!state.token) return;
-    
     try {
       searchResults.innerHTML = '<div class="no-results">🔍 Recherche en cours...</div>';
       
-      const data = await api(`../api/staff/search?query=${encodeURIComponent(query)}&limit=20`);
-      const players = data || [];
+      const data = await api(`../api/staff/search?q=${encodeURIComponent(query)}&limit=20`);
+      const players = data?.players || [];
       
       if (players.length === 0) {
         searchResults.innerHTML = '<div class="no-results">❌ Aucun joueur trouvé</div>';
@@ -462,8 +402,6 @@
   }
 
   window.viewPlayerDetails = async function(citizenid) {
-    if (!state.token) return;
-    
     try {
       const player = await api(`../api/staff/player/${citizenid}`);
       
