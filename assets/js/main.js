@@ -8,22 +8,40 @@
     const nav = document.querySelector('.nav');
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     
+    // Fonction pour toggle le menu
+    if (menuToggle) {
+      menuToggle.addEventListener('click', () => {
+        const isOpen = nav.classList.contains('mobile-open');
+        if (isOpen) {
+          nav.classList.remove('mobile-open');
+          menuToggle.classList.remove('active');
+          document.body.classList.remove('menu-open');
+        } else {
+          nav.classList.add('mobile-open');
+          menuToggle.classList.add('active');
+          document.body.classList.add('menu-open');
+        }
+      });
+    }
+    
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
         if (nav) nav.classList.remove('mobile-open');
         if (menuToggle) menuToggle.classList.remove('active');
+        document.body.classList.remove('menu-open');
       });
     });
 
     // Fermer le menu si on clique en dehors
-    document.addEventListener('click', (e) => {
-      if (nav && nav.classList.contains('mobile-open')) {
-        if (!e.target.closest('.nav') && !e.target.closest('.mobile-menu-toggle')) {
+    if (nav) {
+      nav.addEventListener('click', (e) => {
+        if (e.target === nav) {
           nav.classList.remove('mobile-open');
           if (menuToggle) menuToggle.classList.remove('active');
+          document.body.classList.remove('menu-open');
         }
-      }
-    });
+      });
+    }
   });
 
   // Reveal au scroll (léger, sans dépendances)
