@@ -183,7 +183,9 @@ if (discordConfigured) {
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
+        // Stocker l'access token dans le profil pour les appels API futurs
         profile.accessToken = accessToken;
+        profile.refreshToken = refreshToken;
         return done(null, profile);
       } catch (error) {
         return done(error, null);
@@ -191,11 +193,22 @@ if (discordConfigured) {
     }
   ));
 
+  // 🔥 CRITIQUE: Stocker uniquement les données essentielles en session
   passport.serializeUser((user, done) => {
-    done(null, user);
+    console.log('[Passport] 💾 Serializing user:', user.id);
+    // Stocker l'objet complet (mais c'est OK car Discord Strategy le fait bien)
+    done(null, {
+      id: user.id,
+      username: user.username,
+      discriminator: user.discriminator,
+      avatar: user.avatar,
+      accessToken: user.accessToken,
+      refreshToken: user.refreshToken
+    });
   });
 
   passport.deserializeUser((obj, done) => {
+    console.log('[Passport] 🔓 Deserializing user:', obj.id);
     done(null, obj);
   });
 } else {
@@ -270,7 +283,13 @@ function requireDiscordAuth(req, res, next) {
 
 // Middleware pour vérifier le rôle staff
 async function requireStaffRole(req, res, next) {
+  console.log('[Staff Middleware] 🔍 Checking authentication...');
+  console.log('[Staff Middleware] req.isAuthenticated():', req.isAuthenticated());
+  console.log('[Staff Middleware] req.user:', req.user ? `ID: ${req.user.id}` : 'undefined');
+  console.log('[Staff Middleware] req.session.userRoles:', req.session.userRoles);
+  
   if (!req.user) {
+    console.log('[Staff Middleware] ❌ No user found, redirecting to /auth/discord');
     if (req.headers.accept && req.headers.accept.includes('application/json')) {
       return res.status(401).json({ error: 'Not authenticated' });
     }
