@@ -177,9 +177,9 @@ app.get('/api/status', async (_req, res) => {
 
     if (base) {
       try {
-        const dynamic = await fetchJsonWithTimeout(`${base}/dynamic.json`, 3000);
-        const players = await fetchJsonWithTimeout(`${base}/players.json`, 3000);
-        const info = await fetchJsonWithTimeout(`${base}/info.json`, 3000);
+        const dynamic = await fetchJsonWithTimeout(`${base}/dynamic.json`, 8000);
+        const players = await fetchJsonWithTimeout(`${base}/players.json`, 8000);
+        const info = await fetchJsonWithTimeout(`${base}/info.json`, 8000);
 
         // Si dynamic OU players répond (même vide), le serveur est online
         if (dynamic || players !== null) isOnline = true;
