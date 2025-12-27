@@ -11,6 +11,7 @@ const rateLimit = require('express-rate-limit');
 const { body, param, query, validationResult } = require('express-validator');
 const cors = require('cors');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const passport = require('passport');
 const DiscordStrategy = require('passport-discord').Strategy;
 const axios = require('axios');
@@ -156,16 +157,27 @@ function authMiddleware(req, res, next) {
 // ========== SÉCURITÉ: Headers, CORS, Rate Limiting ==========
 
 // Sessions (requis pour Passport Discord)
-app.use(session({
+// 🔥 CRITIQUE: Configuration session pour OAuth2 sur Render
+const sessionConfig = {
   secret: process.env.SESSION_SECRET || 'fallback-secret-please-set-SESSION_SECRET',
-  resave: false,
+  resave: true, // Force resave pour garantir persistence
   saveUninitialized: false,
+  rolling: true, // Renouveler le cookie à chaque requête
   cookie: {
     secure: process.env.NODE_ENV === 'production',
     httpOnly: true,
-    maxAge: 24 * 60 * 60 * 1000
+    maxAge: 24 * 60 * 60 * 1000, // 24 heures
+    sameSite: 'lax' // Important pour OAuth2
   }
-}));
+};
+
+console.log('[Session] ⚙️ Session config:', {
+  secure: sessionConfig.cookie.secure,
+  sameSite: sessionConfig.cookie.sameSite,
+  maxAge: sessionConfig.cookie.maxAge
+});
+
+app.use(session(sessionConfig));
 
 // Initialiser Passport
 app.use(passport.initialize());
