@@ -934,10 +934,8 @@ app.get('/staff', requireDiscordAuth, requireStaffRole, (req, res) => {
   res.sendFile(path.join(ROOT, 'staff', 'index.html'));
 });
 
-app.get('/staff/*', requireDiscordAuth, requireStaffRole, (req, res, next) => {
-  // Servir les fichiers statiques du dossier staff (CSS, JS, etc.)
-  express.static(path.join(ROOT, 'staff'))(req, res, next);
-});
+// Servir les fichiers statiques du dossier staff (CSS, JS, etc.) - AVANT la route générique
+app.use('/staff', requireDiscordAuth, requireStaffRole, express.static(path.join(ROOT, 'staff')));
 
 // Protéger la page player avec authentification Discord + rôle player
 app.get('/player', requireDiscordAuth, requirePlayerRole, (req, res) => {
