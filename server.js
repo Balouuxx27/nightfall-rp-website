@@ -237,7 +237,12 @@ async function checkDiscordRoles(discordId, accessToken) {
 // Middleware pour vérifier que l'utilisateur est authentifié via Discord
 function requireDiscordAuth(req, res, next) {
   if (!req.isAuthenticated()) {
-    return res.status(401).json({ error: 'Not authenticated', redirectTo: '/auth/discord' });
+    // Pour les requêtes HTML (navigateur), rediriger vers Discord
+    // Pour les requêtes API (AJAX), renvoyer JSON
+    if (req.headers.accept && req.headers.accept.includes('application/json')) {
+      return res.status(401).json({ error: 'Not authenticated', redirectTo: '/auth/discord' });
+    }
+    return res.redirect('/auth/discord');
   }
   next();
 }
@@ -245,12 +250,18 @@ function requireDiscordAuth(req, res, next) {
 // Middleware pour vérifier le rôle staff
 async function requireStaffRole(req, res, next) {
   if (!req.user) {
-    return res.status(401).json({ error: 'Not authenticated' });
+    if (req.headers.accept && req.headers.accept.includes('application/json')) {
+      return res.status(401).json({ error: 'Not authenticated' });
+    }
+    return res.redirect('/auth/discord');
   }
 
   const roles = await checkDiscordRoles(req.user.id, req.user.accessToken);
   if (!roles.hasStaffRole) {
-    return res.status(403).json({ error: 'Insufficient permissions - Staff role required' });
+    if (req.headers.accept && req.headers.accept.includes('application/json')) {
+      return res.status(403).json({ error: 'Insufficient permissions - Staff role required' });
+    }
+    return res.redirect('/auth/no-role');
   }
 
   req.userRoles = roles;
@@ -260,12 +271,18 @@ async function requireStaffRole(req, res, next) {
 // Middleware pour vérifier le rôle joueur
 async function requirePlayerRole(req, res, next) {
   if (!req.user) {
-    return res.status(401).json({ error: 'Not authenticated' });
+    if (req.headers.accept && req.headers.accept.includes('application/json')) {
+      return res.status(401).json({ error: 'Not authenticated' });
+    }
+    return res.redirect('/auth/discord');
   }
 
   const roles = await checkDiscordRoles(req.user.id, req.user.accessToken);
   if (!roles.hasPlayerRole && !roles.hasStaffRole) {
-    return res.status(403).json({ error: 'Insufficient permissions - Player role required' });
+    if (req.headers.accept && req.headers.accept.includes('application/json')) {
+      return res.status(403).json({ error: 'Insufficient permissions - Player role required' });
+    }
+    return res.redirect('/auth/no-role');
   }
 
   req.userRoles = roles;
