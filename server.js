@@ -295,11 +295,13 @@ app.use(helmet({
     directives: {
       defaultSrc: ["'self'"],
       styleSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com", "https://cdnjs.cloudflare.com"],
-      scriptSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com", "https://cdnjs.cloudflare.com"],
-      imgSrc: ["'self'", "data:", "https:"],
-      connectSrc: ["'self'", "https://cdnjs.cloudflare.com"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com", "https://cdnjs.cloudflare.com", "https://www.youtube.com", "https://s.ytimg.com"],
+      imgSrc: ["'self'", "data:", "https:", "https://i.ytimg.com"],
+      connectSrc: ["'self'", "https://cdnjs.cloudflare.com", "https://www.youtube.com"],
       fontSrc: ["'self'", "https:", "data:"],
-      frameSrc: ["'self'", "https://www.youtube.com"],
+      frameSrc: ["'self'", "https://www.youtube.com", "https://www.youtube-nocookie.com"],
+      mediaSrc: ["'self'", "https://www.youtube.com", "https://*.googlevideo.com"],
+      childSrc: ["'self'", "https://www.youtube.com"],
     }
   },
   hsts: {
