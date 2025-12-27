@@ -211,6 +211,9 @@ async function checkDiscordRoles(discordId, accessToken) {
       return { hasStaffRole: false, hasPlayerRole: false };
     }
 
+    console.log('[Discord] 🔍 Checking roles for user:', discordId);
+    console.log('[Discord] 🏰 Guild ID:', guildId);
+
     // Récupérer les rôles du membre via l'API Discord
     const response = await axios.get(
       `https://discord.com/api/v10/users/@me/guilds/${guildId}/member`,
@@ -219,17 +222,35 @@ async function checkDiscordRoles(discordId, accessToken) {
       }
     );
 
+    console.log('[Discord] ✅ API Response:', JSON.stringify(response.data, null, 2));
+
     const memberRoles = response.data.roles || [];
     const staffRoleId = process.env.DISCORD_STAFF_ROLE_ID;
     const playerRoleId = process.env.DISCORD_PLAYER_ROLE_ID;
 
-    return {
+    console.log('[Discord] 📋 User roles:', memberRoles);
+    console.log('[Discord] 🎯 Looking for Staff Role:', staffRoleId);
+    console.log('[Discord] 🎯 Looking for Player Role:', playerRoleId);
+
+    const result = {
       hasStaffRole: staffRoleId ? memberRoles.includes(staffRoleId) : false,
       hasPlayerRole: playerRoleId ? memberRoles.includes(playerRoleId) : false,
       roles: memberRoles
     };
+
+    console.log('[Discord] 🎭 Final result:', result);
+
+    return result;
   } catch (error) {
-    console.error('[Discord] Error checking roles:', error.message);
+    console.error('[Discord] ❌ Error checking roles:', error.message);
+    console.error('[Discord] 📄 Error details:', error.response?.data || error.response?.status);
+    console.error('[Discord] 🔑 Error status:', error.response?.status);
+    
+    // Si erreur 403, c'est probablement un problème de scope OAuth2
+    if (error.response?.status === 403) {
+      console.error('[Discord] ⚠️ ERREUR 403: Vérifiez que le scope "guilds.members.read" est activé dans Discord Developer Portal!');
+    }
+    
     return { hasStaffRole: false, hasPlayerRole: false };
   }
 }
