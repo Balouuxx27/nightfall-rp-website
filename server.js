@@ -157,13 +157,13 @@ function authMiddleware(req, res, next) {
 
 // Sessions (requis pour Passport Discord)
 app.use(session({
-  secret: process.env.SESSION_SECRET,
+  secret: process.env.SESSION_SECRET || 'fallback-secret-please-set-SESSION_SECRET',
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: process.env.NODE_ENV === 'production', // HTTPS uniquement en production
+    secure: process.env.NODE_ENV === 'production',
     httpOnly: true,
-    maxAge: 24 * 60 * 60 * 1000 // 24 heures
+    maxAge: 24 * 60 * 60 * 1000
   }
 }));
 
@@ -171,31 +171,36 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Configuration Passport Discord
-passport.use(new DiscordStrategy({
-    clientID: process.env.DISCORD_CLIENT_ID,
-    clientSecret: process.env.DISCORD_CLIENT_SECRET,
-    callbackURL: process.env.DISCORD_CALLBACK_URL,
-    scope: ['identify', 'guilds', 'guilds.members.read']
-  },
-  async (accessToken, refreshToken, profile, done) => {
-    try {
-      // Stocker le token pour vérifier les rôles plus tard
-      profile.accessToken = accessToken;
-      return done(null, profile);
-    } catch (error) {
-      return done(error, null);
+// Configuration Passport Discord (optionnel)
+const discordConfigured = process.env.DISCORD_CLIENT_ID && process.env.DISCORD_CLIENT_SECRET;
+
+if (discordConfigured) {
+  passport.use(new DiscordStrategy({
+      clientID: process.env.DISCORD_CLIENT_ID,
+      clientSecret: process.env.DISCORD_CLIENT_SECRET,
+      callbackURL: process.env.DISCORD_CALLBACK_URL,
+      scope: ['identify', 'guilds', 'guilds.members.read']
+    },
+    async (accessToken, refreshToken, profile, done) => {
+      try {
+        profile.accessToken = accessToken;
+        return done(null, profile);
+      } catch (error) {
+        return done(error, null);
+      }
     }
-  }
-));
+  ));
 
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
+  passport.serializeUser((user, done) => {
+    done(null, user);
+  });
 
-passport.deserializeUser((obj, done) => {
-  done(null, obj);
-});
+  passport.deserializeUser((obj, done) => {
+    done(null, obj);
+  });
+} else {
+  console.warn('[Discord] OAuth2 not configured - Discord authentication disabled');
+}
 
 // Fonction pour vérifier les rôles Discord
 async function checkDiscordRoles(discordId, accessToken) {
