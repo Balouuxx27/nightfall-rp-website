@@ -182,7 +182,11 @@ console.log('[Session] ⚙️ Session config:', {
 
 app.use(session(sessionConfig));
 
-// Middleware de debug pour logger chaque requête
+// Initialiser Passport (DOIT ÊTRE AVANT LE MIDDLEWARE DE DEBUG !)
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Middleware de debug pour logger chaque requête (APRÈS Passport !)
 app.use((req, res, next) => {
   if (req.path.includes('/staff') || req.path.includes('/auth')) {
     console.log(`[Request] ${req.method} ${req.path}`);
@@ -193,10 +197,6 @@ app.use((req, res, next) => {
   }
   next();
 });
-
-// Initialiser Passport
-app.use(passport.initialize());
-app.use(passport.session());
 
 // Configuration Passport Discord (optionnel)
 const discordConfigured = process.env.DISCORD_CLIENT_ID && process.env.DISCORD_CLIENT_SECRET;
