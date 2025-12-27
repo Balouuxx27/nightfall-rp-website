@@ -38,13 +38,18 @@
   .mobile-menu-toggle {
     display: flex;
     position: relative;
-    z-index: 10000 !important;
+    z-index: 100000 !important;
   }
 
   /* Header avec z-index élevé */
   .topbar {
     position: sticky;
-    z-index: 9998 !important;
+    z-index: 99998 !important;
+  }
+
+  /* Empêcher le scroll du body quand le menu est ouvert */
+  body.menu-open {
+    overflow: hidden !important;
   }
 
   /* Header ajusté */
@@ -67,14 +72,17 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(10, 13, 24, 0.98);
-    backdrop-filter: blur(20px);
-    z-index: 9999 !important;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(10, 13, 24, 0.99) !important;
+    backdrop-filter: blur(30px);
+    z-index: 99999 !important;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
     padding: 60px 20px;
+    overflow-y: auto;
   }
 
   /* Navigation ouverte */
