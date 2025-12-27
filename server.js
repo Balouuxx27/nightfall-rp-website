@@ -11,7 +11,6 @@ const rateLimit = require('express-rate-limit');
 const { body, param, query, validationResult } = require('express-validator');
 const cors = require('cors');
 const session = require('express-session');
-const MongoStore = require('connect-mongo');
 const passport = require('passport');
 const DiscordStrategy = require('passport-discord').Strategy;
 const axios = require('axios');
