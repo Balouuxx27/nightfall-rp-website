@@ -44,24 +44,16 @@
     }
   });
 
-  // Reveal au scroll (léger, sans dépendances)
+  // Reveal au scroll - DÉSACTIVÉ COMPLÈTEMENT pour éviter les problèmes de disparition
+  // Les éléments restent visibles tout le temps
   const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const revealTargets = document.querySelectorAll('.hero, .section, .footer');
-  if (!prefersReduced && revealTargets.length) {
-    for (const el of revealTargets) el.classList.add('reveal');
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (!e.isIntersecting) continue;
-          e.target.classList.add('is-in');
-          io.unobserve(e.target);
-        }
-      },
-      { root: null, threshold: 0.12, rootMargin: '0px 0px -10% 0px' }
-    );
-
-    for (const el of revealTargets) io.observe(el);
+  
+  // Force ALL elements to be visible immediately
+  for (const el of revealTargets) {
+    el.classList.add('is-in');
+    el.style.opacity = '1';
+    el.style.transform = 'none';
   }
 
   const mobileMenu = document.querySelector('[data-mobile-menu]');

@@ -294,10 +294,10 @@ app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      styleSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com"],
-      scriptSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com", "https://cdnjs.cloudflare.com"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com", "https://cdnjs.cloudflare.com"],
       imgSrc: ["'self'", "data:", "https:"],
-      connectSrc: ["'self'"],
+      connectSrc: ["'self'", "https://cdnjs.cloudflare.com"],
       fontSrc: ["'self'", "https:", "data:"],
       frameSrc: ["'self'", "https://www.youtube.com"],
     }
@@ -330,10 +330,10 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization', 'x-nightfall-secret']
 }));
 
-// Rate limiting global
+// Rate limiting global - augmenté pour éviter les erreurs 429
 const generalLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Max 100 requêtes par IP
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 1000, // Max 1000 requêtes par minute
   message: { error: 'Too many requests, please try again later.' },
   standardHeaders: true,
   legacyHeaders: false,

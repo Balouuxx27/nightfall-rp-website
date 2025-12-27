@@ -5,16 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Guides & Tutoriels — Nightfall RP</title>
   <link rel="preconnect" href="https://unpkg.com" />
-  <link rel="stylesheet" href="assets/css/styles.css?v=20251227" />
-  <link rel="stylesheet" href="assets/css/histoire.css?v=20251226f" />
-  <link rel="stylesheet" href="assets/css/enhanced.css?v=ULTRA" />
-  <link rel="stylesheet" href="assets/css/ultra-effects.css?v=WOW" />
-  <link rel="stylesheet" href="assets/css/mobile.css?v=20251227" />
-  <script defer src="assets/js/main.js?v=20251226"></script>
-  <script defer src="assets/js/lightbox.js?v=20251226d"></script>
-  <script defer src="assets/js/dynamicEffects.js?v=20251226"></script>
-  <script defer src="assets/js/enhanced.js?v=20251226wow"></script>
+  <link rel="stylesheet" href="assets/css/styles.css?v=20251227FINAL" />
+  <link rel="stylesheet" href="assets/css/histoire.css?v=20251227FINAL" />
+  <link rel="stylesheet" href="assets/css/enhanced.css?v=20251227FINAL" />
+  <link rel="stylesheet" href="assets/css/ultra-effects.css?v=20251227FINAL" />
+  <link rel="stylesheet" href="assets/css/global-wow.css?v=20251227FINAL" />
+  <link rel="stylesheet" href="assets/css/guides-wow.css?v=20251227FINAL" />
+  <link rel="stylesheet" href="assets/css/mobile.css?v=20251227FINAL" />
+  <script defer src="assets/js/main.js?v=20251227FINAL"></script>
+  <script defer src="assets/js/lightbox.js?v=20251227FINAL"></script>
+  <script defer src="assets/js/dynamicEffects.js?v=20251227FINAL"></script>
+  <script defer src="assets/js/enhanced.js?v=20251227FINAL"></script>
   <style>
+    /* FORCE VISIBILITÉ IMMÉDIATE - écrase tout */
+    .hero, .section, .footer {
+      opacity: 1 !important;
+      transform: none !important;
+      visibility: visible !important;
+    }
+    
     .guides-hero {
       text-align: center;
       padding: 60px 20px;
@@ -250,9 +259,9 @@
   <!-- Vidéo YouTube en fond -->
   <div class="bg-video-container">
     <iframe class="bg-video" 
-            src="https://www.youtube.com/embed/8n-QJUE0qP8?autoplay=1&mute=1&loop=1&playlist=8n-QJUE0qP8&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1" 
+            src="https://www.youtube.com/embed/8n-QJUE0qP8?autoplay=1&mute=1&loop=1&playlist=8n-QJUE0qP8&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&iv_load_policy=3"
             frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
             allowfullscreen>
     </iframe>
   </div>
@@ -288,10 +297,10 @@
       <nav class="nav" aria-label="Navigation">
         <a href="index.html">Accueil</a>
         <a href="reglement.html">Règlement</a>
+        <a href="equipe.html">Équipe</a>
         <a href="vehicules.html">Véhicules</a>
         <a href="economie.html">Économie</a>
         <a href="guides.html" class="nav-active">Guides</a>
-        <a href="equipe.html">Équipe</a>
         <a href="galerie.html">Galerie</a>
         <a href="contact.html">Contact</a>
         <a class="nav__btn" href="player/index.html">Mon Profil</a>

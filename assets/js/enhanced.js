@@ -37,7 +37,8 @@
   galleryVideos.forEach(item => {
     const video = item.querySelector('.gallery-video');
     
-    if (video) {
+    if (video && video.tagName === 'VIDEO') {
+      // Only for HTML5 <video> elements, not iframes
       // Play on hover
       item.addEventListener('mouseenter', () => {
         video.play().catch(() => {});
@@ -57,6 +58,16 @@
           video.webkitRequestFullscreen();
         }
         video.play().catch(() => {});
+      });
+    }
+    // For iframes (YouTube), just let them be clickable for fullscreen
+    else if (video && video.tagName === 'IFRAME') {
+      item.addEventListener('click', () => {
+        if (video.requestFullscreen) {
+          video.requestFullscreen();
+        } else if (video.webkitRequestFullscreen) {
+          video.webkitRequestFullscreen();
+        }
       });
     }
   });
