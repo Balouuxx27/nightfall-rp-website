@@ -1,0 +1,394 @@
+/* ==========================================================================
+   🎯 NIGHTFALL RP - GUIDES WOW DESIGN
+   ========================================================================== */
+
+/* Hero guides élégant */
+.guides-hero {
+  text-align: center;
+  padding: 80px 40px;
+  background: linear-gradient(135deg, rgba(88,101,242,0.3), rgba(138,80,214,0.2));
+  border-radius: 32px;
+  border: 2px solid rgba(88,101,242,0.4);
+  box-shadow: 0 30px 90px rgba(88,101,242,0.3), 0 0 120px rgba(88,101,242,0.15), inset 0 1px 0 rgba(255,255,255,0.1);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+  margin-bottom: 48px;
+}
+
+.guides-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 50%, rgba(88,101,242,0.15), transparent 60%);
+  animation: heroGlow 8s ease-in-out infinite;
+}
+
+@keyframes heroGlow {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+  50% { transform: translate(10px, 10px) scale(1.1); opacity: 1; }
+}
+
+.guides-hero h1 {
+  position: relative;
+  z-index: 1;
+  font-size: 56px !important;
+  margin: 0 0 20px 0 !important;
+  background: linear-gradient(135deg, #fff 0%, #b794ff 50%, #5865F2 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  filter: drop-shadow(0 4px 16px rgba(88,101,242,0.5));
+  animation: titleShine 3s ease-in-out infinite;
+}
+
+@keyframes titleShine {
+  0%, 100% { filter: drop-shadow(0 4px 16px rgba(88,101,242,0.5)) brightness(1); }
+  50% { filter: drop-shadow(0 6px 24px rgba(88,101,242,0.8)) brightness(1.15); }
+}
+
+.guides-hero p {
+  position: relative;
+  z-index: 1;
+  font-size: 20px !important;
+  color: rgba(255,255,255,0.85) !important;
+  margin: 0 !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+/* Navigation guides moderne */
+.guides-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 48px;
+  padding: 0 20px;
+}
+
+.guide-nav-btn {
+  padding: 16px 28px;
+  background: linear-gradient(135deg, rgba(88,101,242,0.25), rgba(138,80,214,0.2));
+  border: 2px solid rgba(88,101,242,0.3);
+  border-radius: 16px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 16px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+.guide-nav-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(88,101,242,0.4), rgba(138,80,214,0.3));
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.guide-nav-btn:hover::before {
+  opacity: 1;
+}
+
+.guide-nav-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  border-color: rgba(88,101,242,0.7);
+  box-shadow: 0 16px 48px rgba(88,101,242,0.4), 0 0 60px rgba(88,101,242,0.3);
+}
+
+/* Cartes guides élégantes */
+.guide-section {
+  margin-bottom: 48px;
+}
+
+.guide-card {
+  background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+  border: 2px solid rgba(183,148,255,0.25);
+  border-radius: 28px;
+  padding: 48px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 80px rgba(183,148,255,0.1), inset 0 1px 0 rgba(255,255,255,0.1);
+  backdrop-filter: blur(20px);
+  position: relative;
+  overflow: hidden;
+}
+
+.guide-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #5865F2, #8A50D6, #b794ff);
+  opacity: 0.8;
+}
+
+.guide-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(88,101,242,0.08), transparent 60%);
+  pointer-events: none;
+}
+
+.guide-card h2 {
+  font-size: 36px;
+  font-weight: 900;
+  margin: 0 0 32px 0;
+  background: linear-gradient(135deg, #fff 0%, #b794ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  z-index: 1;
+}
+
+.guide-card h3 {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 32px 0 16px 0;
+  color: #b794ff;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.guide-card h3::before {
+  content: '';
+  width: 6px;
+  height: 28px;
+  background: linear-gradient(180deg, #5865F2, #b794ff);
+  border-radius: 3px;
+  box-shadow: 0 0 12px rgba(88,101,242,0.5);
+}
+
+/* Liste d'étapes améliorée */
+.steps-list {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0;
+  counter-reset: step-counter;
+  position: relative;
+  z-index: 1;
+}
+
+.steps-list li {
+  counter-increment: step-counter;
+  margin-bottom: 24px;
+  padding: 24px 28px 24px 80px;
+  background: linear-gradient(135deg, rgba(88,101,242,0.15), rgba(138,80,214,0.1));
+  border: 1px solid rgba(88,101,242,0.3);
+  border-radius: 16px;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.steps-list li::before {
+  content: counter(step-counter);
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #5865F2, #8A50D6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 900;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(88,101,242,0.5), 0 0 24px rgba(88,101,242,0.3);
+}
+
+.steps-list li:hover {
+  transform: translateX(8px);
+  border-color: rgba(88,101,242,0.6);
+  box-shadow: 0 8px 32px rgba(88,101,242,0.3);
+}
+
+.steps-list li strong {
+  display: block;
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+/* Boîtes de conseil/attention wow */
+.tip-box,
+.warning-box {
+  padding: 24px 28px;
+  border-radius: 16px;
+  margin: 32px 0;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+
+.tip-box {
+  background: linear-gradient(135deg, rgba(53,209,255,0.2), rgba(53,209,255,0.1));
+  border: 2px solid rgba(53,209,255,0.4);
+}
+
+.warning-box {
+  background: linear-gradient(135deg, rgba(255,77,109,0.2), rgba(255,77,109,0.1));
+  border: 2px solid rgba(255,77,109,0.4);
+}
+
+.tip-box__title,
+.warning-box__title {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tip-box__title {
+  color: #35d1ff;
+}
+
+.warning-box__title {
+  color: #ff4d6d;
+}
+
+.tip-box__content,
+.warning-box__content {
+  color: rgba(255,255,255,0.85);
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+/* Boîtes de commandes élégantes */
+.command-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, rgba(183,148,255,0.15), rgba(183,148,255,0.08));
+  border: 1px solid rgba(183,148,255,0.3);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  transition: all 0.3s;
+  position: relative;
+  z-index: 1;
+}
+
+.command-box:hover {
+  transform: translateX(4px);
+  border-color: rgba(183,148,255,0.5);
+  box-shadow: 0 4px 16px rgba(183,148,255,0.2);
+}
+
+.command-box__cmd {
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  font-weight: 700;
+  color: #b794ff;
+  padding: 8px 16px;
+  background: rgba(183,148,255,0.2);
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+.command-box__desc {
+  color: rgba(255,255,255,0.8);
+  font-size: 15px;
+  flex: 1;
+}
+
+/* Listes ul améliorées */
+.guide-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.guide-card ul li {
+  padding: 16px 20px 16px 48px;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  position: relative;
+  transition: all 0.3s;
+  line-height: 1.6;
+}
+
+.guide-card ul li::before {
+  content: '✨';
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
+
+.guide-card ul li:hover {
+  transform: translateX(4px);
+  background: linear-gradient(135deg, rgba(183,148,255,0.12), rgba(183,148,255,0.06));
+  border-color: rgba(183,148,255,0.3);
+}
+
+.guide-card ul li strong {
+  color: #b794ff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .guides-hero {
+    padding: 48px 24px;
+  }
+  
+  .guides-hero h1 {
+    font-size: 36px !important;
+  }
+  
+  .guides-hero p {
+    font-size: 16px !important;
+  }
+  
+  .guide-nav-btn {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+  
+  .guide-card {
+    padding: 32px 24px;
+  }
+  
+  .guide-card h2 {
+    font-size: 28px;
+  }
+  
+  .guide-card h3 {
+    font-size: 20px;
+  }
+  
+  .steps-list li {
+    padding: 20px 20px 20px 72px;
+  }
+  
+  .command-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
