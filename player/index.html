@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon Profil - Nightfall RP</title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <style>
+    .player-container {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 40px 20px;
+    }
+
+    .player-header {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 30px;
+      margin-bottom: 30px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    }
+
+    .discord-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 4px solid rgba(255, 255, 255, 0.5);
+      margin-bottom: 15px;
+    }
+
+    .player-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .info-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    }
+
+    .info-card h3 {
+      color: #667eea;
+      margin-bottom: 20px;
+      font-size: 1.5em;
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 10px;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+    }
+
+    .info-label {
+      font-weight: 600;
+      color: #555;
+    }
+
+    .info-value {
+      color: #333;
+      text-align: right;
+    }
+
+    .money-display {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #27ae60;
+      text-align: center;
+      padding: 20px;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      border-radius: 10px;
+      margin: 15px 0;
+    }
+
+    .logout-btn {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1em;
+      font-weight: 600;
+      transition: transform 0.2s;
+      margin-top: 20px;
+    }
+
+    .logout-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .loading {
+      text-align: center;
+      color: white;
+      font-size: 1.5em;
+      padding: 50px;
+    }
+
+    .error {
+      background: rgba(255, 68, 68, 0.9);
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 600px;
+      margin: 50px auto;
+    }
+
+    .job-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.9em;
+      font-weight: 600;
+    }
+
+    .vehicle-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .vehicle-item {
+      background: #f8f9fa;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .vehicle-name {
+      font-weight: 600;
+      color: #667eea;
+    }
+
+    .vehicle-plate {
+      background: #333;
+      color: white;
+      padding: 4px 10px;
+      border-radius: 5px;
+      font-family: monospace;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <div class="player-container">
+    <div id="loading" class="loading">
+      <p>🔒 Chargement de votre profil...</p>
+    </div>
+
+    <div id="error" class="error" style="display: none;"></div>
+
+    <div id="player-profile" style="display: none;">
+      <div class="player-header">
+        <img id="discord-avatar" class="discord-avatar" src="" alt="Avatar Discord">
+        <h1 id="discord-username">Chargement...</h1>
+        <p id="character-name" style="font-size: 1.2em; margin: 10px 0;"></p>
+        <button class="logout-btn" onclick="logout()">🚪 Se déconnecter</button>
+      </div>
+
+      <div class="player-content">
+        <!-- Informations personnage -->
+        <div class="info-card">
+          <h3>👤 Informations Personnage</h3>
+          <div class="info-row">
+            <span class="info-label">Citizen ID:</span>
+            <span class="info-value" id="citizenid">-</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Prénom:</span>
+            <span class="info-value" id="firstname">-</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Nom:</span>
+            <span class="info-value" id="lastname">-</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Téléphone:</span>
+            <span class="info-value" id="phone">-</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Métier:</span>
+            <span class="info-value" id="job">-</span>
+          </div>
+        </div>
+
+        <!-- Argent -->
+        <div class="info-card">
+          <h3>💰 Argent</h3>
+          <div class="info-row">
+            <span class="info-label">💵 Liquide:</span>
+            <span class="info-value money-display" id="cash" style="font-size: 1.2em;">-</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">🏦 Banque:</span>
+            <span class="info-value money-display" id="bank" style="font-size: 1.2em;">-</span>
+          </div>
+          <div class="money-display" id="total-money">Total: -</div>
+        </div>
+
+        <!-- Véhicules -->
+        <div class="info-card" style="grid-column: 1 / -1;">
+          <h3>🚗 Mes Véhicules</h3>
+          <ul id="vehicle-list" class="vehicle-list">
+            <li style="text-align: center; color: #999;">Chargement...</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="player.js"></script>
+</body>
+</html>

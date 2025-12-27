@@ -2,25 +2,40 @@
 (function() {
   'use strict';
 
-  // Créer le modal lightbox
+  // Créer le modal lightbox - SÉCURISÉ sans innerHTML
   const lightbox = document.createElement('div');
   lightbox.className = 'lightbox-modal';
-  lightbox.innerHTML = `
-    <div class="lightbox-content">
-      <div class="lightbox-close">×</div>
-      <img src="" alt="">
-      <div class="lightbox-info">
-        <h3></h3>
-        <p></p>
-      </div>
-    </div>
-  `;
+  
+  const content = document.createElement('div');
+  content.className = 'lightbox-content';
+  
+  const closeBtn = document.createElement('div');
+  closeBtn.className = 'lightbox-close';
+  closeBtn.textContent = '×';
+  
+  const img = document.createElement('img');
+  img.src = '';
+  img.alt = '';
+  
+  const info = document.createElement('div');
+  info.className = 'lightbox-info';
+  
+  const title = document.createElement('h3');
+  const desc = document.createElement('p');
+  
+  info.appendChild(title);
+  info.appendChild(desc);
+  
+  content.appendChild(closeBtn);
+  content.appendChild(img);
+  content.appendChild(info);
+  
+  lightbox.appendChild(content);
   document.body.appendChild(lightbox);
 
-  const lightboxImg = lightbox.querySelector('img');
-  const lightboxTitle = lightbox.querySelector('h3');
-  const lightboxDesc = lightbox.querySelector('p');
-  const closeBtn = lightbox.querySelector('.lightbox-close');
+  const lightboxImg = img;
+  const lightboxTitle = title;
+  const lightboxDesc = desc;
 
   // Fonction pour ouvrir la lightbox
   function openLightbox(imgSrc, title, description) {

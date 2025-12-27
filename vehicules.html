@@ -290,6 +290,14 @@
     const yearEl = document.querySelector('[data-year]');
     if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
+    // ========== SÉCURITÉ: Protection contre XSS ==========
+    function escapeHtml(unsafe) {
+      if (typeof unsafe !== 'string') return unsafe;
+      const div = document.createElement('div');
+      div.textContent = unsafe;
+      return div.innerHTML;
+    }
+
     let allVehicles = [];
     let currentFilter = 'all';
     let searchQuery = '';
@@ -303,15 +311,22 @@
         // Extraire les catégories uniques
         const categories = [...new Set(allVehicles.map(v => v.category).filter(Boolean))];
         
-        // Créer les boutons de filtre
+        // Créer les boutons de filtre - SÉCURISÉ
         const filtersContainer = document.getElementById('filtersContainer');
-        filtersContainer.innerHTML = '<button class="filter-btn active" data-filter="all">Tous</button>';
+        filtersContainer.textContent = ''; // Vider de manière sécurisée
+        
+        // Bouton "Tous"
+        const allBtn = document.createElement('button');
+        allBtn.className = 'filter-btn active';
+        allBtn.setAttribute('data-filter', 'all');
+        allBtn.textContent = 'Tous';
+        filtersContainer.appendChild(allBtn);
         
         categories.sort().forEach(cat => {
           const btn = document.createElement('button');
           btn.className = 'filter-btn';
-          btn.dataset.filter = cat;
-          btn.textContent = cat;
+          btn.dataset.filter = escapeHtml(cat);
+          btn.textContent = cat; // textContent est sûr
           filtersContainer.appendChild(btn);
         });
 
@@ -333,8 +348,12 @@
         renderVehicles();
       } catch (err) {
         console.error('Error loading vehicles:', err);
-        document.getElementById('vehiclesGrid').innerHTML = 
-          '<div class="no-results">Erreur lors du chargement des véhicules</div>';
+        const grid = document.getElementById('vehiclesGrid');
+        grid.textContent = ''; // Vider
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'no-results';
+        errorDiv.textContent = 'Erreur lors du chargement des véhicules';
+        grid.appendChild(errorDiv);
       }
     }
 
@@ -359,25 +378,65 @@
       }
 
       if (filtered.length === 0) {
-        grid.innerHTML = '<div class="no-results">Aucun véhicule trouvé</div>';
+        const noResults = document.createElement('div');
+        noResults.className = 'no-results';
+        noResults.textContent = 'Aucun véhicule trouvé';
+        grid.textContent = ''; // Vider de manière sécurisée
+        grid.appendChild(noResults);
         return;
       }
 
-      grid.innerHTML = filtered.map(v => `
-        <div class="vehicle-card">
-          <img class="vehicle-card__image" 
-               src="${v.image || `https://docs.fivem.net/vehicles/${v.model}.webp`}" 
-               alt="${v.name}" 
-               loading="lazy" 
-               onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/LVRP-BEN/bl_weapons/main/vehicles/${v.model}.png'; this.onerror=function(){ this.onerror=null; this.src='assets/img/placeholder-car.svg'; }">
-          <div class="vehicle-card__content">
-            <h3 class="vehicle-card__name">${v.name}</h3>
-            <p class="vehicle-card__model">${v.model}</p>
-            <div class="vehicle-card__price">$${v.price.toLocaleString('fr-FR')}</div>
-            ${v.category ? `<span class="vehicle-card__category">${v.category}</span>` : ''}
-          </div>
-        </div>
-      `).join('');
+      // ⚠️ SÉCURITÉ: Création des éléments de manière sûre sans innerHTML
+      grid.textContent = ''; // Vider le contenu
+      
+      filtered.forEach(v => {
+        const card = document.createElement('div');
+        card.className = 'vehicle-card';
+        
+        const img = document.createElement('img');
+        img.className = 'vehicle-card__image';
+        img.src = v.image || `https://docs.fivem.net/vehicles/${escapeHtml(v.model)}.webp`;
+        img.alt = escapeHtml(v.name);
+        img.loading = 'lazy';
+        img.onerror = function() {
+          this.onerror = null;
+          this.src = `https://raw.githubusercontent.com/LVRP-BEN/bl_weapons/main/vehicles/${escapeHtml(v.model)}.png`;
+          this.onerror = function() {
+            this.onerror = null;
+            this.src = 'assets/img/placeholder-car.svg';
+          };
+        };
+        
+        const content = document.createElement('div');
+        content.className = 'vehicle-card__content';
+        
+        const name = document.createElement('h3');
+        name.className = 'vehicle-card__name';
+        name.textContent = v.name; // textContent est sûr
+        
+        const model = document.createElement('p');
+        model.className = 'vehicle-card__model';
+        model.textContent = v.model;
+        
+        const price = document.createElement('div');
+        price.className = 'vehicle-card__price';
+        price.textContent = `$${v.price.toLocaleString('fr-FR')}`;
+        
+        content.appendChild(name);
+        content.appendChild(model);
+        content.appendChild(price);
+        
+        if (v.category) {
+          const category = document.createElement('span');
+          category.className = 'vehicle-card__category';
+          category.textContent = v.category;
+          content.appendChild(category);
+        }
+        
+        card.appendChild(img);
+        card.appendChild(content);
+        grid.appendChild(card);
+      });
     }
 
     // Recherche
