@@ -256,7 +256,30 @@ async function requireStaffRole(req, res, next) {
     return res.redirect('/auth/discord');
   }
 
-  const roles = await checkDiscordRoles(req.user.id, req.user.accessToken);
+  // Utiliser les rôles en cache de la session (mis à jour lors du callback Discord)
+  // Revalider les rôles toutes les 5 minutes pour éviter les appels API excessifs
+  const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+  const now = Date.now();
+  const rolesFetchedAt = req.session.rolesFetchedAt || 0;
+  const shouldRefreshRoles = !req.session.userRoles || (now - rolesFetchedAt > CACHE_TTL);
+
+  let roles = req.session.userRoles;
+
+  if (shouldRefreshRoles) {
+    try {
+      roles = await checkDiscordRoles(req.user.id, req.user.accessToken);
+      req.session.userRoles = roles;
+      req.session.rolesFetchedAt = now;
+    } catch (error) {
+      console.error('[Staff Auth] Error refreshing roles:', error.message);
+      // Si l'API échoue mais qu'on a des rôles en cache, les utiliser
+      if (!req.session.userRoles) {
+        return res.redirect('/auth/no-role');
+      }
+      roles = req.session.userRoles;
+    }
+  }
+
   if (!roles.hasStaffRole) {
     if (req.headers.accept && req.headers.accept.includes('application/json')) {
       return res.status(403).json({ error: 'Insufficient permissions - Staff role required' });
@@ -277,7 +300,30 @@ async function requirePlayerRole(req, res, next) {
     return res.redirect('/auth/discord');
   }
 
-  const roles = await checkDiscordRoles(req.user.id, req.user.accessToken);
+  // Utiliser les rôles en cache de la session (mis à jour lors du callback Discord)
+  // Revalider les rôles toutes les 5 minutes pour éviter les appels API excessifs
+  const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+  const now = Date.now();
+  const rolesFetchedAt = req.session.rolesFetchedAt || 0;
+  const shouldRefreshRoles = !req.session.userRoles || (now - rolesFetchedAt > CACHE_TTL);
+
+  let roles = req.session.userRoles;
+
+  if (shouldRefreshRoles) {
+    try {
+      roles = await checkDiscordRoles(req.user.id, req.user.accessToken);
+      req.session.userRoles = roles;
+      req.session.rolesFetchedAt = now;
+    } catch (error) {
+      console.error('[Player Auth] Error refreshing roles:', error.message);
+      // Si l'API échoue mais qu'on a des rôles en cache, les utiliser
+      if (!req.session.userRoles) {
+        return res.redirect('/auth/no-role');
+      }
+      roles = req.session.userRoles;
+    }
+  }
+
   if (!roles.hasPlayerRole && !roles.hasStaffRole) {
     if (req.headers.accept && req.headers.accept.includes('application/json')) {
       return res.status(403).json({ error: 'Insufficient permissions - Player role required' });
@@ -398,6 +444,10 @@ app.get('/auth/discord/callback',
   async (req, res) => {
     try {
       const roles = await checkDiscordRoles(req.user.id, req.user.accessToken);
+      
+      // ⚠️ IMPORTANT: Stocker les rôles dans la session pour éviter les appels API répétés
+      req.session.userRoles = roles;
+      req.session.rolesFetchedAt = Date.now();
       
       // Redirection selon le rôle
       if (roles.hasStaffRole) {
