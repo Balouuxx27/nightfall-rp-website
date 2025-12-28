@@ -144,8 +144,8 @@ Citizen.CreateThread(function()
                 playerData.x = playerData.position.x
                 playerData.y = playerData.position.y
                 playerData.z = playerData.position.z
-                playerData.job = playerData.job.name
-                playerData.jobGrade = playerData.job.grade.name
+                playerData.job = playerData.job and playerData.job.name or "unemployed"
+                playerData.jobGrade = playerData.job and playerData.job.grade and playerData.job.grade.name or "0"
                 
                 table.insert(players, playerData)
             end
