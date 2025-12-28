@@ -188,12 +188,9 @@ app.use(passport.session());
 
 // Middleware de debug pour logger chaque requête (APRÈS Passport !)
 app.use((req, res, next) => {
-  if (req.path.includes('/staff') || req.path.includes('/auth')) {
-    console.log(`[Request] ${req.method} ${req.path}`);
-    console.log('[Request] Session ID:', req.sessionID);
-    console.log('[Request] Session:', req.session);
-    console.log('[Request] User:', req.user ? `ID: ${req.user.id}` : 'undefined');
-    console.log('[Request] isAuthenticated:', req.isAuthenticated());
+  // Log UNIQUEMENT les routes d'authentification importantes (pas les assets/API en boucle)
+  if (req.path.startsWith('/auth/') && !req.path.includes('status')) {
+    console.log(`[Auth Route] ${req.method} ${req.path} | User: ${req.user?.id || 'none'}`);
   }
   next();
 });
@@ -315,16 +312,7 @@ function requireDiscordAuth(req, res, next) {
 
 // Middleware pour vérifier le rôle staff
 async function requireStaffRole(req, res, next) {
-  console.log('[Staff Middleware] 🔍 Checking authentication...');
-  console.log('[Staff Middleware] SessionID:', req.sessionID);
-  console.log('[Staff Middleware] Session data:', JSON.stringify(req.session, null, 2));
-  console.log('[Staff Middleware] req.isAuthenticated():', req.isAuthenticated());
-  console.log('[Staff Middleware] req.user:', req.user ? `ID: ${req.user.id}` : 'undefined');
-  console.log('[Staff Middleware] req.session.userRoles:', req.session.userRoles);
-  console.log('[Staff Middleware] Cookies:', req.headers.cookie);
-  
   if (!req.user) {
-    console.log('[Staff Middleware] ❌ No user found, redirecting to /auth/discord');
     if (req.headers.accept && req.headers.accept.includes('application/json')) {
       return res.status(401).json({ error: 'Not authenticated' });
     }
@@ -550,23 +538,27 @@ app.get('/auth/discord/callback',
         
         console.log('[Auth] ✅ Session saved successfully!');
         
-        // Si returnTo existe, rediriger là-bas (priorité absolue)
+        // Si returnTo existe, rediriger là-bas (priorité ABSOLUE)
         if (req.session.returnTo) {
           const returnTo = req.session.returnTo;
-          delete req.session.returnTo; // Nettoyer après utilisation
+          delete req.session.returnTo;
           console.log('[Auth] 🎯 Redirecting to returnTo:', returnTo);
           return res.redirect(returnTo);
         }
         
-        // Sinon, redirection selon le rôle (par défaut)
-        if (roles.hasStaffRole) {
-          console.log('[Auth] 🎯 Redirecting to /staff');
+        // Sinon, redirection par défaut selon les rôles
+        if (roles.hasStaffRole && !roles.hasPlayerRole) {
+          console.log('[Auth] 🎯 Staff only -> /staff');
           res.redirect('/staff');
-        } else if (roles.hasPlayerRole) {
-          console.log('[Auth] 🎯 Redirecting to /player');
+        } else if (roles.hasPlayerRole && !roles.hasStaffRole) {
+          console.log('[Auth] 🎯 Player only -> /player');
           res.redirect('/player');
+        } else if (roles.hasStaffRole && roles.hasPlayerRole) {
+          // Si les deux rôles, aller sur la page d'accueil pour choisir
+          console.log('[Auth] 🎯 Both roles -> home');
+          res.redirect('/');
         } else {
-          console.log('[Auth] ⚠️ No role found, redirecting to /auth/no-role');
+          console.log('[Auth] ⚠️ No role -> /auth/no-role');
           res.redirect('/auth/no-role');
         }
       });
