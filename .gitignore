@@ -9,6 +9,11 @@ api/status.json
 *.key
 *.cert
 
+# Package managers
+package-lock.json
+yarn.lock
+node_modules/
+
 # Scripts SQL sensibles
 setup_discord_link.sql
 *.sql
