@@ -1033,26 +1033,27 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
   try {
     const discordId = req.user.id;
 
-    // Chercher le joueur par Discord ID (nécessite une colonne discord_id dans la table players)
-    // Pour l'instant, on cherche par le premier joueur trouvé (à adapter selon votre structure)
+    // Utiliser la table discord_ids pour trouver le license2 du joueur
+    // Ensuite faire une jointure avec players
     const [rows] = await dbPool.query(`
       SELECT 
-        citizenid,
-        charinfo,
-        job,
-        money,
-        position,
-        last_updated,
-        discord_id
-      FROM players
-      WHERE discord_id = ?
+        p.citizenid,
+        p.charinfo,
+        p.job,
+        p.money,
+        p.position,
+        p.last_updated,
+        d.discord_id
+      FROM discord_ids d
+      INNER JOIN players p ON p.license2 = d.license2
+      WHERE d.discord_id = ?
       LIMIT 1
     `, [discordId]);
 
     if (rows.length === 0) {
       return res.status(404).json({ 
         error: 'No character found',
-        message: 'Connectez-vous au serveur FiveM pour créer un personnage'
+        message: 'Connectez-vous au serveur FiveM pour créer un personnage et lier votre Discord'
       });
     }
 
