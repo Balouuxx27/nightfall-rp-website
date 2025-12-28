@@ -122,9 +122,9 @@
     // Image: map gta.jpg (5944x8075 pixels)
     // Coordonnées finales ajustées
     // Y: -4000 à +8300 (12300 unités)
-    // X: -3700 à +5075 (8775 unités)
+    // X: -3900 à +5075 (8975 unités)
     
-    const minX = -3700;
+    const minX = -3900;
     const maxX = 5075;
     const minY = -4000;
     const maxY = 8300;
