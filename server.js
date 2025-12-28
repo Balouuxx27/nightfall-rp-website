@@ -298,12 +298,15 @@ async function checkDiscordRoles(discordId, accessToken) {
 // Middleware pour vérifier que l'utilisateur est authentifié via Discord
 function requireDiscordAuth(req, res, next) {
   if (!req.isAuthenticated()) {
+    // Sauvegarder l'URL demandée pour rediriger après auth
+    const returnTo = encodeURIComponent(req.originalUrl);
+    
     // Pour les requêtes HTML (navigateur), rediriger vers Discord
     // Pour les requêtes API (AJAX), renvoyer JSON
     if (req.headers.accept && req.headers.accept.includes('application/json')) {
-      return res.status(401).json({ error: 'Not authenticated', redirectTo: '/auth/discord' });
+      return res.status(401).json({ error: 'Not authenticated', redirectTo: `/auth/discord?returnTo=${returnTo}` });
     }
-    return res.redirect('/auth/discord');
+    return res.redirect(`/auth/discord?returnTo=${returnTo}`);
   }
   next();
 }
@@ -506,7 +509,13 @@ const escapeHtml = (unsafe) => {
 // ========== ROUTES D'AUTHENTIFICATION DISCORD ==========
 
 // Démarrer l'authentification Discord
-app.get('/auth/discord', passport.authenticate('discord'));
+app.get('/auth/discord', (req, res, next) => {
+  // Sauvegarder la page d'où vient l'utilisateur pour rediriger après auth
+  if (req.query.returnTo) {
+    req.session.returnTo = req.query.returnTo;
+  }
+  passport.authenticate('discord')(req, res, next);
+});
 
 // Callback après authentification Discord
 app.get('/auth/discord/callback',
@@ -530,7 +539,15 @@ app.get('/auth/discord/callback',
         
         console.log('[Auth] ✅ Session saved successfully!');
         
-        // Redirection selon le rôle
+        // Si returnTo existe, rediriger là-bas (priorité absolue)
+        if (req.session.returnTo) {
+          const returnTo = req.session.returnTo;
+          delete req.session.returnTo; // Nettoyer après utilisation
+          console.log('[Auth] 🎯 Redirecting to returnTo:', returnTo);
+          return res.redirect(returnTo);
+        }
+        
+        // Sinon, redirection selon le rôle (par défaut)
         if (roles.hasStaffRole) {
           console.log('[Auth] 🎯 Redirecting to /staff');
           res.redirect('/staff');
