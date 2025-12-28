@@ -58,6 +58,12 @@ function GetPlayerData(playerId)
         if Player and Player.PlayerData then
             local pd = Player.PlayerData
             
+            -- Récupérer l'entité du ped pour les stats en temps réel
+            local ped = GetPlayerPed(playerId)
+            local health = GetEntityHealth(ped)
+            local maxHealth = GetEntityMaxHealth(ped)
+            local armor = GetPedArmour(ped)
+            
             return {
                 discordId = defaultData.discordId,
                 citizenid = pd.citizenid or nil,
@@ -65,7 +71,8 @@ function GetPlayerData(playerId)
                     firstname = pd.charinfo and pd.charinfo.firstname or "Unknown",
                     lastname = pd.charinfo and pd.charinfo.lastname or "Player",
                     phone = pd.charinfo and pd.charinfo.phone or "N/A",
-                    birthdate = pd.charinfo and pd.charinfo.birthdate or "N/A"
+                    birthdate = pd.charinfo and pd.charinfo.birthdate or "N/A",
+                    gender = pd.charinfo and pd.charinfo.gender or 0  -- 0 = homme, 1 = femme
                 },
                 job = {
                     name = pd.job and pd.job.name or "unemployed",
@@ -80,9 +87,19 @@ function GetPlayerData(playerId)
                     bank = pd.money and pd.money.bank or 0
                 },
                 position = {
-                    x = math.floor(GetEntityCoords(GetPlayerPed(playerId)).x),
-                    y = math.floor(GetEntityCoords(GetPlayerPed(playerId)).y),
-                    z = math.floor(GetEntityCoords(GetPlayerPed(playerId)).z)
+                    x = math.floor(GetEntityCoords(ped).x),
+                    y = math.floor(GetEntityCoords(ped).y),
+                    z = math.floor(GetEntityCoords(ped).z)
+                },
+                metadata = {
+                    hunger = pd.metadata and pd.metadata.hunger or 100,
+                    thirst = pd.metadata and pd.metadata.thirst or 100,
+                    stress = pd.metadata and pd.metadata.stress or 0,
+                    health = health,
+                    maxHealth = maxHealth,
+                    armor = armor,
+                    isdead = pd.metadata and pd.metadata.isdead or false,
+                    inlaststand = pd.metadata and pd.metadata.inlaststand or false
                 },
                 vehicles = {} -- Véhicules chargés depuis la DB plus tard si besoin
             }

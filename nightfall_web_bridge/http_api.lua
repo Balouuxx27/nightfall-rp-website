@@ -6,7 +6,7 @@
 
 local SECRET = "7eaee28859e8fdc081956912cae6a2fb7bd90918dc605a09f3d505b1b795788f"
 
--- Route HTTP: /player?discordId=XXXXX
+-- Route HTTP: /player?discordId=XXXXX OU /all-players
 SetHttpHandler(function(req, res)
     -- Vérifier la méthode
     if req.method ~= 'GET' then
@@ -25,16 +25,61 @@ SetHttpHandler(function(req, res)
     
     -- Parser l'URL
     local path = req.path or ''
-    local discordId = nil
     
-    -- Extraire le discordId depuis /player?discordId=XXXXX
+    -- ROUTE 1: /all-players - Récupérer tous les joueurs
+    if path == '/all-players' or string.match(path, '^/all%-players%?') then
+        print("^3[Nightfall API] Récupération de tous les joueurs^0")
+        
+        MySQL.Async.fetchAll('SELECT citizenid, charinfo, job, money, last_updated FROM players ORDER BY last_updated DESC LIMIT 200', {}, function(playersData)
+            if not playersData or #playersData == 0 then
+                res.writeHead(200, { ['Content-Type'] = 'application/json' })
+                res.send(json.encode({ players = {}, count = 0 }))
+                return
+            end
+            
+            local players = {}
+            for _, row in ipairs(playersData) do
+                local charinfo = json.decode(row.charinfo or '{}')
+                local job = json.decode(row.job or '{}')
+                local money = json.decode(row.money or '{}')
+                
+                table.insert(players, {
+                    citizenid = row.citizenid,
+                    firstname = charinfo.firstname or 'Unknown',
+                    lastname = charinfo.lastname or 'Player',
+                    phone = charinfo.phone or 'N/A',
+                    birthdate = charinfo.birthdate or 'N/A',
+                    gender = charinfo.gender or 0,
+                    job = {
+                        name = job.name or 'unemployed',
+                        label = job.label or 'Sans emploi',
+                        grade = job.grade or { name = '0', level = 0 }
+                    },
+                    money = {
+                        cash = money.cash or 0,
+                        bank = money.bank or 0
+                    },
+                    last_updated = row.last_updated
+                })
+            end
+            
+            print("^2[Nightfall API] " .. #players .. " joueurs envoyés^0")
+            
+            res.writeHead(200, { ['Content-Type'] = 'application/json' })
+            res.send(json.encode({ players = players, count = #players }))
+        end)
+        return
+    end
+    
+    -- ROUTE 2: /player?discordId=XXXXX - Récupérer un joueur spécifique
+    local discordId = nil
     if string.match(path, '^/player%?discordId=') then
         discordId = string.match(path, 'discordId=([^&]+)')
     end
     
     if not discordId then
         res.writeHead(400, { ['Content-Type'] = 'application/json' })
-        res.send(json.encode({ error = 'Discord ID required' }))
+        res.send(json.encode({ error = 'Discord ID required or use /all-players' }))
         return
     end
     
@@ -80,8 +125,9 @@ SetHttpHandler(function(req, res)
                 local job = json.decode(row.job or '{}')
                 local money = json.decode(row.money or '{}')
                 local position = json.decode(row.position or '{}')
+                local metadata = json.decode(row.metadata or '{}')
                 
-                -- Construire la réponse
+                -- Construire la réponse complète avec métadonnées
                 local response = {
                     discordId = discordId,
                     citizenid = row.citizenid,
@@ -89,6 +135,16 @@ SetHttpHandler(function(req, res)
                     job = job,
                     money = money,
                     position = position,
+                    metadata = {
+                        hunger = metadata.hunger or 100,
+                        thirst = metadata.thirst or 100,
+                        stress = metadata.stress or 0,
+                        health = metadata.health or 200,
+                        maxHealth = 200,
+                        armor = metadata.armor or 0,
+                        isdead = metadata.isdead or false,
+                        inlaststand = metadata.inlaststand or false
+                    },
                     vehicles = vehicles or {},
                     lastUpdated = row.last_updated,
                     source = 'database'
@@ -104,4 +160,6 @@ SetHttpHandler(function(req, res)
 end)
 
 print("^2[Nightfall API] HTTP Handler enregistré^0")
-print("^2[Nightfall API] Route: GET /player?discordId=XXXXX^0")
+print("^2[Nightfall API] Routes disponibles:^0")
+print("^2[Nightfall API]   - GET /player?discordId=XXXXX^0")
+print("^2[Nightfall API]   - GET /all-players^0")

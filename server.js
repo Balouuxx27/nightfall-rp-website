@@ -799,6 +799,88 @@ app.get('/api/staff/search',
   }
 );
 
+// Staff: search ALL players from database (nécessite rôle staff) - Requête vers FiveM bridge
+app.get('/api/staff/search-db',
+  requireDiscordAuth,
+  requireStaffRole,
+  [
+    query('q').optional().isString().trim().isLength({ max: 100 }),
+    query('limit').optional().isInt({ min: 1, max: 200 })
+  ],
+  handleValidationErrors,
+  async (req, res) => {
+    try {
+      const fivemServerIp = config.fivemServerIp;
+      
+      if (!fivemServerIp || !config.fivemSecret) {
+        return res.status(503).json({
+          error: 'FiveM server not configured',
+          message: 'Le serveur FiveM n\'est pas configuré. Contacte un administrateur.'
+        });
+      }
+
+      const fivemUrl = `http://${fivemServerIp}/all-players`;
+      
+      console.log('[API Search DB] Fetching all players from FiveM...');
+      
+      const response = await axios.get(fivemUrl, {
+        headers: {
+          'x-nightfall-secret': config.fivemSecret
+        },
+        timeout: 10000
+      });
+
+      let players = response.data.players || [];
+      
+      console.log(`[API Search DB] Received ${players.length} players from FiveM`);
+      
+      // Filtrer par query si présente
+      const queryStr = String(req.query.q || '').trim().toLowerCase();
+      if (queryStr) {
+        players = players.filter(p => {
+          const firstname = (p.firstname || '').toLowerCase();
+          const lastname = (p.lastname || '').toLowerCase();
+          const citizenid = (p.citizenid || '').toLowerCase();
+          const phone = (p.phone || '').toLowerCase();
+          
+          return firstname.includes(queryStr) || 
+                 lastname.includes(queryStr) || 
+                 citizenid.includes(queryStr) || 
+                 phone.includes(queryStr);
+        });
+      }
+      
+      // Limiter le nombre de résultats
+      const limit = Math.min(parseInt(req.query.limit) || 100, 200);
+      players = players.slice(0, limit);
+
+      const formattedPlayers = players.map(p => ({
+        citizenid: escapeHtml(p.citizenid),
+        firstname: escapeHtml(p.firstname || 'Unknown'),
+        lastname: escapeHtml(p.lastname || 'Player'),
+        phone: escapeHtml(p.phone || 'N/A'),
+        birthdate: escapeHtml(p.birthdate || 'N/A'),
+        gender: parseInt(p.gender) || 0,
+        job: {
+          name: escapeHtml(p.job?.name || 'unemployed'),
+          label: escapeHtml(p.job?.label || 'Sans emploi'),
+          grade: escapeHtml(p.job?.grade?.name || '0')
+        },
+        money: {
+          cash: parseInt(p.money?.cash) || 0,
+          bank: parseInt(p.money?.bank) || 0
+        },
+        last_updated: p.last_updated
+      }));
+
+      res.json({ players: formattedPlayers, count: formattedPlayers.length, source: 'database' });
+    } catch (err) {
+      console.error('[API Search DB] Error:', err.message);
+      res.status(500).json({ error: 'Database search error', message: err.message });
+    }
+  }
+);
+
 // Staff: get specific player details (nécessite rôle staff) - Utilise le cache FiveM
 app.get('/api/staff/player/:citizenid',
   requireDiscordAuth,
@@ -1002,7 +1084,8 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
           firstname: escapeHtml(charinfo.firstname || "Unknown"),
           lastname: escapeHtml(charinfo.lastname || "Player"),
           phone: escapeHtml(charinfo.phone || "N/A"),
-          birthdate: escapeHtml(charinfo.birthdate || "N/A")
+          birthdate: escapeHtml(charinfo.birthdate || "N/A"),
+          gender: parseInt(charinfo.gender) || 0
         },
         job: {
           name: escapeHtml(jobData.name || "unemployed"),
@@ -1015,6 +1098,16 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
         money: {
           cash: parseInt(money.cash) || 0,
           bank: parseInt(money.bank) || 0
+        },
+        metadata: player.metadata || {
+          hunger: 100,
+          thirst: 100,
+          stress: 0,
+          health: 200,
+          maxHealth: 200,
+          armor: 0,
+          isdead: false,
+          inlaststand: false
         },
         position: position,
         vehicles: vehicles.map(v => ({
@@ -1069,6 +1162,7 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
       const job = data.job || {};
       const money = data.money || {};
       const position = data.position || {};
+      const metadata = data.metadata || {};
       const vehicles = data.vehicles || [];
 
       res.json({
@@ -1077,7 +1171,8 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
           firstname: escapeHtml(charinfo.firstname || "Unknown"),
           lastname: escapeHtml(charinfo.lastname || "Player"),
           phone: escapeHtml(charinfo.phone || "N/A"),
-          birthdate: escapeHtml(charinfo.birthdate || "N/A")
+          birthdate: escapeHtml(charinfo.birthdate || "N/A"),
+          gender: parseInt(charinfo.gender) || 0
         },
         job: {
           name: escapeHtml(job.name || "unemployed"),
@@ -1090,6 +1185,16 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
         money: {
           cash: parseInt(money.cash) || 0,
           bank: parseInt(money.bank) || 0
+        },
+        metadata: {
+          hunger: parseFloat(metadata.hunger) || 100,
+          thirst: parseFloat(metadata.thirst) || 100,
+          stress: parseFloat(metadata.stress) || 0,
+          health: parseInt(metadata.health) || 200,
+          maxHealth: parseInt(metadata.maxHealth) || 200,
+          armor: parseInt(metadata.armor) || 0,
+          isdead: Boolean(metadata.isdead),
+          inlaststand: Boolean(metadata.inlaststand)
         },
         position: position,
         vehicles: vehicles.map(v => ({

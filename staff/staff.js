@@ -363,35 +363,40 @@
     try {
       searchResults.innerHTML = '<div class="no-results">🔍 Chargement des joueurs...</div>';
       
-      // Si query vide, charger tous les joueurs (limite 50)
-      const url = query ? `../api/staff/search?q=${encodeURIComponent(query)}&limit=20` : '../api/staff/search?limit=50';
+      // Utiliser la route /search-db pour récupérer TOUS les joueurs de la base de données
+      const url = query ? `../api/staff/search-db?q=${encodeURIComponent(query)}&limit=50` : '../api/staff/search-db?limit=100';
       const data = await api(url);
       const players = data?.players || [];
       
       if (players.length === 0) {
-        searchResults.innerHTML = '<div class="no-results">❌ Aucun joueur trouvé</div>';
+        searchResults.innerHTML = '<div class="no-results">❌ Aucun joueur trouvé dans la base de données</div>';
         return;
+      }
+      
+      // Afficher la source des données
+      if (data.source === 'database') {
+        console.log(`[Staff] Loaded ${players.length} players from database`);
       }
       
       displaySearchResults(players);
     } catch (error) {
       console.error('Search error:', error);
-      searchResults.innerHTML = '<div class="no-results">❌ Erreur lors de la recherche</div>';
+      searchResults.innerHTML = '<div class="no-results">❌ Erreur lors de la recherche. Vérifiez que le serveur FiveM est accessible.</div>';
     }
   }
 
   function displaySearchResults(players) {
     searchResults.innerHTML = players.map(player => {
-      const job = player.job_name || 'unemployed';
-      const jobLabel = player.job_label || 'Sans emploi';
-      const grade = player.job_grade || 0;
-      const gradeLabel = player.job_grade_label || '';
+      const job = player.job || {};
+      const jobLabel = job.label || 'Sans emploi';
+      const gradeLabel = job.grade || '';
+      const money = player.money || {};
       
       return `
         <div class="player-card" data-citizenid="${escapeHtml(player.citizenid)}">
           <div class="player-card__header">
             <h3>${escapeHtml(player.firstname)} ${escapeHtml(player.lastname)}</h3>
-            <span class="job-badge">${escapeHtml(jobLabel)} ${gradeLabel ? `(${escapeHtml(gradeLabel)})` : ''}</span>
+            <span class="job-badge">${escapeHtml(jobLabel)}${gradeLabel ? ` (${escapeHtml(gradeLabel)})` : ''}</span>
           </div>
           <div class="player-card__info">
             <div class="info-item">
@@ -404,15 +409,15 @@
             </div>
             <div class="info-item">
               <span class="info-label">💵 Liquide</span>
-              <span class="money-badge cash">${formatMoney(player.money_cash)}</span>
+              <span class="money-badge cash">${formatMoney(money.cash || 0)}</span>
             </div>
             <div class="info-item">
               <span class="info-label">🏦 Banque</span>
-              <span class="money-badge bank">${formatMoney(player.money_bank)}</span>
+              <span class="money-badge bank">${formatMoney(money.bank || 0)}</span>
             </div>
             <div class="info-item">
               <span class="info-label">📅 Dernière connexion</span>
-              <span class="info-value">${formatDate(player.last_updated)}</span>
+              <span class="info-value">${formatDate(player.last_updated || player.lastUpdated)}</span>
             </div>
           </div>
           <button class="btn btn-primary btn-sm" onclick="viewPlayerDetails('${escapeHtml(player.citizenid)}')">

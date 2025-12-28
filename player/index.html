@@ -5,228 +5,202 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mon Profil - Nightfall RP</title>
   <link rel="stylesheet" href="/assets/css/styles.css">
-  <style>
-    .player-container {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      padding: 40px 20px;
-    }
-
-    .player-header {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
-      padding: 30px;
-      margin-bottom: 30px;
-      text-align: center;
-      color: white;
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    }
-
-    .discord-avatar {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      border: 4px solid rgba(255, 255, 255, 0.5);
-      margin-bottom: 15px;
-    }
-
-    .player-content {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .info-card {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
-      padding: 25px;
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    }
-
-    .info-card h3 {
-      color: #667eea;
-      margin-bottom: 20px;
-      font-size: 1.5em;
-      border-bottom: 2px solid #667eea;
-      padding-bottom: 10px;
-    }
-
-    .info-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 12px 0;
-      border-bottom: 1px solid #eee;
-    }
-
-    .info-row:last-child {
-      border-bottom: none;
-    }
-
-    .info-label {
-      font-weight: 600;
-      color: #555;
-    }
-
-    .info-value {
-      color: #333;
-      text-align: right;
-    }
-
-    .money-display {
-      font-size: 1.8em;
-      font-weight: bold;
-      color: #27ae60;
-      text-align: center;
-      padding: 20px;
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-      border-radius: 10px;
-      margin: 15px 0;
-    }
-
-    .logout-btn {
-      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-      color: white;
-      border: none;
-      padding: 12px 30px;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: 1em;
-      font-weight: 600;
-      transition: transform 0.2s;
-      margin-top: 20px;
-    }
-
-    .logout-btn:hover {
-      transform: scale(1.05);
-    }
-
-    .loading {
-      text-align: center;
-      color: white;
-      font-size: 1.5em;
-      padding: 50px;
-    }
-
-    .error {
-      background: rgba(255, 68, 68, 0.9);
-      color: white;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      max-width: 600px;
-      margin: 50px auto;
-    }
-
-    .job-badge {
-      display: inline-block;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 5px 15px;
-      border-radius: 20px;
-      font-size: 0.9em;
-      font-weight: 600;
-    }
-
-    .vehicle-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .vehicle-item {
-      background: #f8f9fa;
-      padding: 12px;
-      border-radius: 8px;
-      margin-bottom: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .vehicle-name {
-      font-weight: 600;
-      color: #667eea;
-    }
-
-    .vehicle-plate {
-      background: #333;
-      color: white;
-      padding: 4px 10px;
-      border-radius: 5px;
-      font-family: monospace;
-      font-size: 0.9em;
-    }
-  </style>
 </head>
 <body>
-  <div class="player-container">
-    <div id="loading" class="loading">
-      <p>🔒 Chargement de votre profil...</p>
+  <!-- Topbar -->
+  <div class="topbar">
+    <a href="/" class="brand">
+      <div class="brand__mark"></div>
+      <div class="brand__text">
+        <div class="brand__name">Nightfall RP</div>
+        <div class="brand__sub">Mon Profil</div>
+      </div>
+    </a>
+    <nav class="nav">
+      <a href="/">Accueil</a>
+      <a href="/player">Profil</a>
+      <button class="btn btn--ghost" onclick="logout()">🚪 Se déconnecter</button>
+    </nav>
+  </div>
+
+  <main>
+    <!-- Loading -->
+    <div id="loading" style="text-align: center; padding: 80px 20px;">
+      <div class="pill">
+        <span>🔒 Chargement de votre profil...</span>
+      </div>
     </div>
 
-    <div id="error" class="error" style="display: none;"></div>
-
-    <div id="player-profile" style="display: none;">
-      <div class="player-header">
-        <img id="discord-avatar" class="discord-avatar" src="" alt="Avatar Discord">
-        <h1 id="discord-username">Chargement...</h1>
-        <p id="character-name" style="font-size: 1.2em; margin: 10px 0;"></p>
-        <button class="logout-btn" onclick="logout()">🚪 Se déconnecter</button>
+    <!-- Error -->
+    <div id="error" style="display: none; text-align: center; padding: 80px 20px;">
+      <div style="background: rgba(255,77,109,.15); border: 1px solid rgba(255,77,109,.30); border-radius: 24px; padding: 40px; max-width: 600px; margin: 0 auto;">
+        <h2 style="color: #ff4d6d; margin-bottom: 16px;">❌ Erreur</h2>
+        <p id="error-message" style="color: var(--muted);"></p>
       </div>
+    </div>
 
-      <div class="player-content">
-        <!-- Informations personnage -->
-        <div class="info-card">
-          <h3>👤 Informations Personnage</h3>
-          <div class="info-row">
-            <span class="info-label">Citizen ID:</span>
-            <span class="info-value" id="citizenid">-</span>
+    <!-- Player Profile -->
+    <div id="player-profile" style="display: none;">
+      <!-- Hero avec Avatar et nom -->
+      <section class="hero hero--styled">
+        <div style="text-align: center; padding: 20px;">
+          <div style="display: inline-block; position: relative;">
+            <img id="discord-avatar" style="width: 120px; height: 120px; border-radius: 50%; border: 4px solid rgba(183,148,255,.5); box-shadow: 0 0 40px rgba(183,148,255,.4);" src="" alt="Avatar">
+            <div id="gender-icon" style="position: absolute; bottom: 5px; right: 5px; width: 40px; height: 40px; background: rgba(255,255,255,.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; border: 3px solid rgba(183,148,255,.6); box-shadow: 0 4px 12px rgba(0,0,0,.25);"></div>
           </div>
-          <div class="info-row">
-            <span class="info-label">Prénom:</span>
-            <span class="info-value" id="firstname">-</span>
+          <h1 id="character-name" class="hero__title" style="margin-top: 20px; font-size: 42px;">Chargement...</h1>
+          <p id="discord-username" style="color: var(--muted); font-size: 18px; margin-top: 10px;"></p>
+          <div id="online-status" style="margin-top: 15px;"></div>
+        </div>
+      </section>
+
+      <!-- Grid des cartes -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 32px;">
+        
+        <!-- Informations Personnage -->
+        <div class="card">
+          <div class="card__top">
+            <div>
+              <div class="card__title">👤 Informations Personnage</div>
+            </div>
           </div>
-          <div class="info-row">
-            <span class="info-label">Nom:</span>
-            <span class="info-value" id="lastname">-</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Téléphone:</span>
-            <span class="info-value" id="phone">-</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Métier:</span>
-            <span class="info-value" id="job">-</span>
+          <div class="card__body">
+            <div class="kv">
+              <div class="kv__k">Citizen ID:</div>
+              <div class="kv__v" id="citizenid">-</div>
+            </div>
+            <div class="kv">
+              <div class="kv__k">Prénom:</div>
+              <div class="kv__v" id="firstname">-</div>
+            </div>
+            <div class="kv">
+              <div class="kv__k">Nom:</div>
+              <div class="kv__v" id="lastname">-</div>
+            </div>
+            <div class="kv">
+              <div class="kv__k">Téléphone:</div>
+              <div class="kv__v" id="phone">-</div>
+            </div>
+            <div class="kv">
+              <div class="kv__k">Date de naissance:</div>
+              <div class="kv__v" id="birthdate">-</div>
+            </div>
+            <div class="kv">
+              <div class="kv__k">Métier:</div>
+              <div class="kv__v" id="job">-</div>
+            </div>
           </div>
         </div>
 
         <!-- Argent -->
-        <div class="info-card">
-          <h3>💰 Argent</h3>
-          <div class="info-row">
-            <span class="info-label">💵 Liquide:</span>
-            <span class="info-value money-display" id="cash" style="font-size: 1.2em;">-</span>
+        <div class="card">
+          <div class="card__top">
+            <div>
+              <div class="card__title">💰 Argent</div>
+            </div>
           </div>
-          <div class="info-row">
-            <span class="info-label">🏦 Banque:</span>
-            <span class="info-value money-display" id="bank" style="font-size: 1.2em;">-</span>
+          <div class="card__body">
+            <div class="kv">
+              <div class="kv__k">💵 Liquide:</div>
+              <div class="kv__v" id="cash" style="color: #27ae60; font-size: 18px; font-weight: 800;">-</div>
+            </div>
+            <div class="kv">
+              <div class="kv__k">🏦 Banque:</div>
+              <div class="kv__v" id="bank" style="color: #27ae60; font-size: 18px; font-weight: 800;">-</div>
+            </div>
+            <div style="margin-top: 20px; padding: 20px; background: linear-gradient(135deg, rgba(183,148,255,.15), rgba(53,209,255,.12)); border-radius: 16px; text-align: center;">
+              <div style="font-size: 14px; color: var(--muted2); margin-bottom: 8px;">Total:</div>
+              <div id="total-money" style="font-size: 32px; font-weight: 900; color: #27ae60;">-</div>
+            </div>
           </div>
-          <div class="money-display" id="total-money">Total: -</div>
         </div>
 
-        <!-- Véhicules -->
-        <div class="info-card" style="grid-column: 1 / -1;">
-          <h3>🚗 Mes Véhicules</h3>
-          <ul id="vehicle-list" class="vehicle-list">
-            <li style="text-align: center; color: #999;">Chargement...</li>
-          </ul>
+        <!-- Stats de santé -->
+        <div class="card">
+          <div class="card__top">
+            <div>
+              <div class="card__title">❤️ Santé & Status</div>
+            </div>
+          </div>
+          <div class="card__body">
+            <div class="kv">
+              <div class="kv__k">❤️ Vie:</div>
+              <div class="kv__v">
+                <div id="health-bar" style="width: 150px; height: 20px; background: rgba(255,77,109,.2); border-radius: 10px; overflow: hidden; position: relative;">
+                  <div id="health-fill" style="height: 100%; background: linear-gradient(90deg, #ff4d6d, #ff758f); transition: width 0.3s;"></div>
+                  <div id="health-text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 11px; font-weight: 700; color: white; text-shadow: 0 1px 2px rgba(0,0,0,.5);"></div>
+                </div>
+              </div>
+            </div>
+            <div class="kv">
+              <div class="kv__k">🛡️ Armure:</div>
+              <div class="kv__v">
+                <div id="armor-bar" style="width: 150px; height: 20px; background: rgba(53,209,255,.2); border-radius: 10px; overflow: hidden; position: relative;">
+                  <div id="armor-fill" style="height: 100%; background: linear-gradient(90deg, #35d1ff, #5de0ff); transition: width 0.3s;"></div>
+                  <div id="armor-text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 11px; font-weight: 700; color: white; text-shadow: 0 1px 2px rgba(0,0,0,.5);"></div>
+                </div>
+              </div>
+            </div>
+            <div class="kv">
+              <div class="kv__k">🍔 Faim:</div>
+              <div class="kv__v">
+                <div id="hunger-bar" style="width: 150px; height: 20px; background: rgba(255,165,0,.2); border-radius: 10px; overflow: hidden; position: relative;">
+                  <div id="hunger-fill" style="height: 100%; background: linear-gradient(90deg, #ff8c00, #ffa500); transition: width 0.3s;"></div>
+                  <div id="hunger-text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 11px; font-weight: 700; color: white; text-shadow: 0 1px 2px rgba(0,0,0,.5);"></div>
+                </div>
+              </div>
+            </div>
+            <div class="kv">
+              <div class="kv__k">💧 Soif:</div>
+              <div class="kv__v">
+                <div id="thirst-bar" style="width: 150px; height: 20px; background: rgba(30,144,255,.2); border-radius: 10px; overflow: hidden; position: relative;">
+                  <div id="thirst-fill" style="height: 100%; background: linear-gradient(90deg, #1e90ff, #4169e1); transition: width 0.3s;"></div>
+                  <div id="thirst-text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 11px; font-weight: 700; color: white; text-shadow: 0 1px 2px rgba(0,0,0,.5);"></div>
+                </div>
+              </div>
+            </div>
+            <div class="kv">
+              <div class="kv__k">😰 Stress:</div>
+              <div class="kv__v">
+                <div id="stress-bar" style="width: 150px; height: 20px; background: rgba(138,43,226,.2); border-radius: 10px; overflow: hidden; position: relative;">
+                  <div id="stress-fill" style="height: 100%; background: linear-gradient(90deg, #8a2be2, #9370db); transition: width 0.3s;"></div>
+                  <div id="stress-text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 11px; font-weight: 700; color: white; text-shadow: 0 1px 2px rgba(0,0,0,.5);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Véhicules (pleine largeur) -->
+      <div class="card" style="margin-top: 24px;">
+        <div class="card__top">
+          <div>
+            <div class="card__title">🚗 Mes Véhicules</div>
+            <div class="card__muted" id="vehicle-count">Chargement...</div>
+          </div>
+        </div>
+        <div class="card__body">
+          <div id="vehicle-list" style="display: grid; gap: 12px;">
+            <div style="text-align: center; color: var(--muted); padding: 20px;">Chargement...</div>
+          </div>
         </div>
       </div>
+
     </div>
-  </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div>© 2025 Nightfall RP. Tous droits réservés.</div>
+      <div class="footer__links">
+        <a href="/">Accueil</a>
+        <a href="/reglement">Règlement</a>
+        <a href="/guides">Guides</a>
+      </div>
+    </div>
+  </footer>
 
   <script src="/player/player.js"></script>
 </body>
