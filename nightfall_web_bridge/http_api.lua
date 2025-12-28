@@ -43,11 +43,20 @@ SetHttpHandler(function(req, res)
                 local job = json.decode(row.job or '{}')
                 local money = json.decode(row.money or '{}')
                 
+                -- Récupérer téléphone depuis lb-phone
+                local phoneResult = MySQL.Sync.fetchAll('SELECT phone_number FROM phone_phones WHERE id = @citizenid LIMIT 1', {
+                    ['@citizenid'] = row.citizenid
+                })
+                local phoneNumber = 'N/A'
+                if phoneResult and #phoneResult > 0 then
+                    phoneNumber = phoneResult[1].phone_number
+                end
+                
                 table.insert(players, {
                     citizenid = row.citizenid,
                     firstname = charinfo.firstname or 'Unknown',
                     lastname = charinfo.lastname or 'Player',
-                    phone = charinfo.phone or 'N/A',
+                    phone = phoneNumber,
                     birthdate = charinfo.birthdate or 'N/A',
                     gender = charinfo.gender or 0,
                     job = {
@@ -116,6 +125,15 @@ SetHttpHandler(function(req, res)
             
             print("^2[Nightfall API] Personnage trouvé: " .. row.citizenid .. "^0")
             
+            -- Récupérer le téléphone depuis lb-phone
+            local phoneNumber = nil
+            local phoneResult = MySQL.Sync.fetchAll('SELECT phone_number FROM phone_phones WHERE id = @citizenid LIMIT 1', {
+                ['@citizenid'] = row.citizenid
+            })
+            if phoneResult and #phoneResult > 0 then
+                phoneNumber = phoneResult[1].phone_number
+            end
+            
             -- Récupérer les véhicules
             MySQL.Async.fetchAll('SELECT vehicle, plate, state, engine, body FROM player_vehicles WHERE citizenid = @citizenid ORDER BY vehicle ASC', {
                 ['@citizenid'] = row.citizenid
@@ -126,6 +144,11 @@ SetHttpHandler(function(req, res)
                 local money = json.decode(row.money or '{}')
                 local position = json.decode(row.position or '{}')
                 local metadata = json.decode(row.metadata or '{}')
+                
+                -- Remplacer le téléphone par celui de lb-phone
+                if phoneNumber then
+                    charinfo.phone = phoneNumber
+                end
                 
                 -- Construire la réponse complète avec métadonnées
                 local response = {

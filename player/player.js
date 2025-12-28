@@ -102,8 +102,9 @@ function displayPlayerData(user, playerData) {
   
   // Métier
   const job = playerData.job || {};
+  const jobGrade = job.grade || {};
   const jobDisplay = job.label 
-    ? `${escapeHtml(job.label)} - ${escapeHtml(job.grade?.name || '')}`
+    ? `${escapeHtml(job.label)} - ${escapeHtml(jobGrade.name || 'Grade 0')}`
     : 'Sans emploi';
   document.getElementById('job').innerHTML = `<span class="badge">${jobDisplay}</span>`;
   

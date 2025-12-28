@@ -64,13 +64,24 @@ function GetPlayerData(playerId)
             local maxHealth = GetEntityMaxHealth(ped)
             local armor = GetPedArmour(ped)
             
+            -- Récupérer le téléphone depuis lb-phone
+            local phoneNumber = pd.charinfo and pd.charinfo.phone or "N/A"
+            if pd.citizenid then
+                local phoneResult = MySQL.Sync.fetchAll('SELECT phone_number FROM phone_phones WHERE id = @citizenid LIMIT 1', {
+                    ['@citizenid'] = pd.citizenid
+                })
+                if phoneResult and #phoneResult > 0 then
+                    phoneNumber = phoneResult[1].phone_number
+                end
+            end
+            
             return {
                 discordId = defaultData.discordId,
                 citizenid = pd.citizenid or nil,
                 charinfo = {
                     firstname = pd.charinfo and pd.charinfo.firstname or "Unknown",
                     lastname = pd.charinfo and pd.charinfo.lastname or "Player",
-                    phone = pd.charinfo and pd.charinfo.phone or "N/A",
+                    phone = phoneNumber,
                     birthdate = pd.charinfo and pd.charinfo.birthdate or "N/A",
                     gender = pd.charinfo and pd.charinfo.gender or 0  -- 0 = homme, 1 = femme
                 },
