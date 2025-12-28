@@ -537,6 +537,7 @@ app.get('/auth/discord/callback',
         }
         
         console.log('[Auth] ✅ Session saved successfully!');
+        console.log('[Auth] 🔍 Checking returnTo:', req.session.returnTo);
         
         // Si returnTo existe, rediriger là-bas (priorité ABSOLUE)
         if (req.session.returnTo) {
