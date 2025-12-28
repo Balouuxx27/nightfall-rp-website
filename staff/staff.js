@@ -121,13 +121,13 @@
   function gtaToMap({ x, y }) {
     // Image: map gta.jpg (5944x8075 pixels)
     // Coordonnées finales ajustées
-    // Y: -4000 à +8200 (12200 unités)
-    // X: -3800 à +5050 (8850 unités)
+    // Y: -4000 à +8300 (12300 unités)
+    // X: -3800 à +5075 (8875 unités)
     
     const minX = -3800;
-    const maxX = 5050;
+    const maxX = 5075;
     const minY = -4000;
-    const maxY = 8200;
+    const maxY = 8300;
     
     const mapWidth = 5944;
     const mapHeight = 8075;
