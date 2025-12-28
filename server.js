@@ -1109,7 +1109,8 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
     });
   } catch (err) {
     console.error('[API Player] Error:', err.message);
-    res.status(500).json({ error: 'Database error' });
+    console.error('[API Player] Stack:', err.stack);
+    res.status(500).json({ error: 'Database error', details: err.message });
   }
 });
 

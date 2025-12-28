@@ -341,17 +341,18 @@
   const searchResults = document.getElementById('search-results');
   let searchTimeout;
 
+  // Charger automatiquement tous les joueurs au démarrage
+  if (searchResults) {
+    searchPlayers('');
+  }
+
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
       const query = e.target.value.trim();
       
       clearTimeout(searchTimeout);
       
-      if (query.length < 2) {
-        searchResults.innerHTML = '<div class="no-results">Entrez au moins 2 caractères pour rechercher</div>';
-        return;
-      }
-      
+      // Permettre la recherche même sans query (affiche tout)
       searchTimeout = setTimeout(() => {
         searchPlayers(query);
       }, 300);
@@ -360,9 +361,11 @@
 
   async function searchPlayers(query) {
     try {
-      searchResults.innerHTML = '<div class="no-results">🔍 Recherche en cours...</div>';
+      searchResults.innerHTML = '<div class="no-results">🔍 Chargement des joueurs...</div>';
       
-      const data = await api(`../api/staff/search?q=${encodeURIComponent(query)}&limit=20`);
+      // Si query vide, charger tous les joueurs (limite 50)
+      const url = query ? `../api/staff/search?q=${encodeURIComponent(query)}&limit=20` : '../api/staff/search?limit=50';
+      const data = await api(url);
       const players = data?.players || [];
       
       if (players.length === 0) {
