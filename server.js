@@ -235,7 +235,7 @@ if (discordConfigured) {
   });
 
   passport.deserializeUser((obj, done) => {
-    console.log('[Passport] 🔓 Deserializing user:', obj.id);
+    // Désérialisation silencieuse (trop verbeux)
     done(null, obj);
   });
 } else {
