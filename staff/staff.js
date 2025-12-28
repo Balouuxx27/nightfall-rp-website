@@ -119,21 +119,22 @@
   }
 
   function gtaToMap({ x, y }) {
-    // COORDONNÉES OFFICIELLES GTA V VÉRIFIÉES:
-    // X: -4000 à +4000 (8000 unités de largeur)
-    // Y: -4000 à +8000 (12000 unités de hauteur)
-    // Image: 2048x2048 pixels
+    // Nouvelle image: map gta.jpg (5944x8075 pixels)
+    // Coordonnées GTA V officielles:
+    // X: -4000 à +4000 (8000 unités)
+    // Y: -4000 à +8000 (12000 unités)
     
     const minX = -4000;
     const maxX = 4000;
     const minY = -4000;
     const maxY = 8000;
     
-    const size = 2048;
+    const mapWidth = 5944;
+    const mapHeight = 8075;
     
-    // Conversion avec inversion Y (Leaflet Y va vers le bas, GTA Y va vers le haut)
-    const mapX = ((x - minX) / (maxX - minX)) * size;
-    const mapY = size - ((y - minY) / (maxY - minY)) * size;
+    // Conversion proportionnelle avec inversion Y
+    const mapX = ((x - minX) / (maxX - minX)) * mapWidth;
+    const mapY = mapHeight - ((y - minY) / (maxY - minY)) * mapHeight;
     
     return [mapY, mapX]; // Leaflet Simple CRS uses [lat, lng]
   }
@@ -142,9 +143,10 @@
     const mapEl = document.getElementById('map');
     if (!mapEl) return;
 
-    // Carte carrée 2048x2048
-    const size = 2048;
-    const bounds = [[0, 0], [size, size]];
+    // Nouvelle image map gta.jpg: 5944x8075 pixels
+    const width = 5944;
+    const height = 8075;
+    const bounds = [[0, 0], [height, width]];
 
     const map = L.map('map', {
       crs: L.CRS.Simple,
@@ -160,39 +162,41 @@
     // Charger l'image et l'ajouter à la carte
     const img = new Image();
     img.onload = () => {
-      L.imageOverlay('../assets/img/gta-map.jpg', bounds, {
+      L.imageOverlay('../assets/img/map gta.jpg', bounds, {
         interactive: false
       }).addTo(map);
       
       // Centrer la carte
-      const center = [size / 2, size / 2];
-      map.setView(center, 0);
+      const center = [height / 2, width / 2];
+      map.setView(center, -1);
       map.setMaxBounds(bounds);
     };
     img.onerror = () => {
       // Fallback: show a grid background if no image
       const gridSize = 512;
-      for (let i = 0; i <= size; i += gridSize) {
+      for (let i = 0; i <= height; i += gridSize) {
         // Horizontal lines
-        L.polyline([[i, 0], [i, size]], { 
+        L.polyline([[i, 0], [i, width]], { 
           color: 'rgba(183,148,255,.12)', 
           weight: 1,
           interactive: false
         }).addTo(map);
+      }
+      for (let i = 0; i <= width; i += gridSize) {
         // Vertical lines
-        L.polyline([[0, i], [size, i]], { 
+        L.polyline([[0, i], [height, i]], { 
           color: 'rgba(183,148,255,.12)', 
           weight: 1,
           interactive: false
         }).addTo(map);
       }
       // Add center cross
-      L.polyline([[size/2 - 200, size/2], [size/2 + 200, size/2]], {
+      L.polyline([[height/2 - 400, width/2], [height/2 + 400, width/2]], {
         color: 'rgba(53,209,255,.35)',
         weight: 2,
         interactive: false
       }).addTo(map);
-      L.polyline([[size/2, size/2 - 200], [size/2, size/2 + 200]], {
+      L.polyline([[height/2, width/2 - 300], [height/2, width/2 + 300]], {
         color: 'rgba(53,209,255,.35)',
         weight: 2,
         interactive: false
@@ -206,7 +210,7 @@
         interactive: false
       }).addTo(map);
     };
-    img.src = '../assets/img/gta-map.jpg';
+    img.src = '../assets/img/map gta.jpg';
 
     state.map = map;
   }
