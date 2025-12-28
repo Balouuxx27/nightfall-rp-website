@@ -376,23 +376,22 @@ async function requirePlayerRole(req, res, next) {
   next();
 }
 
-// Helmet pour headers de sécurité
+// Helmet pour headers de sécurité - CSP ultra-permissif pour YouTube
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
       styleSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com", "https://cdnjs.cloudflare.com"],
-      scriptSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com", "https://cdnjs.cloudflare.com", "https://www.youtube.com", "https://s.ytimg.com", "https://www.gstatic.com"],
-      imgSrc: ["'self'", "data:", "https:", "https://i.ytimg.com", "https://yt3.ggpht.com"],
-      connectSrc: ["'self'", "https://unpkg.com", "https://cdnjs.cloudflare.com", "https://www.youtube.com", "https://*.googlevideo.com"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https:", "http:"],
+      imgSrc: ["*", "data:", "blob:"],
+      connectSrc: ["*"],
       fontSrc: ["'self'", "https:", "data:"],
-      frameSrc: ["'self'", "https://www.youtube.com", "https://www.youtube-nocookie.com", "https://discord.com"],
-      mediaSrc: ["'self'", "https://www.youtube.com", "https://*.googlevideo.com"],
-      childSrc: ["'self'", "https://www.youtube.com", "https://www.youtube-nocookie.com"],
+      frameSrc: ["*"],
+      mediaSrc: ["*"],
+      childSrc: ["*"],
       objectSrc: ["'none'"],
       baseUri: ["'self'"],
-      formAction: ["'self'"],
-      frameAncestors: ["'none'"]
+      formAction: ["'self'"]
     }
   },
   hsts: {
