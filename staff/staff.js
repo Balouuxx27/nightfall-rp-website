@@ -120,21 +120,21 @@
 
   function gtaToMap({ x, y }) {
     // Image: map gta.jpg (5944x8075 pixels)
-    // COORDONNÉES AJUSTÉES APRÈS ANALYSE DES CAPTURES:
-    // Y: -4000 à +8000 (12000 unités) - INVERSÉ (nord GTA = bas image)
-    // X: -3500 à +4500 (8000 unités) - décalé vers est
+    // Coordonnées finales ajustées
+    // Y: -4000 à +8000 (12000 unités)
+    // X: -3400 à +4600 (8000 unités)
     
-    const minX = -3500;
-    const maxX = 4500;
+    const minX = -3400;
+    const maxX = 4600;
     const minY = -4000;
     const maxY = 8000;
     
     const mapWidth = 5944;
     const mapHeight = 8075;
     
-    // Conversion avec INVERSION de Y (haut/bas)
+    // Conversion SANS inversion (la map est déjà dans le bon sens)
     const mapX = ((x - minX) / (maxX - minX)) * mapWidth;
-    const mapY = mapHeight - ((y - minY) / (maxY - minY)) * mapHeight;
+    const mapY = ((y - minY) / (maxY - minY)) * mapHeight;
     
     return [mapY, mapX]; // Leaflet Simple CRS uses [lat, lng]
   }
