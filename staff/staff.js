@@ -119,13 +119,13 @@
   }
 
   function gtaToMap({ x, y }) {
-    // Image: map gta.jpg (5944x8075 pixels) - Ratio: 0.736
-    // Ajustement des coordonnées X pour correspondre au ratio de l'image
+    // Image: map gta.jpg (5944x8075 pixels)
+    // Essai coordonnées décalées (map pas symétrique)
     // Y: -4000 à +8000 (12000 unités)
-    // X: ajusté selon ratio image: 12000 * 0.736 = 8832 unités
+    // X: -3500 à +4500 (8000 unités)
     
-    const minX = -4416;  // Ajusté pour ratio image
-    const maxX = 4416;   // Ajusté pour ratio image
+    const minX = -3500;
+    const maxX = 4500;
     const minY = -4000;
     const maxY = 8000;
     
