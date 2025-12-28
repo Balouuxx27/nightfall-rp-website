@@ -948,7 +948,7 @@ app.get('/api/staff/player/:citizenid',
         });
       }
 
-      // Si pas online, interroger le bridge FiveM pour la database
+      // Si pas online, interroger /api/staff/search-db pour tous les joueurs
       const fivemServerIp = config.fivemServerIp;
       if (!fivemServerIp || !config.fivemSecret) {
         return res.status(503).json({ 
@@ -957,14 +957,23 @@ app.get('/api/staff/player/:citizenid',
         });
       }
 
-      const fivemUrl = `http://${fivemServerIp}/nightfall_web_bridge/player?citizenid=${encodeURIComponent(citizenid)}`;
+      const fivemUrl = `http://${fivemServerIp}/nightfall_web_bridge/allplayers`;
       const response = await axios.get(fivemUrl, {
         headers: { 'x-nightfall-secret': config.fivemSecret },
-        timeout: 5000
+        timeout: 10000
       });
 
       const data = response.data;
-      if (data.error || !data.player) {
+      if (!data.players || data.players.length === 0) {
+        return res.status(404).json({ 
+          error: 'Player not found',
+          message: 'Aucun joueur trouvé avec ce CitizenID.'
+        });
+      }
+
+      // Filtrer pour trouver le joueur avec ce citizenid
+      const player = data.players.find(p => p.citizenid === citizenid);
+      if (!player) {
         return res.status(404).json({ 
           error: 'Player not found',
           message: 'Aucun joueur trouvé avec ce CitizenID.'
@@ -972,24 +981,24 @@ app.get('/api/staff/player/:citizenid',
       }
 
       res.json({
-        citizenid: escapeHtml(data.player.citizenid),
-        name: `${escapeHtml(data.player.firstname)} ${escapeHtml(data.player.lastname)}`,
+        citizenid: escapeHtml(player.citizenid),
+        name: `${escapeHtml(player.firstname)} ${escapeHtml(player.lastname)}`,
         charinfo: {
-          firstname: escapeHtml(data.player.firstname),
-          lastname: escapeHtml(data.player.lastname),
-          phone: escapeHtml(data.player.phone || 'N/A'),
-          birthdate: escapeHtml(data.player.birthdate || 'N/A'),
-          gender: parseInt(data.player.gender) || 0
+          firstname: escapeHtml(player.firstname),
+          lastname: escapeHtml(player.lastname),
+          phone: escapeHtml(player.phone || 'N/A'),
+          birthdate: escapeHtml(player.birthdate || 'N/A'),
+          gender: parseInt(player.gender) || 0
         },
-        job: data.player.job || { name: 'unemployed', label: 'Unemployed', grade: { name: '0', level: 0 } },
-        money: data.player.money || { cash: 0, bank: 0 },
+        job: player.job || { name: 'unemployed', label: 'Unemployed', grade: { name: '0', level: 0 } },
+        money: player.money || { cash: 0, bank: 0 },
         position: { x: 0, y: 0, z: 0 },
-        last_updated: data.player.last_updated,
+        last_updated: player.last_updated,
         source: 'database'
       });
     } catch (err) {
       console.error('[API Player] Error:', err.message);
-      res.status(500).json({ error: 'Server error' });
+      res.status(500).json({ error: 'Server error', message: err.message });
     }
   }
 );
