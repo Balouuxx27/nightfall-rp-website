@@ -5,8 +5,8 @@
 -- toutes les 2 secondes pour afficher les blips en temps réel
 
 -- CONFIGURATION
-local WEBHOOK_URL = "http://127.0.0.1:5173/api/fivem/players"  -- Change l'IP si le site web est sur un autre serveur
-local SECRET = "2025"  -- Doit correspondre au fivemSecret dans api/staff_config.json
+local WEBHOOK_URL = "https://nightfall-rp.onrender.com/api/fivem/players"  -- URL du site web déployé sur Render
+local SECRET = "7eaee28859e8fdc081956912cae6a2fb7bd90918dc605a09f3d505b1b795788f"  -- Doit correspondre au FIVEM_SECRET dans .env
 local UPDATE_INTERVAL = 2000  -- Mise à jour toutes les 2 secondes (2000ms)
 
 -- Framework detection
