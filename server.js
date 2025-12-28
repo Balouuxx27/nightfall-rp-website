@@ -397,7 +397,7 @@ async function requirePlayerRole(req, res, next) {
     }
   }
 
-  if (!roles.hasPlayerRole && !roles.hasStaffRole) {
+  if (!roles.hasPlayerRole) {
     if (req.headers.accept && req.headers.accept.includes('application/json')) {
       return res.status(403).json({ error: 'Insufficient permissions - Player role required' });
     }
