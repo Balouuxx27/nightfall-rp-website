@@ -130,8 +130,10 @@
     const size = 2048;
     
     // Conversion directe proportionnelle
+    // X: (-4000 à +4000) → (0 à 2048)
     const mapX = ((x - minX) / (maxX - minX)) * size;
-    const mapY = size - ((y - minY) / (maxY - minY)) * size; // Inversé car Leaflet Y va vers le bas
+    // Y: (-4000 à +8000) → (0 à 2048)
+    const mapY = ((y - minY) / (maxY - minY)) * size;
     
     return [mapY, mapX]; // Leaflet Simple CRS uses [lat, lng]
   }
