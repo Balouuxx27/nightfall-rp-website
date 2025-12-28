@@ -192,11 +192,28 @@
       transition: all 0.3s;
       cursor: pointer;
     }
+    
+    .player-card--online {
+      border-color: rgba(46, 204, 113, 0.5);
+      background: rgba(46, 204, 113, 0.05);
+    }
 
     .player-card:hover {
       border-color: rgba(183,148,255,0.5);
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(183,148,255,0.2);
+    }
+    
+    .badge-online {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(46, 204, 113, 0.2);
+      border: 1px solid rgba(46, 204, 113, 0.5);
+      border-radius: 6px;
+      color: #2ecc71;
+      font-size: 12px;
+      font-weight: 700;
+      margin-left: 12px;
     }
 
     .player-card__header {
@@ -482,7 +499,7 @@
       <!-- Tabs -->
       <div class="tabs">
         <button class="tab-btn active" data-tab="live">📍 Live Map</button>
-        <button class="tab-btn" data-tab="search">🔍 Recherche Joueurs</button>
+        <button class="tab-btn" data-tab="search">� Joueurs</button>
       </div>
 
       <!-- Tab: Live Map -->

@@ -838,6 +838,38 @@ app.get('/api/staff/search-db',
         console.log('[API Search DB] First player sample:', JSON.stringify(players[0]));
       }
       
+      // Identifier les joueurs connectés via le cache
+      const onlineCitizenids = new Set(
+        latest.players
+          .filter(p => p.citizenid)
+          .map(p => p.citizenid)
+      );
+      
+      // Marquer les joueurs online et enrichir avec les données du cache
+      players = players.map(p => {
+        const isOnline = onlineCitizenids.has(p.citizenid);
+        const onlineData = isOnline ? latest.players.find(op => op.citizenid === p.citizenid) : null;
+        
+        // Si online, utiliser les métadonnées en temps réel
+        if (onlineData) {
+          p.metadata = onlineData.metadata;
+          p.position = onlineData.position;
+        }
+        
+        p.isOnline = isOnline;
+        return p;
+      });
+      
+      // Trier: online en premier, puis par date de mise à jour
+      players.sort((a, b) => {
+        if (a.isOnline && !b.isOnline) return -1;
+        if (!a.isOnline && b.isOnline) return 1;
+        // Trier par date de mise à jour (plus récent en premier)
+        const dateA = new Date(a.last_updated || 0).getTime();
+        const dateB = new Date(b.last_updated || 0).getTime();
+        return dateB - dateA;
+      });
+      
       // Filtrer par query si présente
       const queryStr = String(req.query.q || '').trim().toLowerCase();
       if (queryStr) {
@@ -874,7 +906,8 @@ app.get('/api/staff/search-db',
           cash: parseInt(p.money?.cash) || 0,
           bank: parseInt(p.money?.bank) || 0
         },
-        last_updated: p.last_updated
+        last_updated: p.last_updated,
+        isOnline: p.isOnline || false
       }));
 
       res.json({ players: formattedPlayers, count: formattedPlayers.length, source: 'database' });
@@ -1070,66 +1103,16 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
     const discordId = req.user.id;
     console.log('[API Player] Fetching profile for Discord ID:', discordId);
 
-    // STRATÉGIE 1 : Chercher dans le cache (joueur connecté)
-    const player = latest.players.find(p => p.discordId === discordId);
-
-    if (player && player.citizenid) {
-      console.log('[API Player] ✅ Found in cache (online):', player.citizenid);
-      console.log('[API Player] 🔍 DEBUG charinfo:', JSON.stringify(player.charinfo));
-      
-      const charinfo = player.charinfo || { firstname: "Unknown", lastname: "Player", phone: "N/A", birthdate: "N/A" };
-      const jobData = player.jobData || { name: "unemployed", label: "Unemployed", grade: { name: "0", level: 0 } };
-      const money = player.money || { cash: 0, bank: 0 };
-      const position = player.position || { x: 0, y: 0, z: 0 };
-      const vehicles = player.vehicles || [];
-
-      return res.json({
-        citizenid: escapeHtml(player.citizenid),
-        charinfo: {
-          firstname: escapeHtml(charinfo.firstname || "Unknown"),
-          lastname: escapeHtml(charinfo.lastname || "Player"),
-          phone: escapeHtml(charinfo.phone || "N/A"),
-          birthdate: escapeHtml(charinfo.birthdate || "N/A"),
-          gender: parseInt(charinfo.gender) || 0
-        },
-        job: {
-          name: escapeHtml(jobData.name || "unemployed"),
-          label: escapeHtml(jobData.label || "Unemployed"),
-          grade: {
-            name: escapeHtml(jobData.grade?.name || "0"),
-            level: parseInt(jobData.grade?.level) || 0
-          }
-        },
-        money: {
-          cash: parseInt(money.cash) || 0,
-          bank: parseInt(money.bank) || 0
-        },
-        metadata: {
-          hunger: player.metadata?.hunger !== undefined ? player.metadata.hunger : 100,
-          thirst: player.metadata?.thirst !== undefined ? player.metadata.thirst : 100,
-          stress: player.metadata?.stress !== undefined ? player.metadata.stress : 0,
-          health: player.metadata?.health !== undefined ? player.metadata.health : 200,
-          maxHealth: player.metadata?.maxHealth !== undefined ? player.metadata.maxHealth : 200,
-          armor: player.metadata?.armor !== undefined ? player.metadata.armor : 0,
-          isdead: player.metadata?.isdead || false,
-          inlaststand: player.metadata?.inlaststand || false
-        },
-        position: position,
-        vehicles: vehicles.map(v => ({
-          vehicle: escapeHtml(v.vehicle || "unknown"),
-          plate: escapeHtml(v.plate || "N/A"),
-          state: parseInt(v.state) || 0,
-          engine: parseFloat(v.engine) || 1000.0,
-          body: parseFloat(v.body) || 1000.0
-        })),
-        lastUpdated: latest.updatedAt,
-        source: 'cache',
-        online: true
-      });
+    // STRATÉGIE 1 : Vérifier si le joueur est connecté (cache)
+    const onlinePlayer = latest.players.find(p => p.discordId === discordId);
+    const onlineCitizenid = onlinePlayer?.citizenid || null;
+    
+    if (onlineCitizenid) {
+      console.log('[API Player] Player is ONLINE with citizenid:', onlineCitizenid);
     }
 
-    // STRATÉGIE 2 : Interroger le serveur FiveM via HTTP (joueur hors ligne)
-    console.log('[API Player] Not in cache, querying FiveM server...');
+    // STRATÉGIE 2 : Interroger le serveur FiveM pour TOUS les personnages
+    console.log('[API Player] Querying FiveM for all characters...');
     
     const fivemServerIp = config.fivemServerIp;
     if (!fivemServerIp || !config.fivemSecret) {
@@ -1141,8 +1124,6 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
     }
 
     const fivemUrl = `http://${fivemServerIp}/player?discordId=${encodeURIComponent(discordId)}`;
-    console.log('[API Player] 🔍 Full URL:', fivemUrl);
-    console.log('[API Player] 🔑 Secret header:', config.fivemSecret.substring(0, 10) + '...');
     
     try {
       const response = await axios.get(fivemUrl, {
@@ -1154,76 +1135,95 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
 
       const data = response.data;
       
-      if (data.error) {
-        console.log('[API Player] FiveM returned error:', data.error);
+      if (data.error || !data.characters || data.characters.length === 0) {
+        console.log('[API Player] No characters found');
         return res.status(404).json({ 
           error: 'No character found',
           message: 'Aucun personnage trouvé. Crée un personnage sur le serveur FiveM pour voir ton profil.'
         });
       }
 
-      console.log('[API Player] ✅ Found in database (offline):', data.citizenid);
+      console.log('[API Player] ✅ Found', data.characters.length, 'character(s)');
 
-      // Parser les données
-      const charinfo = data.charinfo || {};
-      const job = data.job || {};
-      const money = data.money || {};
-      const position = data.position || {};
-      const metadata = data.metadata || {};
-      const vehicles = data.vehicles || [];
+      // Marquer le personnage online et enrichir avec les données du cache
+      const characters = data.characters.map(char => {
+        const isOnline = char.citizenid === onlineCitizenid;
+        
+        // Si online, utiliser les métadonnées en temps réel du cache
+        if (isOnline && onlinePlayer) {
+          const metadata = onlinePlayer.metadata || {};
+          char.metadata = {
+            hunger: metadata.hunger !== undefined ? metadata.hunger : char.metadata.hunger,
+            thirst: metadata.thirst !== undefined ? metadata.thirst : char.metadata.thirst,
+            stress: metadata.stress !== undefined ? metadata.stress : char.metadata.stress,
+            health: metadata.health !== undefined ? metadata.health : char.metadata.health,
+            maxHealth: metadata.maxHealth !== undefined ? metadata.maxHealth : char.metadata.maxHealth,
+            armor: metadata.armor !== undefined ? metadata.armor : char.metadata.armor,
+            isdead: metadata.isdead || char.metadata.isdead,
+            inlaststand: metadata.inlaststand || char.metadata.inlaststand
+          };
+          char.position = onlinePlayer.position || char.position;
+        }
+        
+        char.isOnline = isOnline;
+        return char;
+      });
+
+      // Trier : online en premier, puis par date de mise à jour
+      characters.sort((a, b) => {
+        if (a.isOnline && !b.isOnline) return -1;
+        if (!a.isOnline && b.isOnline) return 1;
+        return 0; // Garder l'ordre de la base de données pour les offline
+      });
 
       res.json({
-        citizenid: escapeHtml(data.citizenid),
-        charinfo: {
-          firstname: escapeHtml(charinfo.firstname || "Unknown"),
-          lastname: escapeHtml(charinfo.lastname || "Player"),
-          phone: escapeHtml(charinfo.phone || "N/A"),
-          birthdate: escapeHtml(charinfo.birthdate || "N/A"),
-          gender: parseInt(charinfo.gender) || 0
-        },
-        job: {
-          name: escapeHtml(job.name || "unemployed"),
-          label: escapeHtml(job.label || "Unemployed"),
-          grade: {
-            name: escapeHtml(job.grade?.name || "0"),
-            level: parseInt(job.grade?.level) || 0
-          }
-        },
-        money: {
-          cash: parseInt(money.cash) || 0,
-          bank: parseInt(money.bank) || 0
-        },
-        metadata: {
-          hunger: metadata.hunger !== undefined ? parseFloat(metadata.hunger) : 100,
-          thirst: metadata.thirst !== undefined ? parseFloat(metadata.thirst) : 100,
-          stress: metadata.stress !== undefined ? parseFloat(metadata.stress) : 0,
-          health: metadata.health !== undefined ? parseInt(metadata.health) : 200,
-          maxHealth: metadata.maxHealth !== undefined ? parseInt(metadata.maxHealth) : 200,
-          armor: metadata.armor !== undefined ? parseInt(metadata.armor) : 0,
-          isdead: Boolean(metadata.isdead),
-          inlaststand: Boolean(metadata.inlaststand)
-        },
-        position: position,
-        vehicles: vehicles.map(v => ({
-          vehicle: escapeHtml(v.vehicle || "unknown"),
-          plate: escapeHtml(v.plate || "N/A"),
-          state: parseInt(v.state) || 0,
-          engine: parseFloat(v.engine) || 1000.0,
-          body: parseFloat(v.body) || 1000.0
+        discordId: discordId,
+        characters: characters.map(char => ({
+          citizenid: escapeHtml(char.citizenid),
+          charinfo: {
+            firstname: escapeHtml(char.charinfo.firstname || "Unknown"),
+            lastname: escapeHtml(char.charinfo.lastname || "Player"),
+            phone: escapeHtml(char.charinfo.phone || "N/A"),
+            birthdate: escapeHtml(char.charinfo.birthdate || "N/A"),
+            gender: parseInt(char.charinfo.gender) || 0
+          },
+          job: {
+            name: escapeHtml(char.job.name || "unemployed"),
+            label: escapeHtml(char.job.label || "Unemployed"),
+            grade: {
+              name: escapeHtml(char.job.grade?.name || "0"),
+              level: parseInt(char.job.grade?.level) || 0
+            }
+          },
+          money: {
+            cash: parseInt(char.money.cash) || 0,
+            bank: parseInt(char.money.bank) || 0
+          },
+          metadata: {
+            hunger: parseFloat(char.metadata.hunger) || 100,
+            thirst: parseFloat(char.metadata.thirst) || 100,
+            stress: parseFloat(char.metadata.stress) || 0,
+            health: parseInt(char.metadata.health) || 200,
+            maxHealth: parseInt(char.metadata.maxHealth) || 200,
+            armor: parseInt(char.metadata.armor) || 0,
+            isdead: Boolean(char.metadata.isdead),
+            inlaststand: Boolean(char.metadata.inlaststand)
+          },
+          position: char.position,
+          vehicles: char.vehicles.map(v => ({
+            vehicle: escapeHtml(v.vehicle || "unknown"),
+            plate: escapeHtml(v.plate || "N/A"),
+            state: parseInt(v.state) || 0,
+            engine: parseFloat(v.engine) || 1000.0,
+            body: parseFloat(v.body) || 1000.0
+          })),
+          lastUpdated: char.lastUpdated,
+          isOnline: char.isOnline
         })),
-        lastUpdated: data.lastUpdated,
-        source: 'database',
-        online: false
+        source: 'database'
       });
     } catch (fivemError) {
       console.error('[API Player] FiveM query failed:', fivemError.message);
-      console.error('[API Player] 🚨 Error details:', {
-        code: fivemError.code,
-        status: fivemError.response?.status,
-        statusText: fivemError.response?.statusText,
-        data: fivemError.response?.data,
-        url: fivemUrl
-      });
       
       if (fivemError.code === 'ECONNREFUSED' || fivemError.code === 'ETIMEDOUT') {
         return res.status(503).json({ 

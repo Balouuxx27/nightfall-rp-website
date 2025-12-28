@@ -5,6 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mon Profil - Nightfall RP</title>
   <link rel="stylesheet" href="/assets/css/styles.css">
+  <style>
+    .character-card {
+      background: rgba(255,255,255,.04);
+      border: 2px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      padding: 20px;
+      cursor: pointer;
+      transition: all .2s ease;
+    }
+    .character-card:hover {
+      background: rgba(255,255,255,.08);
+      border-color: rgba(183,148,255,.25);
+      transform: translateY(-2px);
+    }
+    .character-card--active {
+      background: rgba(183,148,255,.15);
+      border-color: rgba(183,148,255,.6);
+      box-shadow: 0 0 20px rgba(183,148,255,.3);
+    }
+    .character-card__name {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .character-card__id {
+      font-size: 13px;
+      color: var(--muted);
+      font-family: monospace;
+      margin-bottom: 8px;
+    }
+  </style>
 </head>
 <body>
   <!-- Topbar -->
@@ -53,6 +85,14 @@
           <div id="online-status" style="margin-top: 15px; display: flex; justify-content: center; width: 100%;"></div>
         </div>
       </section>
+
+      <!-- Sélecteur de personnages -->
+      <div style="margin: 32px 0;">
+        <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 16px; color: var(--accent);">
+          👥 Mes Personnages
+        </h2>
+        <div id="character-selector" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px;"></div>
+      </div>
 
       <!-- Grid des cartes -->
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 32px;">

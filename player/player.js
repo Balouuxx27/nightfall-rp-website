@@ -49,6 +49,38 @@ async function fetchPlayerData() {
   }
 }
 
+// Variables globales
+let currentCharacters = [];
+let selectedCharacterIndex = 0;
+
+// Afficher le sélecteur de personnages
+function displayCharacterSelector(characters) {
+  const container = document.getElementById('character-selector');
+  if (!container) return;
+
+  container.innerHTML = characters.map((char, index) => {
+    const name = `${escapeHtml(char.charinfo.firstname)} ${escapeHtml(char.charinfo.lastname)}`;
+    const onlineBadge = char.isOnline ? '<span class="badge badge--ok">🟢 EN LIGNE</span>' : '';
+    const activeClass = index === selectedCharacterIndex ? 'character-card--active' : '';
+    
+    return `
+      <div class="character-card ${activeClass}" onclick="selectCharacter(${index})">
+        <div class="character-card__name">${name}</div>
+        <div class="character-card__id">ID: ${escapeHtml(char.citizenid)}</div>
+        ${onlineBadge}
+      </div>
+    `;
+  }).join('');
+}
+
+// Sélectionner un personnage
+function selectCharacter(index) {
+  if (index < 0 || index >= currentCharacters.length) return;
+  selectedCharacterIndex = index;
+  displayCharacterSelector(currentCharacters);
+  displaySelectedCharacterData(currentCharacters[index]);
+}
+
 // Créer une barre de progression
 function createProgressBar(id, value, max = 100) {
   const percentage = Math.min(100, Math.max(0, (value / max) * 100));
@@ -59,22 +91,13 @@ function createProgressBar(id, value, max = 100) {
   if (text) text.textContent = Math.round(value) + (id === 'health' ? '' : '%');
 }
 
-// Afficher les données du joueur
-function displayPlayerData(user, playerData) {
-  console.log('Displaying player data:', playerData);
-  
-  // Avatar Discord
-  const avatarUrl = user.avatar
-    ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=256`
-    : 'https://cdn.discordapp.com/embed/avatars/0.png';
-  
-  document.getElementById('discord-avatar').src = avatarUrl;
-  document.getElementById('discord-username').textContent = 
-    `${escapeHtml(user.username)}${user.discriminator !== '0' ? '#' + user.discriminator : ''}`;
+// Afficher les données du personnage sélectionné
+function displaySelectedCharacterData(playerData) {
+  console.log('Displaying selected character:', playerData);
   
   // Statut en ligne/hors ligne
   const onlineStatus = document.getElementById('online-status');
-  if (playerData.online) {
+  if (playerData.isOnline) {
     onlineStatus.innerHTML = '<div class="badge badge--ok">🟢 EN LIGNE</div>';
   } else {
     onlineStatus.innerHTML = '<div class="badge badge--off">⚫ HORS LIGNE</div>';
@@ -248,8 +271,23 @@ function logout() {
   const user = await checkAuth();
   if (!user) return;
   
-  const playerData = await fetchPlayerData();
-  if (!playerData) return;
+  // Avatar Discord
+  const avatarUrl = user.avatar
+    ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=256`
+    : 'https://cdn.discordapp.com/embed/avatars/0.png';
   
-  displayPlayerData(user, playerData);
+  document.getElementById('discord-avatar').src = avatarUrl;
+  document.getElementById('discord-username').textContent = 
+    `${escapeHtml(user.username)}${user.discriminator !== '0' ? '#' + user.discriminator : ''}`;
+  
+  const data = await fetchPlayerData();
+  if (!data || !data.characters || data.characters.length === 0) return;
+  
+  currentCharacters = data.characters;
+  
+  // Afficher le sélecteur de personnages
+  displayCharacterSelector(currentCharacters);
+  
+  // Afficher le premier personnage (celui qui est online, grâce au tri)
+  displaySelectedCharacterData(currentCharacters[0]);
 })();

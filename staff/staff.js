@@ -391,11 +391,15 @@
       const jobLabel = job.label || 'Sans emploi';
       const gradeLabel = job.grade || '';
       const money = player.money || {};
+      const onlineBadge = player.isOnline ? '<span class="badge-online">🟢 EN LIGNE</span>' : '';
       
       return `
-        <div class="player-card" data-citizenid="${escapeHtml(player.citizenid)}">
+        <div class="player-card${player.isOnline ? ' player-card--online' : ''}" data-citizenid="${escapeHtml(player.citizenid)}">
           <div class="player-card__header">
-            <h3>${escapeHtml(player.firstname)} ${escapeHtml(player.lastname)}</h3>
+            <div>
+              <h3>${escapeHtml(player.firstname)} ${escapeHtml(player.lastname)}</h3>
+              ${onlineBadge}
+            </div>
             <span class="job-badge">${escapeHtml(jobLabel)}${gradeLabel ? ` (${escapeHtml(gradeLabel)})` : ''}</span>
           </div>
           <div class="player-card__info">
