@@ -119,20 +119,20 @@
   }
 
   function gtaToMap({ x, y }) {
-    // Nouvelle image: map gta.jpg (5944x8075 pixels)
-    // Coordonnées GTA V officielles:
-    // X: -4000 à +4000 (8000 unités)
+    // Image: map gta.jpg (5944x8075 pixels) - Ratio: 0.736
+    // Ajustement des coordonnées X pour correspondre au ratio de l'image
     // Y: -4000 à +8000 (12000 unités)
+    // X: ajusté selon ratio image: 12000 * 0.736 = 8832 unités
     
-    const minX = -4000;
-    const maxX = 4000;
+    const minX = -4416;  // Ajusté pour ratio image
+    const maxX = 4416;   // Ajusté pour ratio image
     const minY = -4000;
     const maxY = 8000;
     
     const mapWidth = 5944;
     const mapHeight = 8075;
     
-    // Conversion proportionnelle SANS inversion Y
+    // Conversion proportionnelle
     const mapX = ((x - minX) / (maxX - minX)) * mapWidth;
     const mapY = ((y - minY) / (maxY - minY)) * mapHeight;
     
