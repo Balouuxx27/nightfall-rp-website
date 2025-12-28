@@ -119,20 +119,24 @@
   }
 
   function gtaToMap({ x, y }) {
-    // Coordonnées GTA V standard (-4000 à 4000 en X, -4000 à 8000 en Y)
-    // L'image fait 2048x2048 pixels
+    // Coordonnées GTA V standard:
+    // X: -4000 à +4000 (8000 unités)
+    // Y: -4000 à +8000 (12000 unités)
+    // Ratio: 1:1.5 (Y est 1.5x plus grand que X)
+    
     const minX = -4000;
     const maxX = 4000;
     const minY = -4000;
     const maxY = 8000;
     
-    // Dimensions réelles de l'image
-    const imgWidth = 2048;
-    const imgHeight = 2048;
+    // L'image fait 2048x2048 mais représente un espace 8000x12000
+    // On doit donc étirer Y pour correspondre au ratio
+    const mapWidth = 2048;
+    const mapHeight = 2048 * 1.5; // 3072 pour respecter le ratio GTA
     
-    // Calculer les proportions pour correspondre à l'image (Y inversé)
-    const mapX = ((x - minX) / (maxX - minX)) * imgWidth;
-    const mapY = ((y - minY) / (maxY - minY)) * imgHeight; // Y normal sans inversion
+    // Conversion avec le ratio correct
+    const mapX = ((x - minX) / (maxX - minX)) * mapWidth;
+    const mapY = ((y - minY) / (maxY - minY)) * mapHeight;
     
     return [mapY, mapX]; // Leaflet Simple CRS uses [lat, lng]
   }
@@ -141,9 +145,12 @@
     const mapEl = document.getElementById('map');
     if (!mapEl) return;
 
-    // Dimensions exactes de l'image gta-map.jpg (2048x2048)
-    const size = 2048;
-    const bounds = [[0, 0], [size, size]];
+    // Image: 2048x2048 pixels
+    // Coordonnées GTA: 8000x12000 (ratio 1:1.5)
+    // Bounds ajustés pour respecter le ratio GTA
+    const width = 2048;
+    const height = 2048 * 1.5; // 3072 pour ratio 1:1.5
+    const bounds = [[0, 0], [height, width]];
 
     const map = L.map('map', {
       crs: L.CRS.Simple,
@@ -163,35 +170,37 @@
         interactive: false
       }).addTo(map);
       
-      // Centrer la carte avec un zoom adapté
-      const center = [size / 2, size / 2];
-      map.setView(center, 0); // Zoom 0 pour voir toute la carte
+      // Centrer la carte avec un zoom adapté (milieu de la carte GTA)
+      const center = [height / 2, width / 2];
+      map.setView(center, -0.5); // Zoom négatif pour voir toute la carte
       map.setMaxBounds(bounds);
     };
     img.onerror = () => {
       // Fallback: show a grid background if no image
       const gridSize = 512;
-      for (let i = 0; i <= size; i += gridSize) {
+      for (let i = 0; i <= height; i += gridSize) {
         // Horizontal lines
-        L.polyline([[i, 0], [i, size]], { 
+        L.polyline([[i, 0], [i, width]], { 
           color: 'rgba(183,148,255,.12)', 
           weight: 1,
           interactive: false
         }).addTo(map);
+      }
+      for (let i = 0; i <= width; i += gridSize) {
         // Vertical lines
-        L.polyline([[0, i], [size, i]], { 
+        L.polyline([[0, i], [height, i]], { 
           color: 'rgba(183,148,255,.12)', 
           weight: 1,
           interactive: false
         }).addTo(map);
       }
       // Add center cross
-      L.polyline([[size/2 - 200, size/2], [size/2 + 200, size/2]], {
+      L.polyline([[height/2 - 300, width/2], [height/2 + 300, width/2]], {
         color: 'rgba(53,209,255,.35)',
         weight: 2,
         interactive: false
       }).addTo(map);
-      L.polyline([[size/2, size/2 - 200], [size/2, size/2 + 200]], {
+      L.polyline([[height/2, width/2 - 200], [height/2, width/2 + 200]], {
         color: 'rgba(53,209,255,.35)',
         weight: 2,
         interactive: false
