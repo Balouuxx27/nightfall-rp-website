@@ -957,7 +957,9 @@ app.get('/api/staff/player/:citizenid',
         });
       }
 
-      const fivemUrl = `http://${fivemServerIp}/nightfall_web_bridge/allplayers`;
+      const fivemUrl = `http://${fivemServerIp}/all-players`;
+      console.log('[API Player] Calling FiveM bridge:', fivemUrl);
+      
       const response = await axios.get(fivemUrl, {
         headers: { 'x-nightfall-secret': config.fivemSecret },
         timeout: 10000
