@@ -34,23 +34,41 @@
 
   // Vérifier l'authentification Discord
   async function checkAuth() {
+    console.log('[CLIENT] 🔍 checkAuth() appelé');
+    console.log('[CLIENT] loginContainer:', loginContainer);
+    console.log('[CLIENT] staffPanel:', staffPanel);
+    
     try {
+      console.log('[CLIENT] 📡 Appel /api/auth/status...');
       const res = await fetch('/api/auth/status', { credentials: 'include' });
+      console.log('[CLIENT] 📡 Response status:', res.status);
       const data = await res.json();
+      console.log('[CLIENT] 📡 Data reçue:', data);
       
       if (!data.authenticated) {
+        console.log('[CLIENT] ❌ Non authentifié');
         // Non authentifié - afficher le bouton de connexion Discord
         if (loginContainer) loginContainer.style.display = 'block';
         if (staffPanel) staffPanel.style.display = 'none';
         return false;
       }
       
+      console.log('[CLIENT] ✅ Authentifié !');
       state.authenticated = true;
       state.user = data.user;
       
       // Afficher le panel staff
-      if (loginContainer) loginContainer.style.display = 'none';
-      if (staffPanel) staffPanel.style.display = 'block';
+      console.log('[CLIENT] 🎨 Cache login, affiche panel...');
+      if (loginContainer) {
+        console.log('[CLIENT] loginContainer.style avant:', loginContainer.style.display);
+        loginContainer.style.display = 'none';
+        console.log('[CLIENT] loginContainer.style après:', loginContainer.style.display);
+      }
+      if (staffPanel) {
+        console.log('[CLIENT] staffPanel.style avant:', staffPanel.style.display);
+        staffPanel.style.display = 'block';
+        console.log('[CLIENT] staffPanel.style après:', staffPanel.style.display);
+      }
       
       // Afficher le nom d'utilisateur Discord
       const discordUserEl = document.getElementById('discord-user');
@@ -60,7 +78,7 @@
       
       return true;
     } catch (error) {
-      console.error('Auth check failed:', error);
+      console.error('[CLIENT] ❌ Auth check failed:', error);
       if (loginContainer) loginContainer.style.display = 'block';
       if (staffPanel) staffPanel.style.display = 'none';
       return false;
@@ -532,9 +550,16 @@
 
   // Initialisation au chargement - Vérifier l'authentification Discord
   (async function init() {
+    console.log('[CLIENT] 🚀 init() démarré');
     const authenticated = await checkAuth();
-    if (!authenticated) return;
+    console.log('[CLIENT] checkAuth() retourné:', authenticated);
     
+    if (!authenticated) {
+      console.log('[CLIENT] ⚠️ Pas authentifié, arrêt init()');
+      return;
+    }
+    
+    console.log('[CLIENT] ✅ Authentifié, initialisation du panel...');
     // Utilisateur authentifié, afficher le panel
     if (loginContainer) loginContainer.style.display = 'none';
     if (staffPanel) staffPanel.style.display = 'block';
@@ -545,6 +570,8 @@
     if (state.autoRefresh) {
       state.refreshInterval = setInterval(refreshPlayers, 1200);
     }
+    
+    console.log('[CLIENT] ✅ init() terminé');
   })();
 
   // Bouton déconnexion
