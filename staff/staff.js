@@ -119,24 +119,30 @@
   }
 
   function gtaToMap({ x, y }) {
-    // Coordonnées GTA V standard
+    // Coordonnées GTA V standard (-4000 à 4000 en X, -4000 à 8000 en Y)
+    // L'image fait 2048x2048 pixels
     const minX = -4000;
     const maxX = 4000;
     const minY = -4000;
     const maxY = 8000;
     
-    const size = 4096;
-    const mx = ((x - minX) / (maxX - minX)) * size;
-    const my = ((y - minY) / (maxY - minY)) * size;
-    return [my, mx]; // Leaflet Simple CRS uses [lat, lng]
+    // Dimensions réelles de l'image
+    const imgWidth = 2048;
+    const imgHeight = 2048;
+    
+    // Calculer les proportions pour correspondre à l'image
+    const mapX = ((x - minX) / (maxX - minX)) * imgWidth;
+    const mapY = ((maxY - y) / (maxY - minY)) * imgHeight; // Inverser Y car GTA Y va vers le haut
+    
+    return [mapY, mapX]; // Leaflet Simple CRS uses [lat, lng]
   }
 
   function initMap() {
     const mapEl = document.getElementById('map');
     if (!mapEl) return;
 
-    // Image satellite agrandie de 25%
-    const size = 5120; // Plus grand pour agrandir l'image
+    // Dimensions exactes de l'image gta-map.jpg (2048x2048)
+    const size = 2048;
     const bounds = [[0, 0], [size, size]];
 
     const map = L.map('map', {
@@ -157,9 +163,9 @@
         interactive: false
       }).addTo(map);
       
-      // Agrandir l'image en réduisant les bounds visuels
+      // Centrer la carte avec un zoom adapté
       const center = [size / 2, size / 2];
-      map.setView(center, 0.3); // Zoom positif pour agrandir
+      map.setView(center, 0); // Zoom 0 pour voir toute la carte
       map.setMaxBounds(bounds);
     };
     img.onerror = () => {

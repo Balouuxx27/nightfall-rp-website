@@ -117,7 +117,8 @@
   let lastOnline = null;
 
   function setOnline(next) {
-    if (!onlineEl) return;
+    const liveCountEls = document.querySelectorAll('[data-live-count]');
+    
     const target = Number.isFinite(next) ? next : 0;
     const from = typeof lastOnline === 'number' ? lastOnline : target;
     const start = performance.now();
@@ -127,7 +128,13 @@
       const t = Math.min(1, (now - start) / dur);
       const eased = 1 - Math.pow(1 - t, 3);
       const val = Math.round(from + (target - from) * eased);
-      onlineEl.textContent = String(val);
+      
+      // Mettre à jour l'ancien élément data-online si présent
+      if (onlineEl) onlineEl.textContent = String(val);
+      
+      // Mettre à jour tous les éléments data-live-count
+      liveCountEls.forEach(el => el.textContent = String(val));
+      
       if (t < 1) requestAnimationFrame(frame);
     }
 
