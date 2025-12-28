@@ -161,6 +161,9 @@
       // Charger le widget Discord dynamiquement
       const widgetContainer = document.getElementById('discord-widget-container');
       if (widgetContainer && data.discordServerId && data.discordServerId !== 'VOTRE_ID_ICI') {
+        // Vider le conteneur d'abord pour éviter les doublons
+        widgetContainer.innerHTML = '';
+        
         const iframe = document.createElement('iframe');
         iframe.src = `https://discord.com/widget?id=${data.discordServerId}&theme=dark`;
         iframe.width = '350';
