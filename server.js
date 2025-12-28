@@ -978,6 +978,7 @@ app.get('/api/staff/player/:citizenid',
       }
 
       console.log('[API Player Details] ✅ Player found:', player.citizenid);
+      console.log('[API Player Details] Raw player data:', JSON.stringify(player, null, 2));
 
       // Renvoyer les détails complets du joueur
       const responseData = {
@@ -988,14 +989,15 @@ app.get('/api/staff/player/:citizenid',
           lastname: escapeHtml(player.lastname || 'Player'),
           phone: escapeHtml(player.phone || 'N/A'),
           birthdate: escapeHtml(player.birthdate || 'N/A'),
-          gender: parseInt(player.gender) || 0
+          gender: parseInt(player.gender) || 0,
+          nationality: player.nationality || 'N/A'
         },
         job: player.job || { name: 'unemployed', label: 'Sans emploi', grade: { name: '0', level: 0 } },
         money: player.money || { cash: 0, bank: 0 },
         position: player.position || { x: 0, y: 0, z: 0 },
         metadata: player.metadata || {},
         vehicles: player.vehicles || [],
-        last_updated: player.last_updated,
+        last_updated: player.last_updated || player.lastUpdated,
         source: 'database'
       };
 
