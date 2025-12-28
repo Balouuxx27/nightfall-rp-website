@@ -31,21 +31,96 @@ Citizen.CreateThread(function()
     end
 end)
 
--- Fonction pour récupérer le job selon le framework
-function GetPlayerJob(playerId)
-    if FrameworkName == "esx" and Framework then
+-- Fonction pour récupérer les données complètes du joueur
+function GetPlayerData(playerId)
+    local defaultData = {
+        discordId = nil,
+        citizenid = nil,
+        charinfo = { firstname = "Unknown", lastname = "Player", phone = "N/A", birthdate = "N/A" },
+        job = { name = "unemployed", label = "Unemployed", grade = { name = "0", level = 0 } },
+        money = { cash = 0, bank = 0 },
+        position = { x = 0, y = 0, z = 0 },
+        vehicles = {}
+    }
+
+    -- Récupérer Discord ID
+    local identifiers = GetPlayerIdentifiers(playerId)
+    for _, id in ipairs(identifiers) do
+        if string.match(id, "discord:") then
+            defaultData.discordId = string.gsub(id, "discord:", "")
+            break
+        end
+    end
+
+    if FrameworkName == "qbcore" and Framework then
+        local Player = Framework.Functions.GetPlayer(playerId)
+        if Player and Player.PlayerData then
+            local pd = Player.PlayerData
+            
+            return {
+                discordId = defaultData.discordId,
+                citizenid = pd.citizenid or nil,
+                charinfo = {
+                    firstname = pd.charinfo and pd.charinfo.firstname or "Unknown",
+                    lastname = pd.charinfo and pd.charinfo.lastname or "Player",
+                    phone = pd.charinfo and pd.charinfo.phone or "N/A",
+                    birthdate = pd.charinfo and pd.charinfo.birthdate or "N/A"
+                },
+                job = {
+                    name = pd.job and pd.job.name or "unemployed",
+                    label = pd.job and pd.job.label or "Unemployed",
+                    grade = {
+                        name = pd.job and pd.job.grade and pd.job.grade.name or "0",
+                        level = pd.job and pd.job.grade and pd.job.grade.level or 0
+                    }
+                },
+                money = {
+                    cash = pd.money and pd.money.cash or 0,
+                    bank = pd.money and pd.money.bank or 0
+                },
+                position = {
+                    x = math.floor(GetEntityCoords(GetPlayerPed(playerId)).x),
+                    y = math.floor(GetEntityCoords(GetPlayerPed(playerId)).y),
+                    z = math.floor(GetEntityCoords(GetPlayerPed(playerId)).z)
+                },
+                vehicles = {} -- Véhicules chargés depuis la DB plus tard si besoin
+            }
+        end
+    elseif FrameworkName == "esx" and Framework then
         local xPlayer = Framework.GetPlayerFromId(playerId)
         if xPlayer then
-            return xPlayer.job.name or "unemployed", xPlayer.job.grade_label or "0"
-        end
-    elseif FrameworkName == "qbcore" and Framework then
-        local Player = Framework.Functions.GetPlayer(playerId)
-        if Player then
-            return Player.PlayerData.job.name or "unemployed", Player.PlayerData.job.grade.name or "0"
+            return {
+                discordId = defaultData.discordId,
+                citizenid = xPlayer.identifier or nil,
+                charinfo = {
+                    firstname = xPlayer.getName() or "Unknown",
+                    lastname = "Player",
+                    phone = "N/A",
+                    birthdate = "N/A"
+                },
+                job = {
+                    name = xPlayer.job.name or "unemployed",
+                    label = xPlayer.job.label or "Unemployed",
+                    grade = {
+                        name = xPlayer.job.grade_label or "0",
+                        level = xPlayer.job.grade or 0
+                    }
+                },
+                money = {
+                    cash = xPlayer.getMoney() or 0,
+                    bank = xPlayer.getAccount('bank').money or 0
+                },
+                position = {
+                    x = math.floor(GetEntityCoords(GetPlayerPed(playerId)).x),
+                    y = math.floor(GetEntityCoords(GetPlayerPed(playerId)).y),
+                    z = math.floor(GetEntityCoords(GetPlayerPed(playerId)).z)
+                },
+                vehicles = {}
+            }
         end
     end
     
-    return "unemployed", "0"
+    return defaultData
 end
 
 -- Thread principal pour envoyer les données
@@ -59,28 +134,29 @@ Citizen.CreateThread(function()
         for _, playerId in ipairs(playerList) do
             local ped = GetPlayerPed(playerId)
             if ped and DoesEntityExist(ped) then
-                local coords = GetEntityCoords(ped)
-                local job, jobGrade = GetPlayerJob(playerId)
+                local playerData = GetPlayerData(playerId)
                 
-                table.insert(players, {
-                    id = tonumber(playerId),
-                    name = GetPlayerName(playerId),
-                    job = job,
-                    jobGrade = jobGrade,
-                    ping = GetPlayerPing(playerId),
-                    x = math.floor(coords.x),
-                    y = math.floor(coords.y),
-                    z = math.floor(coords.z)
-                })
+                -- Ajouter les données de base pour la map
+                playerData.id = tonumber(playerId)
+                playerData.name = GetPlayerName(playerId)
+                playerData.ping = GetPlayerPing(playerId)
+                playerData.x = playerData.position.x
+                playerData.y = playerData.position.y
+                playerData.z = playerData.position.z
+                playerData.job = playerData.job.name
+                playerData.jobGrade = playerData.job.grade.name
+                
+                table.insert(players, playerData)
             end
         end
         
         -- Envoi des données au serveur web
         PerformHttpRequest(WEBHOOK_URL, function(statusCode, responseText, headers)
             if statusCode == 200 then
-                print("^2[Nightfall Web] Données envoyées: " .. #players .. " joueur(s)^0")
+                -- Log commenté pour éviter spam
+                -- print("^2[Nightfall Web] Données envoyées: " .. #players .. " joueur(s)^0")
             elseif statusCode == 403 then
-                print("^1[Nightfall Web] ERREUR 403: Secret invalide! Vérifie api/staff_config.json^0")
+                print("^1[Nightfall Web] ERREUR 403: Secret invalide! Vérifie FIVEM_SECRET^0")
             else
                 print("^1[Nightfall Web] ERREUR HTTP " .. statusCode .. ": " .. responseText .. "^0")
             end

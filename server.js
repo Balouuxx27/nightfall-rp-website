@@ -4,7 +4,6 @@ const fs = require('fs');
 const crypto = require('crypto');
 const http = require('http');
 const https = require('https');
-const mysql = require('mysql2/promise');
 const express = require('express');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
@@ -108,49 +107,6 @@ let latest = {
 
 // Server uptime tracking
 const serverStartTime = Date.now();
-
-// MySQL connection pool (optional, only if DB credentials are provided)
-let dbPool = null;
-try {
-  const dbConfig = {
-    host: process.env.DB_HOST || 'localhost',
-    port: process.env.DB_PORT || 3306,
-    user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || '',
-    database: process.env.DB_NAME || 'qbcore',
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0,
-    connectTimeout: 10000 // 10 secondes
-  };
-  
-  console.log('[MySQL] 🔍 Configuration:');
-  console.log('[MySQL]   Host:', dbConfig.host);
-  console.log('[MySQL]   Port:', dbConfig.port);
-  console.log('[MySQL]   User:', dbConfig.user);
-  console.log('[MySQL]   Database:', dbConfig.database);
-  console.log('[MySQL]   Password:', dbConfig.password ? '✅ SET' : '❌ NOT SET');
-  
-  // Only create pool if password is provided (means DB is configured)
-  if (dbConfig.password) {
-    dbPool = mysql.createPool(dbConfig);
-    console.log('[MySQL] ✅ Pool created');
-    
-    // Test connection au démarrage
-    dbPool.query('SELECT 1').then(() => {
-      console.log('[MySQL] ✅ Connection test successful');
-    }).catch(err => {
-      console.error('[MySQL] ❌ Connection test failed:');
-      console.error('[MySQL]   Code:', err.code);
-      console.error('[MySQL]   Message:', err.message);
-      console.error('[MySQL]   Errno:', err.errno);
-    });
-  } else {
-    console.log('[MySQL] ⚠️ DB_PASSWORD not set, pool not created');
-  }
-} catch (err) {
-  console.error('[MySQL] ❌ Error creating pool:', err.message);
-}
 
 function makeToken() {
   return crypto.randomBytes(24).toString('hex');
@@ -783,7 +739,7 @@ app.get('/api/staff/players', requireDiscordAuth, requireStaffRole, (_req, res) 
   });
 });
 
-// Staff: search all players in database (nécessite rôle staff) - SÉCURISÉ contre SQL injection
+// Staff: search all players (nécessite rôle staff) - Utilise le cache FiveM
 app.get('/api/staff/search',
   requireDiscordAuth,
   requireStaffRole,
@@ -792,75 +748,58 @@ app.get('/api/staff/search',
     query('limit').optional().isInt({ min: 1, max: 200 })
   ],
   handleValidationErrors,
-  async (req, res) => {
-    if (!dbPool) {
-      return res.status(503).json({ error: 'Database not configured' });
-    }
-
+  (req, res) => {
     try {
-      const query = String(req.query.q || '').trim();
+      const query = String(req.query.q || '').trim().toLowerCase();
       const limit = Math.min(parseInt(req.query.limit) || 50, 200);
 
-      let sql = `
-        SELECT 
-          citizenid,
-          JSON_UNQUOTE(JSON_EXTRACT(charinfo, '$.firstname')) as firstname,
-          JSON_UNQUOTE(JSON_EXTRACT(charinfo, '$.lastname')) as lastname,
-          JSON_UNQUOTE(JSON_EXTRACT(charinfo, '$.phone')) as phone,
-          JSON_UNQUOTE(JSON_EXTRACT(job, '$.name')) as job_name,
-          JSON_UNQUOTE(JSON_EXTRACT(job, '$.label')) as job_label,
-          JSON_UNQUOTE(JSON_EXTRACT(job, '$.grade.name')) as job_grade,
-          JSON_UNQUOTE(JSON_EXTRACT(money, '$.cash')) as cash,
-          JSON_UNQUOTE(JSON_EXTRACT(money, '$.bank')) as bank,
-          last_updated
-        FROM players
-      `;
+      let players = latest.players.filter(p => p.citizenid); // Uniquement les joueurs avec personnage
 
-      const params = [];
-
+      // Filtrer par query si présente
       if (query) {
-        // ⚠️ SÉCURITÉ: Utilisation de paramètres préparés pour éviter l'injection SQL
-        sql += ` WHERE 
-          citizenid LIKE ? OR
-          JSON_EXTRACT(charinfo, '$.firstname') LIKE ? OR
-          JSON_EXTRACT(charinfo, '$.lastname') LIKE ? OR
-          JSON_EXTRACT(charinfo, '$.phone') LIKE ?
-        `;
-        const searchPattern = `%${query}%`;
-        params.push(searchPattern, searchPattern, searchPattern, searchPattern);
+        players = players.filter(p => {
+          const charinfo = p.charinfo || {};
+          const firstname = (charinfo.firstname || '').toLowerCase();
+          const lastname = (charinfo.lastname || '').toLowerCase();
+          const citizenid = (p.citizenid || '').toLowerCase();
+          const phone = (charinfo.phone || '').toLowerCase();
+          
+          return firstname.includes(query) || 
+                 lastname.includes(query) || 
+                 citizenid.includes(query) || 
+                 phone.includes(query);
+        });
       }
 
-      sql += ` ORDER BY last_updated DESC LIMIT ?`;
-      params.push(limit);
+      // Limiter le nombre de résultats
+      players = players.slice(0, limit);
 
-      const [rows] = await dbPool.query(sql, params);
-
-      const players = rows.map(row => ({
-        citizenid: escapeHtml(row.citizenid),
-        firstname: escapeHtml(row.firstname),
-        lastname: escapeHtml(row.lastname),
-        phone: escapeHtml(row.phone),
+      const formattedPlayers = players.map(p => ({
+        citizenid: escapeHtml(p.citizenid),
+        firstname: escapeHtml(p.charinfo.firstname || 'Unknown'),
+        lastname: escapeHtml(p.charinfo.lastname || 'Player'),
+        phone: escapeHtml(p.charinfo.phone || 'N/A'),
         job: {
-          name: escapeHtml(row.job_name),
-          label: escapeHtml(row.job_label),
-          grade: escapeHtml(row.job_grade)
+          name: escapeHtml(p.jobData?.name || p.job || 'unemployed'),
+          label: escapeHtml(p.jobData?.label || 'Unemployed'),
+          grade: escapeHtml(p.jobData?.grade?.name || p.jobGrade || '0')
         },
         money: {
-          cash: parseInt(row.cash) || 0,
-          bank: parseInt(row.bank) || 0
+          cash: parseInt(p.money?.cash) || 0,
+          bank: parseInt(p.money?.bank) || 0
         },
-        lastUpdated: row.last_updated
+        lastUpdated: latest.updatedAt
       }));
 
-      res.json({ players, count: players.length });
+      res.json({ players: formattedPlayers, count: formattedPlayers.length });
     } catch (err) {
       console.error('[API Search] Error:', err.message);
-      res.status(500).json({ error: 'Database error' });
+      res.status(500).json({ error: 'Search error' });
     }
   }
 );
 
-// Staff: get specific player details (nécessite rôle staff) - SÉCURISÉ
+// Staff: get specific player details (nécessite rôle staff) - Utilise le cache FiveM
 app.get('/api/staff/player/:citizenid',
   requireDiscordAuth,
   requireStaffRole,
@@ -868,55 +807,34 @@ app.get('/api/staff/player/:citizenid',
     param('citizenid').isString().trim().isLength({ min: 1, max: 50 })
   ],
   handleValidationErrors,
-  async (req, res) => {
-    if (!dbPool) {
-      return res.status(503).json({ error: 'Database not configured' });
-    }
-
+  (req, res) => {
     try {
       const citizenid = req.params.citizenid;
 
-      // ⚠️ SÉCURITÉ: Requête préparée pour éviter l'injection SQL
-      const [rows] = await dbPool.query(
-        'SELECT * FROM players WHERE citizenid = ? LIMIT 1',
-        [citizenid]
-      );
+      // Chercher le joueur dans le cache
+      const player = latest.players.find(p => p.citizenid === citizenid);
 
-      if (rows.length === 0) {
-        return res.status(404).json({ error: 'Player not found' });
-      }
-
-      const player = rows[0];
-      
-      // Parse JSON fields avec protection
-      let charinfo = {};
-      let job = {};
-      let money = {};
-      let metadata = {};
-      
-      try {
-        charinfo = JSON.parse(player.charinfo || '{}');
-        job = JSON.parse(player.job || '{}');
-        money = JSON.parse(player.money || '{}');
-        metadata = JSON.parse(player.metadata || '{}');
-      } catch (e) {
-        console.error('[API Player] JSON parse error:', e.message);
+      if (!player) {
+        return res.status(404).json({ 
+          error: 'Player not found',
+          message: 'Le joueur doit être connecté au serveur FiveM pour afficher ses données.'
+        });
       }
 
       res.json({
         citizenid: escapeHtml(player.citizenid),
-        license: escapeHtml(player.license),
         name: escapeHtml(player.name),
-        charinfo: charinfo,
-        job: job,
-        money: money,
-        metadata: metadata,
-        position: JSON.parse(player.position || '{}'),
-        last_updated: player.last_updated
+        charinfo: player.charinfo || {},
+        job: player.jobData || { name: 'unemployed', label: 'Unemployed', grade: { name: '0', level: 0 } },
+        money: player.money || { cash: 0, bank: 0 },
+        position: player.position || { x: 0, y: 0, z: 0 },
+        vehicles: player.vehicles || [],
+        lastUpdated: latest.updatedAt,
+        source: 'cache'
       });
     } catch (err) {
       console.error('[API Player] Error:', err.message);
-      res.status(500).json({ error: 'Database error' });
+      res.status(500).json({ error: 'Server error' });
     }
   }
 );
@@ -956,6 +874,7 @@ app.post('/api/fivem/players',
       },
       players: players
         .map(p => ({
+          // Données de base pour la map
           id: p.id,
           name: escapeHtml(String(p.name || 'Joueur')),
           job: p.job ? escapeHtml(String(p.job)) : undefined,
@@ -963,7 +882,23 @@ app.post('/api/fivem/players',
           ping: typeof p.ping === 'number' ? Math.max(0, Math.min(9999, p.ping)) : undefined,
           x: typeof p.x === 'number' ? p.x : 0,
           y: typeof p.y === 'number' ? p.y : 0,
-          z: typeof p.z === 'number' ? p.z : 0
+          z: typeof p.z === 'number' ? p.z : 0,
+          
+          // Données complètes pour le profil joueur
+          discordId: p.discordId || null,
+          citizenid: p.citizenid || null,
+          charinfo: p.charinfo || { firstname: "Unknown", lastname: "Player", phone: "N/A", birthdate: "N/A" },
+          jobData: p.job ? {
+            name: p.job,
+            label: p.job.charAt(0).toUpperCase() + p.job.slice(1),
+            grade: {
+              name: p.jobGrade || "0",
+              level: 0
+            }
+          } : undefined,
+          money: p.money || { cash: 0, bank: 0 },
+          position: p.position || { x: p.x || 0, y: p.y || 0, z: p.z || 0 },
+          vehicles: p.vehicles || []
         }))
         .slice(0, 256)
     };
@@ -1044,95 +979,48 @@ function tickMock() {
 // ========== ROUTES JOUEUR (Protection Discord Joueur) ==========
 
 // Récupérer les données du joueur connecté
-app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res) => {
-  if (!dbPool) {
-    return res.status(503).json({ error: 'Database not configured' });
-  }
-
+app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, (req, res) => {
   try {
     const discordId = req.user.id;
     console.log('[API Player] Fetching profile for Discord ID:', discordId);
 
-    // STRATÉGIE 1 : Utiliser discord_ids si disponible
-    let [rows] = await dbPool.query(`
-      SELECT 
-        p.citizenid,
-        p.charinfo,
-        p.job,
-        p.money,
-        p.position,
-        p.last_updated,
-        d.discord_id
-      FROM discord_ids d
-      INNER JOIN players p ON p.license2 = CONCAT('license2:', d.license2)
-      WHERE d.discord_id = ?
-      LIMIT 1
-    `, [discordId]);
+    // Chercher le joueur dans le cache FiveM
+    const player = latest.players.find(p => p.discordId === discordId);
 
-    console.log('[API Player] Strategy 1 (discord_ids JOIN) returned:', rows.length, 'rows');
-
-    // STRATÉGIE 2 : Si pas trouvé, chercher directement par license dans players
-    if (rows.length === 0) {
-      console.log('[API Player] Trying strategy 2: direct license search in players table');
-      
-      [rows] = await dbPool.query(`
-        SELECT 
-          citizenid,
-          charinfo,
-          job,
-          money,
-          position,
-          last_updated
-        FROM players
-        WHERE license2 LIKE ?
-        ORDER BY last_updated DESC
-        LIMIT 1
-      `, [`%${discordId}%`]);
-      
-      console.log('[API Player] Strategy 2 (direct search) returned:', rows.length, 'rows');
-    }
-
-    if (rows.length === 0) {
-      console.log('[API Player] No character found for Discord ID:', discordId);
+    if (!player || !player.citizenid) {
+      console.log('[API Player] No character found in cache for Discord ID:', discordId);
       return res.status(404).json({ 
         error: 'No character found',
-        message: 'Aucun personnage trouvé. Créez un personnage sur le serveur FiveM pour voir vos informations ici.'
+        message: 'Aucun personnage trouvé. Connecte-toi au serveur FiveM pour voir tes informations ici.',
+        hint: 'Les données sont mises à jour toutes les 2 secondes quand tu es connecté.'
       });
     }
 
-    const row = rows[0];
-    console.log('[API Player] Found character:', row.citizenid);
+    console.log('[API Player] Found character in cache:', player.citizenid);
     
-    // Parser JSON
-    const charinfo = typeof row.charinfo === 'string' ? JSON.parse(row.charinfo) : row.charinfo;
-    const job = typeof row.job === 'string' ? JSON.parse(row.job) : row.job;
-    const money = typeof row.money === 'string' ? JSON.parse(row.money) : row.money;
-    const position = typeof row.position === 'string' ? JSON.parse(row.position) : row.position;
-
-    // Récupérer les véhicules du joueur
-    const [vehicles] = await dbPool.query(`
-      SELECT vehicle, plate, state, engine, body
-      FROM player_vehicles
-      WHERE citizenid = ?
-      ORDER BY vehicle ASC
-    `, [row.citizenid]);
+    // Parser les données
+    const charinfo = player.charinfo || { firstname: "Unknown", lastname: "Player", phone: "N/A", birthdate: "N/A" };
+    const jobData = player.jobData || { name: "unemployed", label: "Unemployed", grade: { name: "0", level: 0 } };
+    const money = player.money || { cash: 0, bank: 0 };
+    const position = player.position || { x: 0, y: 0, z: 0 };
+    const vehicles = player.vehicles || [];
 
     console.log('[API Player] Found', vehicles.length, 'vehicles');
 
     res.json({
-      citizenid: escapeHtml(row.citizenid),
+      citizenid: escapeHtml(player.citizenid),
       charinfo: {
-        firstname: escapeHtml(charinfo.firstname),
-        lastname: escapeHtml(charinfo.lastname),
-        phone: escapeHtml(charinfo.phone),
-        birthdate: escapeHtml(charinfo.birthdate)
+        firstname: escapeHtml(charinfo.firstname || "Unknown"),
+        lastname: escapeHtml(charinfo.lastname || "Player"),
+        phone: escapeHtml(charinfo.phone || "N/A"),
+        birthdate: escapeHtml(charinfo.birthdate || "N/A")
       },
       job: {
-        name: escapeHtml(job.name),
-        label: escapeHtml(job.label),
+        name: escapeHtml(jobData.name || "unemployed"),
+        label: escapeHtml(jobData.label || "Unemployed"),
         grade: {
-          name: escapeHtml(job.grade?.name),
-          level: parseInt(job.grade?.level) || 0
+          name: escapeHtml(jobData.grade?.name || "0"),
+          level: parseInt(jobData.grade?.level) || 0
         }
       },
       money: {
@@ -1141,28 +1029,21 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
       },
       position: position,
       vehicles: vehicles.map(v => ({
-        vehicle: escapeHtml(v.vehicle),
-        plate: escapeHtml(v.plate),
+        vehicle: escapeHtml(v.vehicle || "unknown"),
+        plate: escapeHtml(v.plate || "N/A"),
         state: parseInt(v.state) || 0,
         engine: parseFloat(v.engine) || 1000.0,
         body: parseFloat(v.body) || 1000.0
       })),
-      lastUpdated: row.last_updated
+      lastUpdated: latest.updatedAt,
+      source: 'cache'
     });
   } catch (err) {
-    console.error('[API Player] ❌ ERROR DETAILS:');
-    console.error('[API Player] Message:', err.message);
-    console.error('[API Player] Code:', err.code);
-    console.error('[API Player] Errno:', err.errno);
-    console.error('[API Player] SQL:', err.sql);
-    console.error('[API Player] SQLState:', err.sqlState);
-    console.error('[API Player] SQLMessage:', err.sqlMessage);
+    console.error('[API Player] ❌ ERROR:', err.message);
     console.error('[API Player] Stack:', err.stack);
     res.status(500).json({ 
-      error: 'Database error', 
-      code: err.code,
-      message: err.message || 'Unknown error',
-      sqlMessage: err.sqlMessage 
+      error: 'Server error', 
+      message: 'Une erreur est survenue lors de la récupération de ton profil.'
     });
   }
 });
@@ -1170,5 +1051,5 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
 app.listen(PORT, () => {
   console.log(`[Server] 🚀 Started on port ${PORT}`);
   console.log(`[Server] 🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log(`[Server] 💾 DB Pool: ${dbPool ? '✅ Active' : '❌ Disabled'}`);
+  console.log(`[Server] 💾 Data Source: FiveM Bridge (Cache)`);
 });
