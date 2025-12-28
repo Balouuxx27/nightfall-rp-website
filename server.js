@@ -49,14 +49,14 @@ function loadStatusConfig() {
     return {
       serverIp: String(process.env.FIVEM_SERVER_IP || j.serverIp || ''),
       discordInvite: String(process.env.DISCORD_INVITE || j.discordInvite || ''),
-      discordServerId: String(process.env.DISCORD_SERVER_ID || j.discordServerId || '')
+      discordServerId: String(process.env.DISCORD_GUILD_ID || j.discordServerId || '')
     };
   } catch {
     // Fichier absent = on utilise uniquement les variables d'environnement
     return {
       serverIp: String(process.env.FIVEM_SERVER_IP || ''),
       discordInvite: String(process.env.DISCORD_INVITE || ''),
-      discordServerId: String(process.env.DISCORD_SERVER_ID || '')
+      discordServerId: String(process.env.DISCORD_GUILD_ID || '')
     };
   }
 }
