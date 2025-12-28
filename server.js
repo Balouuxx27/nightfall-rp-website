@@ -279,10 +279,6 @@ async function checkDiscordRoles(discordId, accessToken) {
       hasPlayerRole: memberRoles.includes(playerRoleId),
       roles: memberRoles
     };
-      hasStaffRole: staffRoleId ? memberRoles.includes(staffRoleId) : false,
-      hasPlayerRole: playerRoleId ? memberRoles.includes(playerRoleId) : false,
-      roles: memberRoles
-    };
 
     console.log('[Discord] 🎭 Final result:', result);
 
