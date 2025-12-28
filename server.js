@@ -1075,6 +1075,7 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
 
     if (player && player.citizenid) {
       console.log('[API Player] ✅ Found in cache (online):', player.citizenid);
+      console.log('[API Player] 🔍 DEBUG charinfo:', JSON.stringify(player.charinfo));
       
       const charinfo = player.charinfo || { firstname: "Unknown", lastname: "Player", phone: "N/A", birthdate: "N/A" };
       const jobData = player.jobData || { name: "unemployed", label: "Unemployed", grade: { name: "0", level: 0 } };
