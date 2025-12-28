@@ -35,7 +35,8 @@ function loadConfig() {
   // Le fichier staff_config.json ne doit JAMAIS contenir de credentials
   return {
     staffPassword: String(process.env.STAFF_PASSWORD || ''),
-    fivemSecret: String(process.env.FIVEM_SECRET || '')
+    fivemSecret: String(process.env.FIVEM_SECRET || ''),
+    fivemServerIp: String(process.env.FIVEM_SERVER_IP || '')
   };
 }
 
