@@ -168,9 +168,10 @@ app.use(passport.session());
 
 // Middleware de debug pour logger chaque requête (APRÈS Passport !)
 app.use((req, res, next) => {
+  // Security: User ID logging disabled to prevent data leaks
   // Log UNIQUEMENT les routes d'authentification importantes (pas les assets/API en boucle)
   if (req.path.startsWith('/auth/') && !req.path.includes('status')) {
-    console.log(`[Auth Route] ${req.method} ${req.path} | User: ${req.user?.id || 'none'}`);
+    console.log(`[Auth Route] ${req.method} ${req.path}`);
   }
   next();
 });
@@ -199,7 +200,7 @@ if (discordConfigured) {
 
   // 🔥 CRITIQUE: Stocker uniquement les données essentielles en session
   passport.serializeUser((user, done) => {
-    console.log('[Passport] 💾 Serializing user:', user.id);
+    // Security: User ID logging disabled
     // Stocker l'objet complet (mais c'est OK car Discord Strategy le fait bien)
     done(null, {
       id: user.id,
@@ -228,8 +229,7 @@ async function checkDiscordRoles(discordId, accessToken) {
       return { hasStaffRole: false, hasPlayerRole: false };
     }
 
-    console.log('[Discord] 🔍 Checking roles for user:', discordId);
-    console.log('[Discord] 🏰 Guild ID:', guildId);
+    // Security: Discord ID and Guild ID logging disabled to prevent data leaks
 
     // Récupérer les rôles du membre via l'API Discord
     const response = await axios.get(
@@ -239,17 +239,14 @@ async function checkDiscordRoles(discordId, accessToken) {
       }
     );
 
-    console.log('[Discord] ✅ API Response:', JSON.stringify(response.data, null, 2));
+    // Security: Full API response logging disabled
 
     const memberRoles = response.data.roles || [];
     const staffRoleId = process.env.DISCORD_STAFF_ROLE_ID;
     const adminRoleId = process.env.DISCORD_ADMIN_ROLE_ID;
     const playerRoleId = process.env.DISCORD_PLAYER_ROLE_ID;
 
-    console.log('[Discord] 📋 User roles:', memberRoles);
-    console.log('[Discord] 🎯 Looking for Staff Role:', staffRoleId);
-    console.log('[Discord] 🎯 Looking for Admin Role:', adminRoleId);
-    console.log('[Discord] 🎯 Looking for Player Role:', playerRoleId);
+    // Security: Role IDs logging disabled
 
     const result = {
       hasStaffRole: memberRoles.includes(staffRoleId) || memberRoles.includes(adminRoleId),
@@ -257,13 +254,12 @@ async function checkDiscordRoles(discordId, accessToken) {
       roles: memberRoles
     };
 
-    console.log('[Discord] 🎭 Final result:', result);
+    // Security: Result logging disabled (contains role data)
 
     return result;
   } catch (error) {
-    console.error('[Discord] ❌ Error checking roles:', error.message);
-    console.error('[Discord] 📄 Error details:', error.response?.data || error.response?.status);
-    console.error('[Discord] 🔑 Error status:', error.response?.status);
+    console.error('[Discord] ❌ Error checking roles');
+    // Security: Error details logging disabled
     
     // Si erreur 403, c'est probablement un problème de scope OAuth2
     if (error.response?.status === 403) {
