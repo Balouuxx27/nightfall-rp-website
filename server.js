@@ -1130,9 +1130,9 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
     // STRATÉGIE 2 : Interroger le serveur FiveM via HTTP (joueur hors ligne)
     console.log('[API Player] Not in cache, querying FiveM server...');
     
-    const fivemServerIp = process.env.FIVEM_SERVER_IP || '';
-    if (!fivemServerIp) {
-      console.error('[API Player] FIVEM_SERVER_IP not configured');
+    const fivemServerIp = config.fivemServerIp;
+    if (!fivemServerIp || !config.fivemSecret) {
+      console.error('[API Player] FIVEM_SERVER_IP or SECRET not configured');
       return res.status(503).json({ 
         error: 'FiveM server not configured',
         message: 'Le serveur FiveM n\'est pas configuré. Contacte un administrateur.'
