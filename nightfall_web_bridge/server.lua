@@ -204,5 +204,92 @@ print("^2========================================^0")
 print("^2[Nightfall Web] Resource démarrée^0")
 print("^2URL: " .. WEBHOOK_URL .. "^0")
 print("^2Framework: " .. FrameworkName .. "^0")
+print("^2Port HTTP: " .. HTTP_PORT .. "^0")
 print("^2========================================^0")
 
+-- ============================================
+-- HTTP SERVER - Endpoints pour le site web
+-- ============================================
+
+-- Endpoint: GET /nightfall_web_bridge/player?citizenid=XXX
+-- Récupère les détails d'un joueur depuis la database
+SetHttpHandler(function(req, res)
+    local path = req.path
+    local headers = req.headers
+    local method = req.method
+    
+    -- Vérifier le secret
+    local secret = headers['x-nightfall-secret']
+    if secret ~= SECRET then
+        res.writeHead(403, { ["Content-Type"] = "application/json" })
+        res.send(json.encode({ error = "Forbidden" }))
+        return
+    end
+    
+    -- Endpoint: Récupérer un joueur par citizenid
+    if method == "GET" and string.match(path, "^/nightfall_web_bridge/player") then
+        local citizenid = req.query and req.query.citizenid
+        
+        if not citizenid then
+            res.writeHead(400, { ["Content-Type"] = "application/json" })
+            res.send(json.encode({ error = "citizenid parameter required" }))
+            return
+        end
+        
+        -- Interroger la database
+        MySQL.Async.fetchAll('SELECT citizenid, charinfo, job, money, last_updated FROM players WHERE citizenid = @citizenid LIMIT 1', {
+            ['@citizenid'] = citizenid
+        }, function(result)
+            if not result or #result == 0 then
+                res.writeHead(404, { ["Content-Type"] = "application/json" })
+                res.send(json.encode({ error = "Player not found" }))
+                return
+            end
+            
+            local player = result[1]
+            local charinfo = json.decode(player.charinfo) or {}
+            local job = json.decode(player.job) or {}
+            local money = json.decode(player.money) or {}
+            
+            -- Récupérer le téléphone depuis phone_phones
+            MySQL.Async.fetchAll('SELECT phone_number FROM phone_phones WHERE citizenid = @citizenid LIMIT 1', {
+                ['@citizenid'] = citizenid
+            }, function(phoneResult)
+                local phone = "N/A"
+                if phoneResult and #phoneResult > 0 then
+                    phone = phoneResult[1].phone_number
+                end
+                
+                res.writeHead(200, { ["Content-Type"] = "application/json" })
+                res.send(json.encode({
+                    player = {
+                        citizenid = player.citizenid,
+                        firstname = charinfo.firstname or "Unknown",
+                        lastname = charinfo.lastname or "Player",
+                        phone = phone,
+                        birthdate = charinfo.birthdate or "N/A",
+                        gender = charinfo.gender or 0,
+                        job = {
+                            name = job.name or "unemployed",
+                            label = job.label or "Sans emploi",
+                            grade = {
+                                name = job.grade and job.grade.name or "0",
+                                level = job.grade and job.grade.level or 0
+                            }
+                        },
+                        money = {
+                            cash = money.cash or 0,
+                            bank = money.bank or 0
+                        },
+                        last_updated = player.last_updated
+                    }
+                }))
+            end)
+        end)
+        return
+    end
+    
+    -- 404 pour les autres routes
+    res.writeHead(404, { ["Content-Type"] = "text/plain" })
+    res.send("Not Found")
+end)
