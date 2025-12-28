@@ -141,7 +141,13 @@
       if (!res.ok) throw new Error('status');
       const data = await res.json();
 
-      setOnline(Number(data.playersOnline ?? 0));
+      const playersCount = Number(data.playersOnline ?? 0);
+      setOnline(playersCount);
+      
+      // Mettre à jour le titre de la page (onglet du navigateur)
+      const baseTitle = document.title.split(' • ')[0] || document.title.split(' — ')[0] || 'Nightfall RP';
+      document.title = `${playersCount} En ligne • ${baseTitle}`;
+      
       if (statusBadge) {
         const up = Boolean(data.isOnline);
         statusBadge.textContent = up ? 'ONLINE' : 'OFFLINE';

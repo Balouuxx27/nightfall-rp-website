@@ -181,13 +181,18 @@ Citizen.CreateThread(function()
         
         -- Envoi des données au serveur web
         PerformHttpRequest(WEBHOOK_URL, function(statusCode, responseText, headers)
+            -- Ignorer silencieusement si le site est inactif (pas de spam console)
+            if not statusCode or statusCode == 0 then
+                return
+            end
+            
             if statusCode == 200 then
-                -- Log commenté pour éviter spam
-                -- print("^2[Nightfall Web] Données envoyées: " .. #players .. " joueur(s)^0")
+                -- Succès silencieux
             elseif statusCode == 403 then
                 print("^1[Nightfall Web] ERREUR 403: Secret invalide! Vérifie FIVEM_SECRET^0")
             else
-                print("^1[Nightfall Web] ERREUR HTTP " .. statusCode .. ": " .. responseText .. "^0")
+                local errorMsg = responseText or "Aucune réponse du serveur"
+                print("^1[Nightfall Web] ERREUR HTTP " .. statusCode .. ": " .. errorMsg .. "^0")
             end
         end, "POST", json.encode({
             serverName = "Nightfall RP",
