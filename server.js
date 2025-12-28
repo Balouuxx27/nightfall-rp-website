@@ -732,12 +732,59 @@ app.get('/api/vehicles', (_req, res) => {
 // ========== ROUTES STAFF (Protection Discord Staff) ==========
 
 // Staff: get players (nécessite rôle staff)
-app.get('/api/staff/players', requireDiscordAuth, requireStaffRole, (_req, res) => {
-  res.json({
-    updatedAt: latest.updatedAt,
-    server: latest.server,
-    players: latest.players
-  });
+app.get('/api/staff/players', requireDiscordAuth, requireStaffRole, async (_req, res) => {
+  if (!dbPool) {
+    return res.status(503).json({ error: 'Database not configured' });
+  }
+
+  try {
+    const [rows] = await dbPool.query(`
+      SELECT 
+        p.citizenid,
+        p.charinfo,
+        p.job,
+        p.money,
+        p.last_updated,
+        ph.phone_number
+      FROM players p
+      LEFT JOIN phone_phones ph ON p.citizenid = ph.citizenid
+      ORDER BY p.last_updated DESC
+      LIMIT 100
+    `);
+
+    const players = rows.map(player => {
+      const charinfo = typeof player.charinfo === 'string' 
+        ? JSON.parse(player.charinfo) 
+        : player.charinfo;
+      const job = typeof player.job === 'string' 
+        ? JSON.parse(player.job) 
+        : player.job;
+      const money = typeof player.money === 'string' 
+        ? JSON.parse(player.money) 
+        : player.money;
+
+      // Utiliser le téléphone de la table phone_phones
+      charinfo.phone = player.phone_number || charinfo.phone || 'N/A';
+
+      return {
+        citizenid: player.citizenid,
+        name: `${charinfo.firstname || 'Unknown'} ${charinfo.lastname || 'Player'}`,
+        charinfo: charinfo,
+        jobData: job,
+        money: money,
+        lastUpdated: player.last_updated
+      };
+    });
+
+    res.json({
+      updatedAt: Date.now(),
+      server: { name: 'Nightfall RP', id: 'database' },
+      players: players
+    });
+  } catch (error) {
+    console.error('[API Players] Database error:', error.message);
+    res.status(500).json({ error: 'Database error' });
+  }
 });
 
 // Staff: search all players (nécessite rôle staff) - Utilise le cache FiveM
@@ -927,34 +974,68 @@ app.get('/api/staff/player/:citizenid',
     param('citizenid').isString().trim().isLength({ min: 1, max: 50 })
   ],
   handleValidationErrors,
-  (req, res) => {
+  async (req, res) => {
+    if (!dbPool) {
+      return res.status(503).json({ error: 'Database not configured' });
+    }
+
     try {
       const citizenid = req.params.citizenid;
 
-      // Chercher le joueur dans le cache
-      const player = latest.players.find(p => p.citizenid === citizenid);
+      const [rows] = await dbPool.query(`
+        SELECT 
+          p.citizenid,
+          p.charinfo,
+          p.job,
+          p.money,
+          p.position,
+          p.inventory,
+          p.last_updated,
+          ph.phone_number
+        FROM players p
+        LEFT JOIN phone_phones ph ON p.citizenid = ph.citizenid
+        WHERE p.citizenid = ?
+        LIMIT 1
+      `, [citizenid]);
 
-      if (!player) {
+      if (rows.length === 0) {
         return res.status(404).json({ 
           error: 'Player not found',
-          message: 'Le joueur doit être connecté au serveur FiveM pour afficher ses données.'
+          message: 'Aucun joueur trouvé avec ce CitizenID.'
         });
       }
 
+      const player = rows[0];
+      const charinfo = typeof player.charinfo === 'string' 
+        ? JSON.parse(player.charinfo) 
+        : player.charinfo;
+      const job = typeof player.job === 'string' 
+        ? JSON.parse(player.job) 
+        : player.job;
+      const money = typeof player.money === 'string' 
+        ? JSON.parse(player.money) 
+        : player.money;
+      const position = typeof player.position === 'string' 
+        ? JSON.parse(player.position) 
+        : player.position;
+
+      // Utiliser le téléphone de la table phone_phones
+      charinfo.phone = player.phone_number || charinfo.phone || 'N/A';
+
       res.json({
-        citizenid: escapeHtml(player.citizenid),
-        name: escapeHtml(player.name),
-        charinfo: player.charinfo || {},
-        job: player.jobData || { name: 'unemployed', label: 'Unemployed', grade: { name: '0', level: 0 } },
-        money: player.money || { cash: 0, bank: 0 },
-        position: player.position || { x: 0, y: 0, z: 0 },
-        vehicles: player.vehicles || [],
-        lastUpdated: latest.updatedAt,
-        source: 'cache'
+        citizenid: player.citizenid,
+        name: `${charinfo.firstname || 'Unknown'} ${charinfo.lastname || 'Player'}`,
+        charinfo: charinfo,
+        job: job || { name: 'unemployed', label: 'Unemployed', grade: { name: '0', level: 0 } },
+        money: money || { cash: 0, bank: 0 },
+        position: position || { x: 0, y: 0, z: 0 },
+        inventory: player.inventory,
+        last_updated: player.last_updated,
+        source: 'database'
       });
     } catch (err) {
-      console.error('[API Player] Error:', err.message);
-      res.status(500).json({ error: 'Server error' });
+      console.error('[API Player] Database error:', err.message);
+      res.status(500).json({ error: 'Database error' });
     }
   }
 );
