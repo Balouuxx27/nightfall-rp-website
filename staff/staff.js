@@ -68,8 +68,9 @@
   }
 
   async function api(path, opts = {}) {
-    const headers = new Headers(opts.headers || {});
-    headers.set('Content-Type', 'application/json');
+    try {
+      const headers = new Headers(opts.headers || {});
+      headers.set('Content-Type', 'application/json');
 
       const res = await fetch(path, {
         ...opts,
