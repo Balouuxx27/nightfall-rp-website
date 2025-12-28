@@ -513,8 +513,17 @@ app.get('/auth/discord', (req, res, next) => {
   // Sauvegarder la page d'où vient l'utilisateur pour rediriger après auth
   if (req.query.returnTo) {
     req.session.returnTo = req.query.returnTo;
+    // CRITIQUE: Sauvegarder la session AVANT de lancer passport!
+    req.session.save((err) => {
+      if (err) {
+        console.error('[Auth] Error saving returnTo:', err);
+      }
+      console.log('[Auth] 💾 returnTo saved:', req.query.returnTo);
+      passport.authenticate('discord')(req, res, next);
+    });
+  } else {
+    passport.authenticate('discord')(req, res, next);
   }
-  passport.authenticate('discord')(req, res, next);
 });
 
 // Callback après authentification Discord
