@@ -7,7 +7,8 @@
   "description": "",
   "scripts": {
     "start": "node server.js",
-    "check": "node check-security.js"
+    "check": "node check-security.js",
+    "build": "echo 'No build step required'"
   },
   "dependencies": {
     "axios": "^1.13.2",
@@ -25,12 +26,12 @@
     "passport": "^0.7.0",
     "passport-discord": "^0.1.4"
   },
-  "resolutions": {
-    "bcrypt/node-pre-gyp": "^1.0.0",
+  "overrides": {
     "glob": "^10.0.0",
     "rimraf": "^5.0.0"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   }
 }
