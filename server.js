@@ -120,15 +120,36 @@ try {
     database: process.env.DB_NAME || 'qbcore',
     waitForConnections: true,
     connectionLimit: 10,
-    queueLimit: 0
+    queueLimit: 0,
+    connectTimeout: 10000 // 10 secondes
   };
+  
+  console.log('[MySQL] 🔍 Configuration:');
+  console.log('[MySQL]   Host:', dbConfig.host);
+  console.log('[MySQL]   Port:', dbConfig.port);
+  console.log('[MySQL]   User:', dbConfig.user);
+  console.log('[MySQL]   Database:', dbConfig.database);
+  console.log('[MySQL]   Password:', dbConfig.password ? '✅ SET' : '❌ NOT SET');
   
   // Only create pool if password is provided (means DB is configured)
   if (dbConfig.password) {
     dbPool = mysql.createPool(dbConfig);
+    console.log('[MySQL] ✅ Pool created');
+    
+    // Test connection au démarrage
+    dbPool.query('SELECT 1').then(() => {
+      console.log('[MySQL] ✅ Connection test successful');
+    }).catch(err => {
+      console.error('[MySQL] ❌ Connection test failed:');
+      console.error('[MySQL]   Code:', err.code);
+      console.error('[MySQL]   Message:', err.message);
+      console.error('[MySQL]   Errno:', err.errno);
+    });
+  } else {
+    console.log('[MySQL] ⚠️ DB_PASSWORD not set, pool not created');
   }
 } catch (err) {
-  console.error('[MySQL] Error creating pool:', err.message);
+  console.error('[MySQL] ❌ Error creating pool:', err.message);
 }
 
 function makeToken() {
@@ -1147,5 +1168,7 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
 });
 
 app.listen(PORT, () => {
-  console.log(`[Server] Started on port ${PORT}`);
+  console.log(`[Server] 🚀 Started on port ${PORT}`);
+  console.log(`[Server] 🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`[Server] 💾 DB Pool: ${dbPool ? '✅ Active' : '❌ Disabled'}`);
 });
