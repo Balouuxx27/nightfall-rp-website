@@ -830,9 +830,13 @@ app.get('/api/staff/search-db',
         timeout: 10000
       });
 
+      console.log('[API Search DB] Response:', JSON.stringify(response.data).substring(0, 200));
       let players = response.data.players || [];
       
       console.log(`[API Search DB] Received ${players.length} players from FiveM`);
+      if (players.length > 0) {
+        console.log('[API Search DB] First player sample:', JSON.stringify(players[0]));
+      }
       
       // Filtrer par query si présente
       const queryStr = String(req.query.q || '').trim().toLowerCase();
@@ -1099,15 +1103,15 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
           cash: parseInt(money.cash) || 0,
           bank: parseInt(money.bank) || 0
         },
-        metadata: player.metadata || {
-          hunger: 100,
-          thirst: 100,
-          stress: 0,
-          health: 200,
-          maxHealth: 200,
-          armor: 0,
-          isdead: false,
-          inlaststand: false
+        metadata: {
+          hunger: player.metadata?.hunger !== undefined ? player.metadata.hunger : 100,
+          thirst: player.metadata?.thirst !== undefined ? player.metadata.thirst : 100,
+          stress: player.metadata?.stress !== undefined ? player.metadata.stress : 0,
+          health: player.metadata?.health !== undefined ? player.metadata.health : 200,
+          maxHealth: player.metadata?.maxHealth !== undefined ? player.metadata.maxHealth : 200,
+          armor: player.metadata?.armor !== undefined ? player.metadata.armor : 0,
+          isdead: player.metadata?.isdead || false,
+          inlaststand: player.metadata?.inlaststand || false
         },
         position: position,
         vehicles: vehicles.map(v => ({
@@ -1187,12 +1191,12 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
           bank: parseInt(money.bank) || 0
         },
         metadata: {
-          hunger: parseFloat(metadata.hunger) || 100,
-          thirst: parseFloat(metadata.thirst) || 100,
-          stress: parseFloat(metadata.stress) || 0,
-          health: parseInt(metadata.health) || 200,
-          maxHealth: parseInt(metadata.maxHealth) || 200,
-          armor: parseInt(metadata.armor) || 0,
+          hunger: metadata.hunger !== undefined ? parseFloat(metadata.hunger) : 100,
+          thirst: metadata.thirst !== undefined ? parseFloat(metadata.thirst) : 100,
+          stress: metadata.stress !== undefined ? parseFloat(metadata.stress) : 0,
+          health: metadata.health !== undefined ? parseInt(metadata.health) : 200,
+          maxHealth: metadata.maxHealth !== undefined ? parseInt(metadata.maxHealth) : 200,
+          armor: metadata.armor !== undefined ? parseInt(metadata.armor) : 0,
           isdead: Boolean(metadata.isdead),
           inlaststand: Boolean(metadata.inlaststand)
         },
