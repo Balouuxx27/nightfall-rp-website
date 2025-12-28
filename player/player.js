@@ -64,13 +64,21 @@ function displayCharacterSelector(characters) {
     const activeClass = index === selectedCharacterIndex ? 'character-card--active' : '';
     
     return `
-      <div class="character-card ${activeClass}" onclick="selectCharacter(${index})">
+      <div class="character-card ${activeClass}" data-character-index="${index}">
         <div class="character-card__name">${name}</div>
         <div class="character-card__id">ID: ${escapeHtml(char.citizenid)}</div>
         ${onlineBadge}
       </div>
     `;
   }).join('');
+  
+  // Ajouter les event listeners aux cartes de personnages (CSP-compliant)
+  container.querySelectorAll('.character-card').forEach((card) => {
+    card.addEventListener('click', function() {
+      const index = parseInt(this.getAttribute('data-character-index'));
+      selectCharacter(index);
+    });
+  });
 }
 
 // Sélectionner un personnage
@@ -290,4 +298,10 @@ function logout() {
   
   // Afficher le premier personnage (celui qui est online, grâce au tri)
   displaySelectedCharacterData(currentCharacters[0]);
+  
+  // Event listener pour le bouton de déconnexion (CSP-compliant)
+  const logoutBtn = document.getElementById('logout-btn');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', logout);
+  }
 })();
