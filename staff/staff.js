@@ -424,7 +424,7 @@
               <span class="info-value">${formatDate(player.last_updated || player.lastUpdated)}</span>
             </div>
           </div>
-          <button class="btn btn-primary btn-sm" onclick="viewPlayerDetails('${escapeHtml(player.citizenid)}')">
+          <button class="btn btn-primary btn-sm" data-citizenid="${escapeHtml(player.citizenid)}" data-action="view-details">
             📋 Voir détails complets
           </button>
         </div>
@@ -443,7 +443,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h2>👤 Profil Complet - ${escapeHtml(player.charinfo?.firstname)} ${escapeHtml(player.charinfo?.lastname)}</h2>
-            <button class="btn-close" onclick="this.closest('.modal-overlay').remove()">✕</button>
+            <button class="btn-close" data-action="close-modal">✕</button>
           </div>
           <div class="modal-body">
             <div class="info-grid">
@@ -525,6 +525,14 @@
       
       document.body.appendChild(modal);
       
+      // Event listener pour fermer la modale (CSP-compliant)
+      const closeBtn = modal.querySelector('[data-action="close-modal"]');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+          modal.remove();
+        });
+      }
+      
       // Close on overlay click
       modal.addEventListener('click', (e) => {
         if (e.target === modal) {
@@ -578,6 +586,15 @@
     
     initMap();
     await refreshPlayers();
+    
+    // Event delegation pour les boutons "Voir détails" (CSP-compliant)
+    document.addEventListener('click', function(e) {
+      const btn = e.target.closest('[data-action="view-details"]');
+      if (btn) {
+        const citizenid = btn.getAttribute('data-citizenid');
+        if (citizenid) viewPlayerDetails(citizenid);
+      }
+    });
     
     if (state.autoRefresh) {
       state.refreshInterval = setInterval(refreshPlayers, 1200);
