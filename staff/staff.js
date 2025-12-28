@@ -132,9 +132,9 @@
     const mapWidth = 5944;
     const mapHeight = 8075;
     
-    // Conversion proportionnelle avec inversion Y
+    // Conversion proportionnelle SANS inversion Y
     const mapX = ((x - minX) / (maxX - minX)) * mapWidth;
-    const mapY = mapHeight - ((y - minY) / (maxY - minY)) * mapHeight;
+    const mapY = ((y - minY) / (maxY - minY)) * mapHeight;
     
     return [mapY, mapX]; // Leaflet Simple CRS uses [lat, lng]
   }
@@ -150,8 +150,8 @@
 
     const map = L.map('map', {
       crs: L.CRS.Simple,
-      minZoom: -2,
-      maxZoom: 2,
+      minZoom: -3,
+      maxZoom: 3,
       zoomSnap: 0.25,
       zoomDelta: 0.25,
       wheelPxPerZoomLevel: 120,
