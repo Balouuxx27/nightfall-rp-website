@@ -266,13 +266,19 @@ async function checkDiscordRoles(discordId, accessToken) {
 
     const memberRoles = response.data.roles || [];
     const staffRoleId = process.env.DISCORD_STAFF_ROLE_ID;
+    const adminRoleId = process.env.DISCORD_ADMIN_ROLE_ID;
     const playerRoleId = process.env.DISCORD_PLAYER_ROLE_ID;
 
     console.log('[Discord] 📋 User roles:', memberRoles);
     console.log('[Discord] 🎯 Looking for Staff Role:', staffRoleId);
+    console.log('[Discord] 🎯 Looking for Admin Role:', adminRoleId);
     console.log('[Discord] 🎯 Looking for Player Role:', playerRoleId);
 
     const result = {
+      hasStaffRole: memberRoles.includes(staffRoleId) || memberRoles.includes(adminRoleId),
+      hasPlayerRole: memberRoles.includes(playerRoleId),
+      roles: memberRoles
+    };
       hasStaffRole: staffRoleId ? memberRoles.includes(staffRoleId) : false,
       hasPlayerRole: playerRoleId ? memberRoles.includes(playerRoleId) : false,
       roles: memberRoles
@@ -1033,8 +1039,10 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
   try {
     const discordId = req.user.id;
 
-    // Utiliser la table discord_ids pour trouver le license2 du joueur
-    // Ensuite faire une jointure avec players
+    // Utiliser la table discord_ids pour trouver le license du joueur
+    // IMPORTANT : discord_ids.license2 ne contient PAS le préfixe "license2:"
+    // mais players.license2 CONTIENT le préfixe "license2:"
+    // On doit donc ajouter le préfixe dans la jointure
     const [rows] = await dbPool.query(`
       SELECT 
         p.citizenid,
@@ -1045,7 +1053,7 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
         p.last_updated,
         d.discord_id
       FROM discord_ids d
-      INNER JOIN players p ON p.license2 = d.license2
+      INNER JOIN players p ON p.license2 = CONCAT('license2:', d.license2)
       WHERE d.discord_id = ?
       LIMIT 1
     `, [discordId]);
