@@ -919,7 +919,7 @@ app.get('/api/staff/search-db',
   }
 );
 
-// Staff: get specific player details (nécessite rôle staff) - Utilise le cache FiveM
+// Staff: get specific player details (nécessite rôle staff) - Recherche directe dans FiveM
 app.get('/api/staff/player/:citizenid',
   requireDiscordAuth,
   requireStaffRole,
@@ -930,35 +930,21 @@ app.get('/api/staff/player/:citizenid',
   async (req, res) => {
     try {
       const citizenid = req.params.citizenid;
+      console.log('[API Player Details] 🔍 Looking for CitizenID:', citizenid);
       
-      // Chercher d'abord dans le cache (joueurs online)
-      const onlinePlayer = latest.players.find(p => p.citizenid === citizenid);
-      if (onlinePlayer) {
-        return res.json({
-          citizenid: escapeHtml(onlinePlayer.citizenid),
-          name: escapeHtml(onlinePlayer.name || 'Unknown Player'),
-          charinfo: onlinePlayer.charinfo || {},
-          job: onlinePlayer.jobData || { name: 'unemployed', label: 'Unemployed', grade: { name: '0', level: 0 } },
-          money: onlinePlayer.money || { cash: 0, bank: 0 },
-          position: onlinePlayer.position || { x: 0, y: 0, z: 0 },
-          metadata: onlinePlayer.metadata || {},
-          vehicles: onlinePlayer.vehicles || [],
-          lastUpdated: latest.updatedAt,
-          source: 'online'
-        });
-      }
-
-      // Si pas online, interroger /api/staff/search-db pour tous les joueurs
+      // Vérifier la configuration FiveM
       const fivemServerIp = config.fivemServerIp;
       if (!fivemServerIp || !config.fivemSecret) {
+        console.error('[API Player Details] ❌ FiveM not configured');
         return res.status(503).json({ 
           error: 'FiveM server not configured',
           message: 'Le serveur FiveM n\'est pas configuré.'
         });
       }
 
+      // Appeler directement la ressource FiveM /all-players et filtrer côté web
       const fivemUrl = `http://${fivemServerIp}/all-players`;
-      console.log('[API Player] Calling FiveM bridge:', fivemUrl);
+      console.log('[API Player Details] 📡 Calling FiveM:', fivemUrl);
       
       const response = await axios.get(fivemUrl, {
         headers: { 'x-nightfall-secret': config.fivemSecret },
@@ -966,40 +952,65 @@ app.get('/api/staff/player/:citizenid',
       });
 
       const data = response.data;
+      console.log('[API Player Details] 📦 Received data:', {
+        count: data.players?.length || 0,
+        hasPlayers: !!data.players
+      });
+
       if (!data.players || data.players.length === 0) {
+        console.error('[API Player Details] ❌ No players in database');
         return res.status(404).json({ 
           error: 'Player not found',
-          message: 'Aucun joueur trouvé avec ce CitizenID.'
+          message: 'Aucun joueur trouvé dans la base de données.'
         });
       }
 
       // Filtrer pour trouver le joueur avec ce citizenid
       const player = data.players.find(p => p.citizenid === citizenid);
+      
       if (!player) {
+        console.error('[API Player Details] ❌ Player not found:', citizenid);
+        console.log('[API Player Details] Available citizenids:', data.players.map(p => p.citizenid).slice(0, 5));
         return res.status(404).json({ 
           error: 'Player not found',
-          message: 'Aucun joueur trouvé avec ce CitizenID.'
+          message: `Aucun joueur trouvé avec le CitizenID: ${citizenid}`
         });
       }
 
-      res.json({
+      console.log('[API Player Details] ✅ Player found:', player.citizenid);
+
+      // Renvoyer les détails complets du joueur
+      const responseData = {
         citizenid: escapeHtml(player.citizenid),
-        name: `${escapeHtml(player.firstname)} ${escapeHtml(player.lastname)}`,
+        name: `${escapeHtml(player.firstname || 'Unknown')} ${escapeHtml(player.lastname || 'Player')}`,
         charinfo: {
-          firstname: escapeHtml(player.firstname),
-          lastname: escapeHtml(player.lastname),
+          firstname: escapeHtml(player.firstname || 'Unknown'),
+          lastname: escapeHtml(player.lastname || 'Player'),
           phone: escapeHtml(player.phone || 'N/A'),
           birthdate: escapeHtml(player.birthdate || 'N/A'),
           gender: parseInt(player.gender) || 0
         },
-        job: player.job || { name: 'unemployed', label: 'Unemployed', grade: { name: '0', level: 0 } },
+        job: player.job || { name: 'unemployed', label: 'Sans emploi', grade: { name: '0', level: 0 } },
         money: player.money || { cash: 0, bank: 0 },
-        position: { x: 0, y: 0, z: 0 },
+        position: player.position || { x: 0, y: 0, z: 0 },
+        metadata: player.metadata || {},
+        vehicles: player.vehicles || [],
         last_updated: player.last_updated,
         source: 'database'
+      };
+
+      console.log('[API Player Details] 📤 Sending response:', {
+        citizenid: responseData.citizenid,
+        name: responseData.name,
+        vehiclesCount: responseData.vehicles.length
       });
+
+      res.json(responseData);
     } catch (err) {
-      console.error('[API Player] Error:', err.message);
+      console.error('[API Player Details] ❌ Error:', err.message);
+      if (err.response) {
+        console.error('[API Player Details] FiveM Response:', err.response.status, err.response.data);
+      }
       res.status(500).json({ error: 'Server error', message: err.message });
     }
   }
