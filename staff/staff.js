@@ -130,9 +130,9 @@
     const imgWidth = 2048;
     const imgHeight = 2048;
     
-    // Calculer les proportions pour correspondre à l'image
+    // Calculer les proportions pour correspondre à l'image (Y inversé)
     const mapX = ((x - minX) / (maxX - minX)) * imgWidth;
-    const mapY = ((maxY - y) / (maxY - minY)) * imgHeight; // Inverser Y car GTA Y va vers le haut
+    const mapY = ((y - minY) / (maxY - minY)) * imgHeight; // Y normal sans inversion
     
     return [mapY, mapX]; // Leaflet Simple CRS uses [lat, lng]
   }
