@@ -1140,6 +1140,8 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
     }
 
     const fivemUrl = `http://${fivemServerIp}/player?discordId=${encodeURIComponent(discordId)}`;
+    console.log('[API Player] 🔍 Full URL:', fivemUrl);
+    console.log('[API Player] 🔑 Secret header:', config.fivemSecret.substring(0, 10) + '...');
     
     try {
       const response = await axios.get(fivemUrl, {
@@ -1214,6 +1216,13 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
       });
     } catch (fivemError) {
       console.error('[API Player] FiveM query failed:', fivemError.message);
+      console.error('[API Player] 🚨 Error details:', {
+        code: fivemError.code,
+        status: fivemError.response?.status,
+        statusText: fivemError.response?.statusText,
+        data: fivemError.response?.data,
+        url: fivemUrl
+      });
       
       if (fivemError.code === 'ECONNREFUSED' || fivemError.code === 'ETIMEDOUT') {
         return res.status(503).json({ 
