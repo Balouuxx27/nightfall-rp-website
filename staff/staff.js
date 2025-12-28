@@ -119,18 +119,20 @@
   }
 
   function gtaToMap({ x, y }) {
-    // Coordonnées GTA V: X(-4000 à +4000), Y(-4000 à +8000)
+    // Coordonnées GTA V réelles (Los Santos):
+    // X: -3000 à +4500 (7500 unités) - Map n'est PAS symétrique !
+    // Y: -4000 à +8000 (12000 unités)
     // Carte: 2048x2048 pixels
     
-    const minX = -4000;
-    const maxX = 4000;
+    const minX = -3000;
+    const maxX = 4500;
     const minY = -4000;
     const maxY = 8000;
     
     const size = 2048;
     
-    // Conversion directe proportionnelle
-    // X: (-4000 à +4000) → (0 à 2048)
+    // Conversion proportionnelle avec les vraies dimensions GTA V
+    // X: (-3000 à +4500) → (0 à 2048)
     const mapX = ((x - minX) / (maxX - minX)) * size;
     // Y: (-4000 à +8000) → (0 à 2048)
     const mapY = ((y - minY) / (maxY - minY)) * size;
