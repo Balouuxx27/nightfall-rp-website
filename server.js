@@ -820,7 +820,7 @@ app.get('/api/staff/search-db',
         });
       }
 
-      const fivemUrl = `http://${fivemServerIp}/all-players`;
+      const fivemUrl = `http://${fivemServerIp}/nightfall_web_bridge/all-players`;
       
       console.log('[API Search DB] Fetching all players from FiveM...');
       
@@ -1124,7 +1124,7 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
       });
     }
 
-    const fivemUrl = `http://${fivemServerIp}/player?discordId=${encodeURIComponent(discordId)}`;
+    const fivemUrl = `http://${fivemServerIp}/nightfall_web_bridge/player?discordId=${encodeURIComponent(discordId)}`;
     
     try {
       const response = await axios.get(fivemUrl, {
