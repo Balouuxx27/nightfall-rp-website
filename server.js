@@ -979,65 +979,145 @@ function tickMock() {
 // ========== ROUTES JOUEUR (Protection Discord Joueur) ==========
 
 // Récupérer les données du joueur connecté
-app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, (req, res) => {
+app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res) => {
   try {
     const discordId = req.user.id;
     console.log('[API Player] Fetching profile for Discord ID:', discordId);
 
-    // Chercher le joueur dans le cache FiveM
+    // STRATÉGIE 1 : Chercher dans le cache (joueur connecté)
     const player = latest.players.find(p => p.discordId === discordId);
 
-    if (!player || !player.citizenid) {
-      console.log('[API Player] No character found in cache for Discord ID:', discordId);
-      return res.status(404).json({ 
-        error: 'No character found',
-        message: 'Aucun personnage trouvé. Connecte-toi au serveur FiveM pour voir tes informations ici.',
-        hint: 'Les données sont mises à jour toutes les 2 secondes quand tu es connecté.'
+    if (player && player.citizenid) {
+      console.log('[API Player] ✅ Found in cache (online):', player.citizenid);
+      
+      const charinfo = player.charinfo || { firstname: "Unknown", lastname: "Player", phone: "N/A", birthdate: "N/A" };
+      const jobData = player.jobData || { name: "unemployed", label: "Unemployed", grade: { name: "0", level: 0 } };
+      const money = player.money || { cash: 0, bank: 0 };
+      const position = player.position || { x: 0, y: 0, z: 0 };
+      const vehicles = player.vehicles || [];
+
+      return res.json({
+        citizenid: escapeHtml(player.citizenid),
+        charinfo: {
+          firstname: escapeHtml(charinfo.firstname || "Unknown"),
+          lastname: escapeHtml(charinfo.lastname || "Player"),
+          phone: escapeHtml(charinfo.phone || "N/A"),
+          birthdate: escapeHtml(charinfo.birthdate || "N/A")
+        },
+        job: {
+          name: escapeHtml(jobData.name || "unemployed"),
+          label: escapeHtml(jobData.label || "Unemployed"),
+          grade: {
+            name: escapeHtml(jobData.grade?.name || "0"),
+            level: parseInt(jobData.grade?.level) || 0
+          }
+        },
+        money: {
+          cash: parseInt(money.cash) || 0,
+          bank: parseInt(money.bank) || 0
+        },
+        position: position,
+        vehicles: vehicles.map(v => ({
+          vehicle: escapeHtml(v.vehicle || "unknown"),
+          plate: escapeHtml(v.plate || "N/A"),
+          state: parseInt(v.state) || 0,
+          engine: parseFloat(v.engine) || 1000.0,
+          body: parseFloat(v.body) || 1000.0
+        })),
+        lastUpdated: latest.updatedAt,
+        source: 'cache',
+        online: true
       });
     }
 
-    console.log('[API Player] Found character in cache:', player.citizenid);
+    // STRATÉGIE 2 : Interroger le serveur FiveM via HTTP (joueur hors ligne)
+    console.log('[API Player] Not in cache, querying FiveM server...');
     
-    // Parser les données
-    const charinfo = player.charinfo || { firstname: "Unknown", lastname: "Player", phone: "N/A", birthdate: "N/A" };
-    const jobData = player.jobData || { name: "unemployed", label: "Unemployed", grade: { name: "0", level: 0 } };
-    const money = player.money || { cash: 0, bank: 0 };
-    const position = player.position || { x: 0, y: 0, z: 0 };
-    const vehicles = player.vehicles || [];
+    const fivemServerIp = process.env.FIVEM_SERVER_IP || '';
+    if (!fivemServerIp) {
+      console.error('[API Player] FIVEM_SERVER_IP not configured');
+      return res.status(503).json({ 
+        error: 'FiveM server not configured',
+        message: 'Le serveur FiveM n\'est pas configuré. Contacte un administrateur.'
+      });
+    }
 
-    console.log('[API Player] Found', vehicles.length, 'vehicles');
+    const fivemUrl = `http://${fivemServerIp}/player?discordId=${encodeURIComponent(discordId)}`;
+    
+    try {
+      const response = await axios.get(fivemUrl, {
+        headers: {
+          'x-nightfall-secret': config.fivemSecret
+        },
+        timeout: 5000
+      });
 
-    res.json({
-      citizenid: escapeHtml(player.citizenid),
-      charinfo: {
-        firstname: escapeHtml(charinfo.firstname || "Unknown"),
-        lastname: escapeHtml(charinfo.lastname || "Player"),
-        phone: escapeHtml(charinfo.phone || "N/A"),
-        birthdate: escapeHtml(charinfo.birthdate || "N/A")
-      },
-      job: {
-        name: escapeHtml(jobData.name || "unemployed"),
-        label: escapeHtml(jobData.label || "Unemployed"),
-        grade: {
-          name: escapeHtml(jobData.grade?.name || "0"),
-          level: parseInt(jobData.grade?.level) || 0
-        }
-      },
-      money: {
-        cash: parseInt(money.cash) || 0,
-        bank: parseInt(money.bank) || 0
-      },
-      position: position,
-      vehicles: vehicles.map(v => ({
-        vehicle: escapeHtml(v.vehicle || "unknown"),
-        plate: escapeHtml(v.plate || "N/A"),
-        state: parseInt(v.state) || 0,
-        engine: parseFloat(v.engine) || 1000.0,
-        body: parseFloat(v.body) || 1000.0
-      })),
-      lastUpdated: latest.updatedAt,
-      source: 'cache'
-    });
+      const data = response.data;
+      
+      if (data.error) {
+        console.log('[API Player] FiveM returned error:', data.error);
+        return res.status(404).json({ 
+          error: 'No character found',
+          message: 'Aucun personnage trouvé. Crée un personnage sur le serveur FiveM pour voir ton profil.'
+        });
+      }
+
+      console.log('[API Player] ✅ Found in database (offline):', data.citizenid);
+
+      // Parser les données
+      const charinfo = data.charinfo || {};
+      const job = data.job || {};
+      const money = data.money || {};
+      const position = data.position || {};
+      const vehicles = data.vehicles || [];
+
+      res.json({
+        citizenid: escapeHtml(data.citizenid),
+        charinfo: {
+          firstname: escapeHtml(charinfo.firstname || "Unknown"),
+          lastname: escapeHtml(charinfo.lastname || "Player"),
+          phone: escapeHtml(charinfo.phone || "N/A"),
+          birthdate: escapeHtml(charinfo.birthdate || "N/A")
+        },
+        job: {
+          name: escapeHtml(job.name || "unemployed"),
+          label: escapeHtml(job.label || "Unemployed"),
+          grade: {
+            name: escapeHtml(job.grade?.name || "0"),
+            level: parseInt(job.grade?.level) || 0
+          }
+        },
+        money: {
+          cash: parseInt(money.cash) || 0,
+          bank: parseInt(money.bank) || 0
+        },
+        position: position,
+        vehicles: vehicles.map(v => ({
+          vehicle: escapeHtml(v.vehicle || "unknown"),
+          plate: escapeHtml(v.plate || "N/A"),
+          state: parseInt(v.state) || 0,
+          engine: parseFloat(v.engine) || 1000.0,
+          body: parseFloat(v.body) || 1000.0
+        })),
+        lastUpdated: data.lastUpdated,
+        source: 'database',
+        online: false
+      });
+    } catch (fivemError) {
+      console.error('[API Player] FiveM query failed:', fivemError.message);
+      
+      if (fivemError.code === 'ECONNREFUSED' || fivemError.code === 'ETIMEDOUT') {
+        return res.status(503).json({ 
+          error: 'FiveM server unavailable',
+          message: 'Le serveur FiveM est hors ligne. Réessaye plus tard.'
+        });
+      }
+
+      return res.status(404).json({ 
+        error: 'No character found',
+        message: 'Aucun personnage trouvé. Crée un personnage sur le serveur FiveM.'
+      });
+    }
   } catch (err) {
     console.error('[API Player] ❌ ERROR:', err.message);
     console.error('[API Player] Stack:', err.stack);

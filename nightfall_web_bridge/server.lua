@@ -8,6 +8,7 @@
 local WEBHOOK_URL = "https://nightfall-rp.onrender.com/api/fivem/players"  -- URL du site web déployé sur Render
 local SECRET = "7eaee28859e8fdc081956912cae6a2fb7bd90918dc605a09f3d505b1b795788f"  -- Doit correspondre au FIVEM_SECRET dans .env
 local UPDATE_INTERVAL = 2000  -- Mise à jour toutes les 2 secondes (2000ms)
+local HTTP_PORT = 30121  -- Port HTTP pour les requêtes de profil (FiveM server port + 1)
 
 -- Framework detection
 local Framework = nil
@@ -176,3 +177,4 @@ print("^2[Nightfall Web] Resource démarrée^0")
 print("^2URL: " .. WEBHOOK_URL .. "^0")
 print("^2Framework: " .. FrameworkName .. "^0")
 print("^2========================================^0")
+
