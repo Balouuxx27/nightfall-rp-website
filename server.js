@@ -48,13 +48,15 @@ function loadStatusConfig() {
     const j = JSON.parse(raw);
     return {
       serverIp: String(process.env.FIVEM_SERVER_IP || j.serverIp || ''),
-      discordInvite: String(process.env.DISCORD_INVITE || j.discordInvite || '')
+      discordInvite: String(process.env.DISCORD_INVITE || j.discordInvite || ''),
+      discordServerId: String(process.env.DISCORD_SERVER_ID || j.discordServerId || '')
     };
   } catch {
     // Fichier absent = on utilise uniquement les variables d'environnement
     return {
       serverIp: String(process.env.FIVEM_SERVER_IP || ''),
-      discordInvite: String(process.env.DISCORD_INVITE || '')
+      discordInvite: String(process.env.DISCORD_INVITE || ''),
+      discordServerId: String(process.env.DISCORD_SERVER_ID || '')
     };
   }
 }
@@ -681,6 +683,7 @@ app.get('/api/status', async (_req, res) => {
       playersOnline,
       serverIp: displayIp,
       discordInvite: cfg.discordInvite || '',
+      discordServerId: cfg.discordServerId || '',
       avgPing: avgPing,
       uptime: uptime
     });

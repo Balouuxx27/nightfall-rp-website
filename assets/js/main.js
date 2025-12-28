@@ -158,6 +158,20 @@
         discord.textContent = 'Rejoindre le Discord';
       }
 
+      // Charger le widget Discord dynamiquement
+      const widgetContainer = document.getElementById('discord-widget-container');
+      if (widgetContainer && data.discordServerId && data.discordServerId !== 'VOTRE_ID_ICI') {
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://discord.com/widget?id=${data.discordServerId}&theme=dark`;
+        iframe.width = '350';
+        iframe.height = '500';
+        iframe.allowTransparency = 'true';
+        iframe.frameBorder = '0';
+        iframe.sandbox = 'allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts';
+        iframe.style.cssText = 'width: 350px !important; height: 500px !important; display: block !important;';
+        widgetContainer.appendChild(iframe);
+      }
+
       // Afficher l'uptime
       const uptimeEl = document.querySelector('[data-stat-uptime]');
       if (uptimeEl && data.uptime) {

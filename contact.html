@@ -65,35 +65,15 @@
   </header>
 
   <main id="top">
-    <!-- Section Galerie -->
-    <section id="gallery" class="section" style="margin-top: 80px;">
-      <div class="section__head">
-        <h2>Galerie</h2>
-        <p>Découvre Nightfall RP en vidéo</p>
-      </div>
-
-      <div class="gallery-grid gallery-grid--single" style="display: flex !important; justify-content: center !important; max-width: 100% !important;">
-        <div class="gallery-item gallery-item--video gallery-item--large" style="width: 100% !important; max-width: 900px !important; aspect-ratio: 16/9 !important; overflow: hidden !important; border-radius: 16px;">
-          <iframe class="gallery-video" 
-                  src="https://www.youtube.com/embed/8n-QJUE0qP8?autoplay=0&mute=0&controls=1&showinfo=1&rel=0" 
-                  frameborder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowfullscreen
-                  style="width: 100% !important; height: 100% !important; display: block !important;">
-          </iframe>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section">
+    <section id="contact" class="section" style="margin-top: 80px;">
       <div class="section__head">
         <h2>Rejoins notre Discord</h2>
         <p>La communauté t'attend pour commencer ton aventure</p>
       </div>
 
       <div class="discord-section" style="display: grid !important; grid-template-columns: 350px 1fr !important; gap: 48px !important; align-items: start !important;">
-        <div class="discord-widget" style="width: 350px !important; min-width: 350px !important; max-width: 350px !important; flex-shrink: 0 !important; border-radius: 16px; overflow: hidden !important;">
-          <iframe src="https://discord.com/widget?id=TON_SERVER_ID&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="width: 350px !important; height: 500px !important; display: block !important;"></iframe>
+        <div class="discord-widget" id="discord-widget-container" style="width: 350px !important; min-width: 350px !important; max-width: 350px !important; flex-shrink: 0 !important; border-radius: 16px; overflow: hidden !important;">
+          <!-- Widget Discord chargé dynamiquement via JavaScript -->
         </div>
         <div class="discord-info" style="display: flex !important; flex-direction: column !important; gap: 32px !important;">
           <div class="discord-features">
