@@ -500,20 +500,13 @@ const escapeHtml = (unsafe) => {
 
 // Démarrer l'authentification Discord
 app.get('/auth/discord', (req, res, next) => {
-  // Sauvegarder la page d'où vient l'utilisateur pour rediriger après auth
-  if (req.query.returnTo) {
-    req.session.returnTo = req.query.returnTo;
-    // CRITIQUE: Sauvegarder la session AVANT de lancer passport!
-    req.session.save((err) => {
-      if (err) {
-        console.error('[Auth] Error saving returnTo:', err);
-      }
-      console.log('[Auth] 💾 returnTo saved:', req.query.returnTo);
-      passport.authenticate('discord')(req, res, next);
-    });
-  } else {
-    passport.authenticate('discord')(req, res, next);
-  }
+  // Utiliser le paramètre state de Discord OAuth2 pour passer le returnTo
+  const returnTo = req.query.returnTo || '/';
+  console.log('[Auth] 💾 returnTo will be passed in state:', returnTo);
+  
+  passport.authenticate('discord', {
+    state: Buffer.from(JSON.stringify({ returnTo })).toString('base64')
+  })(req, res, next);
 });
 
 // Callback après authentification Discord
@@ -537,12 +530,22 @@ app.get('/auth/discord/callback',
         }
         
         console.log('[Auth] ✅ Session saved successfully!');
-        console.log('[Auth] 🔍 Checking returnTo:', req.session.returnTo);
         
-        // Si returnTo existe, rediriger là-bas (priorité ABSOLUE)
-        if (req.session.returnTo) {
-          const returnTo = req.session.returnTo;
-          delete req.session.returnTo;
+        // Récupérer le returnTo depuis le state OAuth2
+        let returnTo = '/';
+        try {
+          if (req.query.state) {
+            const stateData = JSON.parse(Buffer.from(req.query.state, 'base64').toString());
+            returnTo = stateData.returnTo || '/';
+          }
+        } catch (e) {
+          console.error('[Auth] Error parsing state:', e);
+        }
+        
+        console.log('[Auth] 🔍 returnTo from state:', returnTo);
+        
+        // Rediriger vers returnTo
+        if (returnTo && returnTo !== '/') {
           console.log('[Auth] 🎯 Redirecting to returnTo:', returnTo);
           return res.redirect(returnTo);
         }
