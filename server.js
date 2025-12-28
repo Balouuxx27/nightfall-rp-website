@@ -382,13 +382,17 @@ app.use(helmet({
     directives: {
       defaultSrc: ["'self'"],
       styleSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com", "https://cdnjs.cloudflare.com"],
-      scriptSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com", "https://cdnjs.cloudflare.com", "https://www.youtube.com", "https://s.ytimg.com"],
-      imgSrc: ["'self'", "data:", "https:", "https://i.ytimg.com"],
-      connectSrc: ["'self'", "https://unpkg.com", "https://cdnjs.cloudflare.com", "https://www.youtube.com"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com", "https://cdnjs.cloudflare.com", "https://www.youtube.com", "https://s.ytimg.com", "https://www.gstatic.com"],
+      imgSrc: ["'self'", "data:", "https:", "https://i.ytimg.com", "https://yt3.ggpht.com"],
+      connectSrc: ["'self'", "https://unpkg.com", "https://cdnjs.cloudflare.com", "https://www.youtube.com", "https://*.googlevideo.com"],
       fontSrc: ["'self'", "https:", "data:"],
-      frameSrc: ["'self'", "https://www.youtube.com", "https://www.youtube-nocookie.com"],
+      frameSrc: ["'self'", "https://www.youtube.com", "https://www.youtube-nocookie.com", "https://discord.com"],
       mediaSrc: ["'self'", "https://www.youtube.com", "https://*.googlevideo.com"],
-      childSrc: ["'self'", "https://www.youtube.com"],
+      childSrc: ["'self'", "https://www.youtube.com", "https://www.youtube-nocookie.com"],
+      objectSrc: ["'none'"],
+      baseUri: ["'self'"],
+      formAction: ["'self'"],
+      frameAncestors: ["'none'"]
     }
   },
   hsts: {
