@@ -1129,9 +1129,20 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
       lastUpdated: row.last_updated
     });
   } catch (err) {
-    console.error('[API Player] Error:', err.message);
+    console.error('[API Player] ❌ ERROR DETAILS:');
+    console.error('[API Player] Message:', err.message);
+    console.error('[API Player] Code:', err.code);
+    console.error('[API Player] Errno:', err.errno);
+    console.error('[API Player] SQL:', err.sql);
+    console.error('[API Player] SQLState:', err.sqlState);
+    console.error('[API Player] SQLMessage:', err.sqlMessage);
     console.error('[API Player] Stack:', err.stack);
-    res.status(500).json({ error: 'Database error', details: err.message });
+    res.status(500).json({ 
+      error: 'Database error', 
+      code: err.code,
+      message: err.message || 'Unknown error',
+      sqlMessage: err.sqlMessage 
+    });
   }
 });
 
