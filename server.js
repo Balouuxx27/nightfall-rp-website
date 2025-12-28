@@ -942,8 +942,8 @@ app.get('/api/staff/player/:citizenid',
         });
       }
 
-      // Appeler directement la ressource FiveM /all-players et filtrer côté web
-      const fivemUrl = `http://${fivemServerIp}/all-players`;
+      // Appeler directement la ressource FiveM /nightfall_web_bridge/all-players et filtrer côté web
+      const fivemUrl = `http://${fivemServerIp}/nightfall_web_bridge/all-players`;
       console.log('[API Player Details] 📡 Calling FiveM:', fivemUrl);
       
       const response = await axios.get(fivemUrl, {
