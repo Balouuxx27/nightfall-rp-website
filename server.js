@@ -1034,12 +1034,10 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
 
   try {
     const discordId = req.user.id;
+    console.log('[API Player] Fetching profile for Discord ID:', discordId);
 
-    // Utiliser la table discord_ids pour trouver le license du joueur
-    // IMPORTANT : discord_ids.license2 ne contient PAS le préfixe "license2:"
-    // mais players.license2 CONTIENT le préfixe "license2:"
-    // On doit donc ajouter le préfixe dans la jointure
-    const [rows] = await dbPool.query(`
+    // STRATÉGIE 1 : Utiliser discord_ids si disponible
+    let [rows] = await dbPool.query(`
       SELECT 
         p.citizenid,
         p.charinfo,
@@ -1054,14 +1052,39 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
       LIMIT 1
     `, [discordId]);
 
+    console.log('[API Player] Strategy 1 (discord_ids JOIN) returned:', rows.length, 'rows');
+
+    // STRATÉGIE 2 : Si pas trouvé, chercher directement par license dans players
     if (rows.length === 0) {
+      console.log('[API Player] Trying strategy 2: direct license search in players table');
+      
+      [rows] = await dbPool.query(`
+        SELECT 
+          citizenid,
+          charinfo,
+          job,
+          money,
+          position,
+          last_updated
+        FROM players
+        WHERE license2 LIKE ?
+        ORDER BY last_updated DESC
+        LIMIT 1
+      `, [`%${discordId}%`]);
+      
+      console.log('[API Player] Strategy 2 (direct search) returned:', rows.length, 'rows');
+    }
+
+    if (rows.length === 0) {
+      console.log('[API Player] No character found for Discord ID:', discordId);
       return res.status(404).json({ 
         error: 'No character found',
-        message: 'Connectez-vous au serveur FiveM pour créer un personnage et lier votre Discord'
+        message: 'Aucun personnage trouvé. Créez un personnage sur le serveur FiveM pour voir vos informations ici.'
       });
     }
 
     const row = rows[0];
+    console.log('[API Player] Found character:', row.citizenid);
     
     // Parser JSON
     const charinfo = typeof row.charinfo === 'string' ? JSON.parse(row.charinfo) : row.charinfo;
@@ -1076,6 +1099,8 @@ app.get('/api/player/me', requireDiscordAuth, requirePlayerRole, async (req, res
       WHERE citizenid = ?
       ORDER BY vehicle ASC
     `, [row.citizenid]);
+
+    console.log('[API Player] Found', vehicles.length, 'vehicles');
 
     res.json({
       citizenid: escapeHtml(row.citizenid),
